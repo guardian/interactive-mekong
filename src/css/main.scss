@@ -1,5 +1,6 @@
 @import 'modules/_breakpoints';
 @import 'modules/_typography';
+@import 'cards/card-photo';
 // @import 'modules/_palette';
 // @import 'modules/_grid-system';
 // @import 'modules/_mq';
@@ -13,6 +14,9 @@ body {
 // Remove <figure> margin
 .interactive {
     margin: 0;
+    *, * *{
+    	box-sizing:border-box;
+    }
 
     @media ( max-width: breakpoints(mobile) ) {
         // Do something..

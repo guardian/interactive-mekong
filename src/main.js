@@ -1,4 +1,6 @@
 var Handlebars = require('handlebars/dist/cjs/handlebars');
+var getJSON = require('./utils/getjson');
+var template = require('./html/base.html');
 
 /**
  * Guardian visuals interactive project
@@ -7,15 +9,22 @@ var Handlebars = require('handlebars/dist/cjs/handlebars');
  * ./utils/detect.js	- Device and env detection
  */
 
-var getJSON = require('./utils/getjson');
-var template = require('./html/base.html');
-
 function doStuff(data, el) {
-	// Do stuff
+
 }
 
 function boot(el) {
-	el.innerHTML = template;
+	Handlebars.registerPartial({
+        'photoCard': require('./html/cards/card-photo.html')
+    });
+
+    var content = Handlebars.compile( 
+            template, 
+            { 
+                compat: true
+            }
+    );
+	el.innerHTML = content([]);
 
 	var key = '1hy65wVx-pjwjSt2ZK7y4pRDlX9wMXFQbwKN0v3XgtXM';
 	var url = 'https://interactive.guim.co.uk/spreadsheetdata/' + key + '.json';
