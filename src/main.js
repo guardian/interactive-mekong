@@ -15,7 +15,8 @@ function doStuff(data, el) {
 
 function boot(el) {
 	Handlebars.registerPartial({
-        'photoCard': require('./html/cards/card-photo.html')
+        'photoCard': require('./html/cards/card-photo.html'),
+        'quoteCard': require('./html/cards/card-quote.html')
     });
 
     var content = Handlebars.compile( 

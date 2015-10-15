@@ -1,0 +1,50 @@
+.card-quote{
+	background:#484F53;
+	width:320px;
+	height:540px;
+	position: relative;
+	.quote-container{
+		top:45%;
+		left:20px;
+		right:20px;
+		transform:translateY(-50%);
+		position: absolute;
+	}
+	.quote-icon{
+		display:block;
+		margin-bottom:6px;
+	}
+	quote{
+		color:#fff;
+		font-family: $f-serif-headline;
+		color:#fff;
+		font-size:30px;
+		line-height: 36px;
+		font-weight:100;
+		margin:0;
+		strong{
+			font-weight:bold;
+		}
+	}
+	.quote-credit{
+		color:#fff;
+		font-family: $f-serif-headline;
+		margin-top:60px;
+
+		&:before{
+			width:70px;
+			height:1px;
+			background:#fff;
+			display:block;
+			content:'';
+			margin-bottom:6px
+		}
+
+		p{
+			margin:0;
+			font-size:18px;
+			line-height:18px;
+		}
+
+	}
+}

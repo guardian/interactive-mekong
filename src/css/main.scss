@@ -1,6 +1,7 @@
 @import 'modules/_breakpoints';
 @import 'modules/_typography';
 @import 'cards/card-photo';
+@import 'cards/card-quote';
 // @import 'modules/_palette';
 // @import 'modules/_grid-system';
 // @import 'modules/_mq';
@@ -20,5 +21,11 @@ body {
 
     @media ( max-width: breakpoints(mobile) ) {
         // Do something..
+    }
+
+    .card{
+    	margin:20px;
+    	border-radius:3px;
+    	float:left;
     }
 }
