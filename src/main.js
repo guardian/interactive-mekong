@@ -1,3 +1,5 @@
+var Handlebars = require('handlebars/dist/cjs/handlebars');
+
 /**
  * Guardian visuals interactive project
  *
