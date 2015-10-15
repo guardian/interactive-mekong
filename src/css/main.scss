@@ -1,0 +1,20 @@
+@import 'modules/_breakpoints';
+@import 'modules/_typography';
+// @import 'modules/_palette';
+// @import 'modules/_grid-system';
+// @import 'modules/_mq';
+// @import 'modules/_side-margins';
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+// Remove <figure> margin
+.interactive {
+    margin: 0;
+
+    @media ( max-width: breakpoints(mobile) ) {
+        // Do something..
+    }
+}

@@ -1,0 +1,6 @@
+node_modules/
+build/
+temp/
+.DS_Store
+.sass-cache/
+cfg/aws.json
