@@ -1,0 +1,75 @@
+#blocks-wrapper{
+    @media(min-width: breakpoints(tablet)){
+        #inner-wrapper{
+            background:rgba(255,255,255,0.1);
+            padding-top:20px;
+            padding-right:20px;
+            padding-bottom:40px;
+            padding-left:100px;
+            margin:0 auto;
+            max-width:740px;
+        }
+
+        .size-xs    {width:300px;}
+        .size-s     {width:300px;}
+        .size-m     {width:460px;}
+        .size-l     {width:620px;}
+        .size-xl    {width:700px; margin-left:-80px;}
+
+        .margin-1-col    {margin-left:160px;}
+        .margin-2-col    {margin-left:160px;}
+        .margin-3-col    {margin-left:160px;}
+        .margin-4-col    {margin-left:320px;}
+        .margin-5-col    {margin-left:320px;}
+        .margin-6-col    {margin-left:320px;}
+    }
+
+    @media(max-width: breakpoints(desktop)){
+        .size-l{
+            margin-left:0;
+        }
+    }
+
+    @media(min-width: breakpoints(desktop)){ //980px
+        #inner-wrapper{
+            max-width:980px;
+            padding-left:20px;
+        }
+        .size-xs    {width:300px;}
+        .size-s     {width:460px;}
+        .size-m     {width:620px;}
+        .size-l     {width:780px;}
+        .size-xl    {width:940px; margin-left:0;}
+
+        .margin-1-col    {margin-left:160px;}
+        .margin-2-col    {margin-left:320px;}
+        .margin-3-col    {margin-left:480px;}
+        .margin-4-col    {margin-left:480px;}
+        .margin-5-col    {margin-left:640px;}
+        .margin-6-col    {margin-left:640px;}
+    }
+    @media(min-width: breakpoints(leftCol)){
+        #inner-wrapper{
+            max-width:1140px;
+        }
+        .size-xs    {width:300px;}
+        .size-s     {width:460px;}
+        .size-m     {width:620px;}
+        .size-l     {width:940px;}
+        .size-xl    {width:1100px;}
+        
+        .margin-1-col    {margin-left:160px;}
+        .margin-2-col    {margin-left:320px;}
+        .margin-3-col    {margin-left:480px;}
+        .margin-4-col    {margin-left:640px;}
+        .margin-5-col    {margin-left:800px;}
+        .margin-6-col    {margin-left:960px;}
+    }
+    @media(min-width: breakpoints(wide)){
+        #inner-wrapper{
+            max-width:1300px;
+            padding-left:180px;
+        }
+        .size-xl    {width:1260px; margin-left:-160px;}
+    }  
+}

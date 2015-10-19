@@ -1,6 +1,5 @@
-.card-quote{
+.card.card-quote{
 	background:#484F53;
-	position: relative;
 	.quote-container{
 		top:45%;
 		left:20px;
@@ -43,6 +42,21 @@
 			font-size:18px;
 			line-height:18px;
 		}
+	}
 
+	@media(min-width: breakpoints(tablet)){
+		height:auto;
+		padding:1px 20px;
+		
+	position: relative;
+
+		.quote-container{
+			position: relative;
+			transform:none;
+			left:auto;
+			top:auto;
+			right:auto;
+			margin:60px 0 120px;
+		}
 	}
 }
