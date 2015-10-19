@@ -1,7 +1,34 @@
-.card-quote{
-	background:#484F53;
-	width:320px;
-	height:540px;
+.card-paragraph{
+	background:#F8CE4B;
 	position: relative;
+
+	.paragraph-container{
+		position: absolute;
+		left:20px;
+		top:45%;
+		right:20px;
+		transform:translateY(-50%);
+	}
+	h3{
+		font-family: $f-serif-headline;
+		color:#5A5238;
+		font-size:30px;
+		line-height:30px;
+		margin-bottom:48px;
+	}
+	p{
+		font-size:16px;
+		line-height:24px;
+		color:#5A5238;
+		&:before{
+			width:70px;
+			border-top:1px solid;
+			display: block;
+			content:'';
+			margin-bottom:6px;
+
+		}
+		
+	}
 	
 }

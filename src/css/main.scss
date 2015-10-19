@@ -2,6 +2,8 @@
 @import 'modules/_typography';
 @import 'cards/card-photo';
 @import 'cards/card-quote';
+@import 'cards/card-paragraph';
+@import 'cards/card-video';
 // @import 'modules/_palette';
 // @import 'modules/_grid-system';
 // @import 'modules/_mq';
@@ -15,6 +17,7 @@ body {
 // Remove <figure> margin
 .interactive {
     margin: 0;
+    padding:1px 0;
     *, * *{
     	box-sizing:border-box;
     }
@@ -24,8 +27,20 @@ body {
     }
 
     .card{
-    	margin:20px;
-    	border-radius:3px;
-    	float:left;
+        position:fixed;
+        width:100%;
+        height:100%;
+    }
+
+    @media(min-width: breakpoints(phablet)){
+        background:#333;
+
+        .card{
+            position:relative;
+            width:320px;
+            height:540px;
+            margin:20px;
+            border-radius: 3px;
+        }
     }
 }

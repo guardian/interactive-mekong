@@ -1,0 +1,58 @@
+.card-video{
+	background-image:url(http://www.flamingoshanghai.com/blog/wp-content/uploads/2011/02/nadav-kander-yangtze-10-600x472.jpg);
+	background-size:cover;
+	background-position:center;
+	position: relative;
+	overflow:hidden;
+
+	.video-container{
+		display:none;
+	}
+	.photo-placeholder-container{
+		width:100%;
+		height:100%;
+	}
+	.placeholder-background{
+		height:100%;
+		width:100%;
+		background-image:url(http://31.media.tumblr.com/660412bc8ec32b5f3ed33a38e35b02ee/tumblr_mixwb2O8Vt1r4zr2vo2_r2_500.gif);
+		background-size:cover;
+		position: absolute;
+		top:0;
+		left:0;
+		z-index:0;
+	}
+	.placeholder-content{
+		transform:translateY(-50%);
+		top:45%;
+		left:20px;
+		right:20px;
+		z-index:1;
+		overflow: hidden;
+		position: absolute;
+		p{
+			font-family:$f-sans-serif-text;
+			font-size:14px;
+			line-height:18px;
+			margin:0;
+			position: absolute;
+			left:90px;
+			top:50%;
+			right:20px;
+			transform:translateY(-50%);
+			color:#fff;
+		}
+	}
+	.video-btn{
+		width:80px;
+		height:80px;
+		background-color:#fff;
+		border-radius:80px;
+		border:none;
+		outline:none;
+		background-image: url(../imgs/play-arrow.svg);
+		background-repeat:no-repeat;
+		background-position:28px center;
+		// background-si
+	}
+}

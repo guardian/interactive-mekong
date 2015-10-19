@@ -16,14 +16,16 @@ function doStuff(data, el) {
 function boot(el) {
 	Handlebars.registerPartial({
         'photoCard': require('./html/cards/card-photo.html'),
-        'quoteCard': require('./html/cards/card-quote.html')
+        'quoteCard': require('./html/cards/card-quote.html'),
+        'paragraphCard': require('./html/cards/card-paragraph.html'),
+        'videoCard': require('./html/cards/card-video.html')
     });
 
     var content = Handlebars.compile( 
-            template, 
-            { 
-                compat: true
-            }
+        template, 
+        { 
+            compat: true
+        }
     );
 	el.innerHTML = content([]);
 
