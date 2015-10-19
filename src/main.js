@@ -20,20 +20,28 @@ function boot(el) {
         'paragraphCard': require('./html/cards/card-paragraph.html'),
         'videoCard': require('./html/cards/card-video.html')
     });
+    
 
-    var content = Handlebars.compile( 
+	var key = '15ZNdHsQdrCuraPJNVkGfAKcpGhdmqgKngDQXcWak0eU';
+	var isLive = ( window.location.origin.search('localhost') > -1 || window.location.origin.search('gutools.co.uk') > -1) ? false : true;
+    var folder = (!isLive)? 'docsdata-test' : 'docsdata';
+
+    getJSON('https://interactive.guim.co.uk/' + folder + '/' + key + '.json', 
+        function(json){
+            console.log(json)
+            render(json, el);
+        }
+    );
+}
+
+function render(json, el){
+	var content = Handlebars.compile( 
         template, 
         { 
             compat: true
         }
     );
 	el.innerHTML = content([]);
-
-	var key = '1hy65wVx-pjwjSt2ZK7y4pRDlX9wMXFQbwKN0v3XgtXM';
-	var url = 'https://interactive.guim.co.uk/spreadsheetdata/' + key + '.json';
-	getJSON(url, function(data) {
-		doStuff(data, el);
-	});
 }
 
 module.exports = { boot: boot };
