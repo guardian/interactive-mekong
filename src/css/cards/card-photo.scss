@@ -21,6 +21,8 @@
 		display: block;
 		height:100%;
 		padding:40px 10px 16px;
+		opacity:1;
+		transition:opacity 0.4s;
 		
 		p{
 			margin:0;
@@ -42,6 +44,17 @@
 				display:block;
 				width:100%;
 			}
+		}
+		&:hover{
+			.photo-caption{
+				opacity:0;
+			}
+		}
+		.photo-caption p{
+			max-width:580px;
+		}
+		.photo-caption:hover{
+			opacity:1;
 		}
 	}
 }
