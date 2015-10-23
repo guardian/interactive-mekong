@@ -56,6 +56,13 @@ Handlebars.registerHelper({
     },
     'get_card_content': function(id){
         return cardData.cardLookup[id].content[0];
+    },
+    'get_card_size': function(id){
+        console.log(cardData);
+        return cardData.cardLookup[id].content[0].size;
+    },
+    'get_card_margin': function(id){
+        return cardData.cardLookup[id].content[0].margin;
     }
 });
 
@@ -64,7 +71,7 @@ function boot(el) {
 
 
     //reset if desktop
-    if(window.innerWidth > 600){
+    if(window.innerWidth > 740){
         isMobile = false;
     }
    
