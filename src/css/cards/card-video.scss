@@ -54,18 +54,30 @@
 		background-position:28px center;
 	}
 
+	.placeholder-desktop{
+		display:none;
+	}
+
 	@media(min-width: breakpoints(tablet)){
 		height:auto;
 		position: relative;
 		.placeholder-background{
+			display:none;
 			background:none;
-			height:auto;
-			width:100%;
-			position: relative;
-			img{
-				display:block;
-				width:100%
+		}
+
+		.placeholder-mobile{
+			display:none;
+		}
+		.placeholder-desktop{
+			display:block;
+			p{
+				position: relative;
+				transform:none;
 			}
+		}
+		.video-container{
+			display:block;
 		}
 		
 	}
