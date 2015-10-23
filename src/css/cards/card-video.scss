@@ -1,9 +1,5 @@
-.card-video{
-	background-image:url(http://www.flamingoshanghai.com/blog/wp-content/uploads/2011/02/nadav-kander-yangtze-10-600x472.jpg);
-	background-size:cover;
-	background-position:center;
-	position: relative;
-	overflow:hidden;
+.card.card-video{
+	overflow: hidden;
 
 	.video-container{
 		display:none;
@@ -21,6 +17,9 @@
 		top:0;
 		left:0;
 		z-index:0;
+		img{
+			display:none;
+		}
 	}
 	.placeholder-content{
 		transform:translateY(-50%);
@@ -53,6 +52,21 @@
 		background-image: url(../imgs/play-arrow.svg);
 		background-repeat:no-repeat;
 		background-position:28px center;
-		// background-si
+	}
+
+	@media(min-width: breakpoints(tablet)){
+		height:auto;
+		position: relative;
+		.placeholder-background{
+			background:none;
+			height:auto;
+			width:100%;
+			position: relative;
+			img{
+				display:block;
+				width:100%
+			}
+		}
+		
 	}
 }

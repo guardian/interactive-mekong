@@ -1,6 +1,5 @@
-.card-quote{
+.card.card-quote{
 	background:#484F53;
-	position: relative;
 	.quote-container{
 		top:45%;
 		left:20px;
@@ -42,7 +41,68 @@
 			margin:0;
 			font-size:18px;
 			line-height:18px;
+			strong{
+				display:block;
+			}
+		}
+	}
+
+	@media(min-width: breakpoints(tablet)){
+		height:auto;
+		padding:1px 20px;
+		position: relative;
+
+		.quote-container{
+			position: relative;
+			transform:none;
+			left:auto;
+			top:auto;
+			right:auto;
+			margin:36px 0 60px;
+		}
+		quote{
+			font-size:36px;
+			line-height:42px;
+		}
+		.quote-icon{
+			height:30px;
+		}
+		.quote-credit{
+			margin-top:49px;
 		}
 
+		&.size-l, &.size-xl{
+			quote{
+				font-size:42px;
+				line-height:48px;
+			}
+		}
+	}
+	@media(min-width: breakpoints(desktop)){
+		&.size-m{
+			quote{
+				font-size:42px;
+				line-height:48px;
+			}
+		}
+
+		&.size-l, &.size-xl{
+			padding-left:40px;
+			padding-right:40px;
+			.quote-container{
+				margin: 42px 0 72px;
+			}
+			.quote-credit p{
+				font-size:20px;
+				line-height:24px;
+			}
+		}
+
+		&.size-xl{
+			quote{
+				font-size:48px;
+				line-height:54px;
+			}
+		}
 	}
 }
