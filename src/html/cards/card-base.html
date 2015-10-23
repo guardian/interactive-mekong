@@ -1,0 +1,9 @@
+{{#if_eq card "photo"}}
+	{{> photoCard }}
+{{else if_eq card "quote"}}
+	{{> quoteCard }}
+{{else if_eq card "video"}}
+	{{> videoCard }}
+{{else if_eq card "text"}}
+	{{> paragraphCard }}
+{{/if_eq}}
