@@ -1,4 +1,5 @@
-{{>videoCard}}
-{{>photoCard}}
-{{>quoteCard}}
-{{>paragraphCard}}
+{{#if isMobile}}
+	{{>layoutMobile}}
+{{else}}
+	{{>layoutDesktop}}
+{{/if}}

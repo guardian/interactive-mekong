@@ -4,6 +4,7 @@
 @import 'cards/card-quote';
 @import 'cards/card-paragraph';
 @import 'cards/card-video';
+@import 'swiper';
 // @import 'modules/_palette';
 // @import 'modules/_grid-system';
 // @import 'modules/_mq';
@@ -16,6 +17,7 @@ body {
 
 // Remove <figure> margin
 .interactive {
+    background:#333;
     margin: 0;
     padding:1px 0;
     *, * *{
@@ -33,7 +35,7 @@ body {
     }
 
     @media(min-width: breakpoints(phablet)){
-        background:#333;
+        
 
         .card{
             position:relative;
