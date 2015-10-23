@@ -1,6 +1,8 @@
 <div class="card card-video size-{{size}} margin-{{margin}}-col">
 	<div class="video-container">
-		<video></video>
+		<video width="100%" height="auto" autoplay muted loop>
+		  <source src="imgs/testvideo.mp4" type="video/mp4" >
+		</video>
 	</div>
 	<div class="photo-placeholder-container">
 		<div class="placeholder-background"></div>
@@ -11,7 +13,7 @@
 			</div>
 
 			<div class="placeholder-desktop">
-				<p><strong>Watch</strong> Replay with sound</p>
+				<button class="unmute-button">Replay with sound</button> 
 			</div>
 		</div>
 	</div>
