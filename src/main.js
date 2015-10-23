@@ -64,7 +64,7 @@ function boot(el) {
 
     //reset if desktop
     if(window.innerWidth > 600){
-        //isMobile = false;
+        isMobile = false;
     }
    
 
