@@ -20,7 +20,8 @@ var template = require('./html/base.html');
     'photoCard': require('./html/cards/card-photo.html'),
     'quoteCard': require('./html/cards/card-quote.html'),
     'paragraphCard': require('./html/cards/card-paragraph.html'),
-    'videoCard': require('./html/cards/card-video.html')
+    'videoCard': require('./html/cards/card-video.html'),
+    'cardContent': require('./html/cards/card-base.html')
 });
 
 
@@ -53,8 +54,8 @@ Handlebars.registerHelper({
         }
         return opts.fn(this);
     },
-    'get_card': function(id, cardLookup){
-        return id
+    'get_card_content': function(id){
+        return cardData.cardLookup[id].content[0];
     }
 });
 
@@ -99,12 +100,16 @@ function render(json, el){
 	el.innerHTML = content(json);
 
     if(json.isMobile){
+        //init the swiper UX for mobile
         var hSwipers = el.getElementsByClassName('swiper-container-h')
-        initSwipers(hSwipers);
+        initMobile(hSwipers);
+    } else {
+        //init the loader / display for desktop
+        initDesktop(el);
     }
 }
 
-function initSwipers(elems){
+function initMobile(elems){
 
 
     for(var i = 0; i < elems.length; i++) {
@@ -132,21 +137,71 @@ function initSwipers(elems){
 
 }
 
+function initDesktop(el){
+
+    lazyLoad(el);
+
+    window.addEventListener(
+        'scroll', 
+        detect.debounce(function(){
+            lazyLoad(el);
+        }, 250)
+    );
+
+    window.addEventListener(
+        'resize', 
+        detect.debounce(function(){
+            lazyLoad(el);
+        }, 250)
+    );
+
+}
+
 function lazyLoad(el){
+    var top = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
+    var height = window.innerHeight;
+    var toLoad;
+    if( cardData.isMobile ){
+        toLoad = el.querySelectorAll('.swiper-slide-active, .swiper-slide-next, .swiper-slide-prev');
+    } else {
+        toLoad = el.querySelectorAll('.swiper-slide-pending');
+    }
+    
 
-
-    var toLoad = el.querySelectorAll('.swiper-slide-active, .swiper-slide-next, .swiper-slide-prev');
-    console.log(toLoad)
     for(var s = 0; s < toLoad.length; s++){
         var div = toLoad[s];
-       
-        if(div.classList.contains('swiper-slide-pending')){
 
-            div.classList.remove('swiper-slide-pending');
-            var id = div.getAttribute('data-card-id');
-            div.innerHTML  = cardContent(cardData.cardLookup[id].content[0]);
+        //if mobile
+        if(div.classList.contains('swiper-slide-pending') && cardData.isMobile ){
+            loadCard(div)
+        }
+
+        //if desktop
+        if(!cardData.isMobile){
+            console.log(div)
+            var rect = div.getBoundingClientRect();
+        
+            if(inDesktopView(top,height,rect)){
+                loadCard(div);
+            } else {
+                break;
+            }
         }
     }
+
+}
+
+function inDesktopView(top,height,rect){
+    if(rect.top <= top + height){
+        return true;
+    } 
+    return false;
+}
+
+function loadCard(div){
+    div.classList.remove('swiper-slide-pending');
+    var id = div.getAttribute('data-card-id');
+    div.innerHTML  = cardContent(cardData.cardLookup[id].content[0]);
 }
 
 

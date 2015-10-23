@@ -35,7 +35,9 @@ body {
     }
 
     @media(min-width: breakpoints(phablet)){
-        
+        .swiper-slide-pending {
+            min-height: 500px;
+        }
 
         .card{
             position:relative;
@@ -46,3 +48,6 @@ body {
         }
     }
 }
+
+
+
