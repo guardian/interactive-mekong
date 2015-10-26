@@ -19,6 +19,7 @@ var template = require('./html/base.html');
     'card': require('./html/cards/card-slide.html'),
     'photoCard': require('./html/cards/card-photo.html'),
     'quoteCard': require('./html/cards/card-quote.html'),
+    'audioCard': require('./html/cards/card-audio.html'),
     'paragraphCard': require('./html/cards/card-paragraph.html'),
     'videoCard': require('./html/cards/card-video.html'),
     'cardContent': require('./html/cards/card-base.html')
@@ -58,7 +59,6 @@ Handlebars.registerHelper({
         return cardData.cardLookup[id].content[0];
     },
     'get_card_size': function(id){
-        console.log(cardData);
         return cardData.cardLookup[id].content[0].size;
     },
     'get_card_margin': function(id){
@@ -87,6 +87,11 @@ function boot(el) {
             json.cards.forEach(function(d){
                 cardLookup[d.id] = d;
             })
+
+            // AUDIO DEBUG
+
+            console.log(json);
+            json.stories[0].cards = ["5","6","7","8","9"]
 
             json.cardLookup = cardLookup;
             render(json, el);
@@ -185,7 +190,7 @@ function lazyLoad(el){
 
         //if desktop
         if(!cardData.isMobile){
-            console.log(div)
+            // console.log(div)
             var rect = div.getBoundingClientRect();
         
             if(inDesktopView(top,height,rect)){
