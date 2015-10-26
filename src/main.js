@@ -56,27 +56,25 @@ Handlebars.registerHelper({
         return opts.fn(this);
     },
     'get_card_content': function(id){
-        return cardData.cardLookup[id].content[0];
+        return cardData.cardLookup[id];
     },
     'get_card_size': function(id){
-        return cardData.cardLookup[id].content[0].size;
+        return cardData.cardLookup[id].size;
     },
     'get_card_margin': function(id){
-        return cardData.cardLookup[id].content[0].margin;
+        return cardData.cardLookup[id].margin;
     }
 });
 
 
 function boot(el) {
-
-
     //reset if desktop
     if(window.innerWidth > 740){
         isMobile = false;
     }
-   
 
-	var key = '15ZNdHsQdrCuraPJNVkGfAKcpGhdmqgKngDQXcWak0eU';
+	// var key = '15ZNdHsQdrCuraPJNVkGfAKcpGhdmqgKngDQXcWak0eU';
+    var key = '1vqPIwCHblYbrRHrvH_xMaQMx_TkEODbW6p6iqFmiNus'; //spreadsheet data
 	var isLive = ( window.location.origin.search('localhost') > -1 || window.location.origin.search('gutools.co.uk') > -1) ? false : true;
     var folder = (!isLive)? 'docsdata-test' : 'docsdata';
 
@@ -84,25 +82,40 @@ function boot(el) {
         function(json){
             json.isMobile = isMobile;
             var cardLookup = {};
-            json.cards.forEach(function(d){
-                cardLookup[d.id] = d;
-            })
-
-            // AUDIO DEBUG
-
-            console.log(json);
-            json.stories[0].cards = ["5","6","7","8","9"]
+            
+            for(var key in json.sheets){
+                if(key !== "overview"){
+                    json.sheets[key].forEach(function(d){
+                        cardLookup[key + "_" + d.id] = d;
+                        d.card = key;
+                    })
+                }
+            }
 
             json.cardLookup = cardLookup;
-            render(json, el);
+            json.stories = json.sheets["overview"];
+            json.stories.map(function(e){
+                e.cards = e.cards.split(', ');
+                return e;
+            })
+            
+            if(document.location.search.indexOf('preview')>-1){
+                var value = document.location.search.split('=')[1].split(',');  
+                json.stories = [{
+                    cards: value
+                }]
+                render(json,el);
+            }else{
+                render(json, el);
+            }
+            
         }
     );
 }
 
 function render(json, el){
     cardData = json;
-    console.log(json)
-
+    console.log(cardData);
 	var content = Handlebars.compile( 
         template, 
         { 
@@ -122,8 +135,6 @@ function render(json, el){
 }
 
 function initMobile(elems){
-
-
     for(var i = 0; i < elems.length; i++) {
         var el = elems[i];
         var gallery = new Swiper(el, {
@@ -139,7 +150,6 @@ function initMobile(elems){
             freeModeMomentumBounce: false
         })
         .on('slideChangeStart', function (e) {
-            //console.log(e)
             lazyLoad(e.container[0]);
         });
 
@@ -213,7 +223,7 @@ function inDesktopView(top,height,rect){
 function loadCard(div){
     div.classList.remove('swiper-slide-pending');
     var id = div.getAttribute('data-card-id');
-    div.innerHTML  = cardContent(cardData.cardLookup[id].content[0]);
+    div.innerHTML  = cardContent(cardData.cardLookup[id]);
 }
 
 

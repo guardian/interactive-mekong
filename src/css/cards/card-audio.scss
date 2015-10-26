@@ -1,5 +1,4 @@
 .card.card-audio{
-	height:auto;
 	background:#ffbb00;
 	color:#333;
 	padding:20px;
@@ -72,6 +71,10 @@
 	    90% {transform: scale(1.1);}
 	    95% {transform: scale(1.14);}
 	    100% {transform: scale(1);}
+	}
+
+	@media(min-width: breakpoints(tablet)){
+		height:auto;
 	}
 
 }
