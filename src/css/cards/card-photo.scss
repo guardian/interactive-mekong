@@ -23,6 +23,7 @@
 		padding:40px 10px 16px;
 		opacity:1;
 		transition:opacity 0.4s;
+		position: relative;
 		
 		p{
 			margin:0;
@@ -54,7 +55,7 @@
 			max-width:580px;
 		}
 		.photo-caption:hover{
-			opacity:1;
+			// opacity:1;
 		}
 	}
 }
