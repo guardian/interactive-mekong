@@ -94,7 +94,7 @@ function boot(el) {
                 }
             }
 
-            json.sheets["overview"].map(function(e){
+            json.sheets["overview"].forEach(function(e){
                 if(e.chapter){
                     json.stories.push({
                         chapter: e.chapter,
@@ -112,16 +112,20 @@ function boot(el) {
                         "alternate_card": e.alternate_card
                     })
                 }
-                return e;
             })
 
             json.cardLookup = cardLookup;
             
             if(document.location.search.indexOf('preview')>-1){
                 var value = document.location.search.split('=')[1].split(',');  
-                json.stories = [{
-                    cards: value
-                }]
+                json.stories = [];
+                value.forEach(function(i){
+                    json.stories.push({
+                        cards: [ {card: i} ]
+                    })
+                })
+                
+                console.log(json)
                 render(json,el);
             }else{
                 render(json, el);
