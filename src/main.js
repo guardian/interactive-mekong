@@ -82,6 +82,8 @@ function boot(el) {
         function(json){
             json.isMobile = isMobile;
             var cardLookup = {};
+            var currentChapter;
+            json.stories = [];
             
             for(var key in json.sheets){
                 if(key !== "overview"){
@@ -92,12 +94,28 @@ function boot(el) {
                 }
             }
 
-            json.cardLookup = cardLookup;
-            json.stories = json.sheets["overview"];
-            json.stories.map(function(e){
-                e.cards = e.cards.split(', ');
+            json.sheets["overview"].map(function(e){
+                if(e.chapter){
+                    json.stories.push({
+                        chapter: e.chapter,
+                        cards: [
+                            {
+                                "card": e.card,
+                                "alternate_card": e.alternate_card
+                            }
+                        ]
+                    })
+                    currentChapter = json.stories[json.stories.length-1];
+                }else{
+                    currentChapter.cards.push({
+                        "card": e.card,
+                        "alternate_card": e.alternate_card
+                    })
+                }
                 return e;
             })
+
+            json.cardLookup = cardLookup;
             
             if(document.location.search.indexOf('preview')>-1){
                 var value = document.location.search.split('=')[1].split(',');  
@@ -160,7 +178,6 @@ function initMobile(elems){
 }
 
 function initDesktop(el){
-
     lazyLoad(el);
 
     window.addEventListener(
