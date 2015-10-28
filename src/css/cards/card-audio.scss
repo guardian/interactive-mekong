@@ -4,8 +4,13 @@
 	padding:20px;
 	overflow:hidden;
 
+	
 	.audio-container{
-		margin:40px 0 120px;
+		top:45%;
+		left:20px;
+		right:20px;
+		transform:translateY(-50%);
+		position: absolute;
 	}
 	.audio-button-container{
 		width:80px;
@@ -46,6 +51,7 @@
 			font-size:14px;
 			line-height:18px;
 			padding-top:6px;
+			margin:0;
 		}
 	}
 
@@ -75,6 +81,36 @@
 
 	@media(min-width: breakpoints(tablet)){
 		height:auto;
+
+		.audio-container{
+			margin:40px 0 80px;
+			position: relative;
+			transform:none;
+			top:auto;
+			left:auto;
+			right:auto;
+
+		}
 	}
 
+}
+
+@media(min-width: breakpoints(desktop)){
+	.size-m, .size-l, .size-xl{
+		.card.card-audio{
+			.audio-info-container p{
+				font-size:16px;
+				line-height: 24px;
+			}
+		}
+	}
+}
+@media(min-width: breakpoints(leftCol)){
+	.size-l, .size-xl{
+		.card.card-audio{
+			.audio-info-container p{
+				max-width:590px;
+			}
+		}
+	}
 }
