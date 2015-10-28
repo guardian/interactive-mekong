@@ -1,0 +1,80 @@
+.card.card-audio{
+	background:#ffbb00;
+	color:#333;
+	padding:20px;
+	overflow:hidden;
+
+	.audio-container{
+		margin:40px 0 120px;
+	}
+	.audio-button-container{
+		width:80px;
+		float:left;
+		position: relative;
+		button{
+			width:80px;
+			height:80px;
+			border-radius:80px;
+			background:#fff;
+			border:none;
+			outline:none;
+		}
+		.button-background{
+			width: 180px;
+		    background: rgba(255,255,255,0.2);
+		    height: 180px;
+		    border-radius: 180px;
+		    position: absolute;
+		    left: -50px;
+		    top: -50px;
+		    z-index:0;
+		    animation:audioplay 2.5s infinite;
+		}
+	}
+	&.playing{
+		.button-background{
+			animation:audioplay 2s infinite;
+		}
+		
+	}
+	.audio-info-container{
+		margin-left:90px;
+		position: relative;
+		z-index:1;
+		p{
+			font-family:$f-sans-serif-text;
+			font-size:14px;
+			line-height:18px;
+			padding-top:6px;
+		}
+	}
+
+	@keyframes audioplay {
+	    0% {transform: scale(1);}
+	    5% {transform: scale(1.2);}
+	    10% {transform: scale(0.9);}
+	    15% {transform: scale(1.01);}
+	    20% {transform: scale(0.98);}
+	    25% {transform: scale(1.1);}
+	    30% {transform: scale(1.05);}
+	    35% {transform: scale(1.23);}
+	    40% {transform: scale(1.2);}
+	    45% {transform: scale(1.15);}
+	    50% {transform: scale(1.18);}
+	    55% {transform: scale(1.1);}
+	    60% {transform: scale(1);}
+	    65% {transform: scale(1.18);}
+	    70% {transform: scale(1.2);}
+	    75% {transform: scale(0.9);}
+	    80% {transform: scale(1.1);}
+	    85% {transform: scale(1.05);}
+	    90% {transform: scale(1.1);}
+	    95% {transform: scale(1.14);}
+	    100% {transform: scale(1);}
+	}
+
+	@media(min-width: breakpoints(tablet)){
+		height:auto;
+	}
+
+}
