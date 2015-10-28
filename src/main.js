@@ -4,6 +4,7 @@ var detect = require('./utils/detect');
 var Handlebars = require('handlebars/dist/cjs/handlebars');
 var getJSON = require('./utils/getjson');
 var template = require('./html/base.html');
+var assetManager = require('./utils/assetManager.js')
 
 // var cardTemplate = require('./html/card-base.html');
 /**
@@ -58,7 +59,6 @@ Handlebars.registerHelper({
         return cardData.cardLookup[id].content[0];
     },
     'get_card_size': function(id){
-        console.log(cardData);
         return cardData.cardLookup[id].content[0].size;
     },
     'get_card_margin': function(id){
@@ -82,6 +82,11 @@ function boot(el) {
 
     getJSON('https://interactive.guim.co.uk/' + folder + '/' + key + '.json', 
         function(json){
+            //init the asset manager
+            assetManager.init(isMobile);
+            
+            //determine if display is mobile or desktop
+            //organize the cards
             json.isMobile = isMobile;
             var cardLookup = {};
             json.cards.forEach(function(d){
@@ -208,7 +213,13 @@ function inDesktopView(top,height,rect){
 function loadCard(div){
     div.classList.remove('swiper-slide-pending');
     var id = div.getAttribute('data-card-id');
-    div.innerHTML  = cardContent(cardData.cardLookup[id].content[0]);
+    var content = cardData.cardLookup[id].content[0]
+    div.innerHTML  = cardContent(content);
+
+    if(content.card == 'video' || content.card == 'audio'){
+        assetManager.registerAsset(div, content);
+    }
+
 }
 
 
