@@ -180,6 +180,8 @@ function initMobile(elems){
             freeModeMomentumBounce: false
         })
         .on('slideChangeStart', function (e) {
+            var cardCategory = e.container[0].querySelector('.swiper-slide-active .card').className.replace('card ','').replace('card-','');
+            e.container[0].setAttribute('data-card-category', cardCategory);
             assetManager.stopPlaying();
             lazyLoad(e.container[0]);
         });

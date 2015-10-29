@@ -45,7 +45,6 @@ body {
         bottom:0;
         width:100%;
         z-index:4;
-        background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
     }
     .swiper-pagination{
         text-align:left;
@@ -86,9 +85,15 @@ body {
             border:none;
             border-radius:80px;
             float:right;
+            outline: none;
             &.swiper-button-next{
                 display:block;
             }
+        }
+    }
+    .swiper-container[data-card-category="video"],.swiper-container[data-card-category="photo"],.swiper-container[data-card-category="audio"]{
+        .swiper-pagination-container{
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
         }
     }
 
