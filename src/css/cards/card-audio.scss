@@ -13,9 +13,12 @@
 		position: absolute;
 	}
 	.audio-button-container{
-		width:80px;
-		float:left;
 		position: relative;
+		&:after{
+			clear:both;
+			content:'';
+			display:block;
+		}
 		button{
 			width:80px;
 			height:80px;
@@ -23,6 +26,7 @@
 			background:#fff;
 			border:none;
 			outline:none;
+			float:left;
 		}
 		.button-background{
 			width: 180px;
@@ -35,6 +39,17 @@
 		    z-index:0;
 		    animation:audioplay 2.5s infinite;
 		}
+		.audio-time{
+			font-family:$f-sans-serif-text;
+			font-size:14px;
+			float:left;
+			padding-top:18px;
+			
+			p{
+				color:#333;
+				margin-left:10px;
+			}
+		}
 	}
 	&.playing{
 		.button-background{
@@ -43,13 +58,20 @@
 		
 	}
 	.audio-info-container{
-		margin-left:90px;
+		margin-top:40px;
 		position: relative;
 		z-index:1;
+		&:before{
+			display:block;
+			content: '';
+			height:1px;
+			width:70px;
+			background:#333;
+		}
 		p{
-			font-family:$f-sans-serif-text;
-			font-size:14px;
-			line-height:18px;
+			font-family:$f-serif-headline;
+			font-size:18px;
+			line-height:24px;
 			padding-top:6px;
 			margin:0;
 		}

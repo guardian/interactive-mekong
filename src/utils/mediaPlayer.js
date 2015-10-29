@@ -13,7 +13,7 @@ function mediaPlayer(el, data){
 		
 		player = el.querySelectorAll('audio,video')[0];
 		if(data.card === 'audio'){
-			//playerComponent = new AudioPlayer(el,player,data);
+			// playerComponent = new AudioPlayer(el,player,data);
 		} else if(data.card === 'video'){
 			//playerComponent = new VideoPlayer(el,player,data);
 		}
