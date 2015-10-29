@@ -10,7 +10,7 @@ function mediaDisplay(el,player,data){
 		sourceLoaded = true;
 		var sourceEl = document.createElement('source');
 			sourceEl.setAttribute('type', 'audio/mpeg');
-			sourceEl.setAttribute('src', "http://interactive.guim.co.uk/2015/11/mekong-audio/" + data.audio_url + ".mp3");
+			sourceEl.setAttribute('src', "https://interactive.guim.co.uk/2015/11/mekong-assets/audio/" + data.audio_url + ".mp3");
 			player.appendChild(sourceEl);
 	}
 

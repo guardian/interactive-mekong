@@ -37,6 +37,60 @@ body {
     .swiper-slide{
         overflow:hidden;
     }
+    .swiper-button-prev, .swiper-button-next{
+        display: none;
+    }
+    .swiper-pagination-container{
+        position: absolute;
+        bottom:0;
+        width:100%;
+        z-index:4;
+        background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+    }
+    .swiper-pagination{
+        text-align:left;
+        width:100%;
+        bottom:0;
+        
+        .swiper-pagination-bullet{
+            display: block;
+            width:calc(10% - 1px);
+            height:4px;
+            background:rgba(255,255,255,0.5);
+            float:left;
+            margin:0;
+            margin-right:1px;
+            border-radius:0;
+            opacity:1;
+            &.swiper-pagination-bullet-active{
+                background:#fff;
+            }
+        }
+    }
+
+    .swiper-pagination-controls{
+        padding:0 20px 12px;
+        overflow: hidden;
+        p{
+            font-size:12px;
+            font-family:$f-sans-serif-text;
+            color:#fff;
+            margin:0;
+            float:left;
+            margin-top:8px;
+        }
+        button{
+            width:34px;
+            height:34px;
+            background:#fff;
+            border:none;
+            border-radius:80px;
+            float:right;
+            &.swiper-button-next{
+                display:block;
+            }
+        }
+    }
 
     @media(min-width: breakpoints(phablet)){
         .swiper-slide-pending {
@@ -47,6 +101,9 @@ body {
 
 
     @media(min-width: breakpoints(tablet)){
+        .swiper-pagination{
+            display: none;
+        }
         .card{
             position:relative;
             min-width:300px;

@@ -78,7 +78,8 @@ function boot(el) {
 	// var key = '15ZNdHsQdrCuraPJNVkGfAKcpGhdmqgKngDQXcWak0eU';
     var key = '1vqPIwCHblYbrRHrvH_xMaQMx_TkEODbW6p6iqFmiNus'; //spreadsheet data
 	var isLive = ( window.location.origin.search('localhost') > -1 || window.location.origin.search('gutools.co.uk') > -1) ? false : true;
-    var folder = (!isLive)? 'docsdata-test' : 'docsdata';
+    // var folder = (!isLive)? 'docsdata-test' : 'docsdata';
+    var folder = 'docsdata-test';
 
     getJSON('https://interactive.guim.co.uk/' + folder + '/' + key + '.json', 
         function(json){
@@ -167,7 +168,7 @@ function initMobile(elems){
     for(var i = 0; i < elems.length; i++) {
         var el = elems[i];
         var gallery = new Swiper(el, {
-            pagination: el.getElementsByClassName('swiper-pagination-h')[0],
+            pagination: el.getElementsByClassName('swiper-pagination')[0],
             paginationClickable: true,
             spaceBetween: 0,
 
