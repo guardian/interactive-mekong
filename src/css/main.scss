@@ -51,6 +51,14 @@ body {
             margin:0;
             // border-radius: 3px;
             box-shadow:0 0 10px rgba(0,0,0,0.1);
+            margin-top:-20px;
+            transition: margin 0.4s;
+        }
+        .swiper-slide-pending{
+            .card{
+                margin-top:0;
+                
+            }
         }
     }
 }
