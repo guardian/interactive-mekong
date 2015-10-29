@@ -34,6 +34,9 @@ body {
         width:100%;
         height:100%;
     }
+    .swiper-slide{
+        overflow:hidden;
+    }
 
     @media(min-width: breakpoints(phablet)){
         .swiper-slide-pending {

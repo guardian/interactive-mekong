@@ -1,25 +1,16 @@
-function mediaDisplay(el,player){
+function mediaDisplay(el,player,data){
 
 	var utils = require('./detect');
 
-	player.addEventListener("play", function () {
-		el.classList.add("gv-state-playing");
-		el.classList.remove("gv-state-paused");
-	}, false);
 
-	player.addEventListener("pause", function () {
-		el.classList.add("gv-state-paused");
-		el.classList.remove("gv-state-playing");
-	}, false);
-
-	player.addEventListener("timeupdate", utils.debounce(function(){ updateProgress(); }, 250), false);
+	//player.addEventListener("timeupdate", utils.debounce(function(){ updateProgress(); }, 250), false);
 
 
 	function loadSource(){
 		sourceLoaded = true;
 		var sourceEl = document.createElement('source');
 			sourceEl.setAttribute('type', 'audio/mpeg');
-			sourceEl.setAttribute('src', el.getAttribute('data-url'));
+			sourceEl.setAttribute('src', "http://interactive.guim.co.uk/2015/11/mekong-audio/" + data.audio_url + ".mp3");
 			player.appendChild(sourceEl);
 	}
 

@@ -4,11 +4,7 @@ function mediaDisplay(el,player,data){
 	var assetManager = require('./assetManager');
 	var videoBitRate = assetManager.videoBitRate;
 
-	var src = el.getAttribute('data-url'),
-		isSingleSourceVideo = (src.search('.mp4') > -1) ? true : false,
-		posterSrc = (isSingleSourceVideo) ? src.replace('.mp4', '_poster.jpg') : getVideoPosterImage(src),
-		coverLoaded = false,
-		sourceLoaded = false;
+	var	sourceLoaded = false;
 
 	function init(){
 
@@ -20,23 +16,20 @@ function mediaDisplay(el,player,data){
 
 	
 		player.addEventListener("play", function () {
-			el.classList.add("gv-state-playing");
-			el.classList.remove("gv-state-paused");
-			el.classList.remove("gv-state-hovering");
+			el.getElementsByClassName('card-video')[0].classList.add('video-playing');
 		}, false);
 
 		player.addEventListener("pause", function () {
-			el.classList.add("gv-state-paused");
-			el.classList.remove("gv-state-playing");
+			el.getElementsByClassName('card-video')[0].classList.remove('video-playing');
 		}, false);
 
-		el.addEventListener("mouseover", function(){
-			el.classList.add("gv-state-hovering");
-		}, false);
+		// el.addEventListener("mouseover", function(){
+		// 	el.classList.add("gv-state-hovering");
+		// }, false);
 
-		el.addEventListener("mouseout", function(){
-			el.classList.remove("gv-state-hovering");
-		}, false);
+		// el.addEventListener("mouseout", function(){
+		// 	el.classList.remove("gv-state-hovering");
+		// }, false);
 
 
 	}
@@ -46,14 +39,9 @@ function mediaDisplay(el,player,data){
 
 		
 
-		if(!coverLoaded){
-			coverLoaded = true;
-			player.setAttribute('poster', posterSrc);
-			player.setAttribute('height', 'auto');
-		}
 		if(!sourceLoaded){
 			sourceLoaded = true;
-			var videoURLs= getVideoURLS(src);
+			var videoURLs= getVideoURLS(data.mobile_video_url);
 			Object.keys(videoURLs).forEach(function(key) {
 				var sourceEl = document.createElement('source');
 				sourceEl.setAttribute('type', key);
@@ -145,11 +133,6 @@ function mediaDisplay(el,player,data){
 	 */
 	function getVideoURLS(filePath) {		
 		//search to see if the video is single source, meaning it's from a video published on a video page rather than through the interactive video workflow
-		if(isSingleSourceVideo ){
-			return {
-				'video/mp4': filePath
-			};
-		}
 
 		var videoPaths = getVideoCDNBasePaths(filePath);
 		return {

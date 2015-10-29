@@ -1,6 +1,7 @@
 .card.card-audio{
-	background:#ffbb00;
-	color:#333;
+	background-size:cover;
+	background-position:center;
+	color:#fff;
 	padding:20px;
 	overflow:hidden;
 
@@ -46,7 +47,7 @@
 			padding-top:18px;
 			
 			p{
-				color:#333;
+				color:#fff;
 				margin-left:10px;
 			}
 		}
@@ -66,7 +67,7 @@
 			content: '';
 			height:1px;
 			width:70px;
-			background:#333;
+			background:#fff;
 		}
 		p{
 			font-family:$f-serif-headline;

@@ -125,7 +125,7 @@ module.exports = function (grunt) {
         dest: 'build/'
       },
       imgs: {
-        expand: true, cwd: 'src/', src: 'imgs/*', dest: 'build/'
+        expand: true, cwd: 'src/', src: 'imgs/**/*.*', dest: 'build/'
       },
       data: {
         expand: true, cwd: 'src/', src: 'data/*', dest: 'build/'

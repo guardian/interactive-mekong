@@ -30,7 +30,6 @@ function setVideoBitrate(bitrate) {
 }
 
 function registerAsset(el, data){
-	console.log('herehere', el, data)
 	var player = new MediaPlayer(el, data);
 	queue.push(player);
 }
@@ -40,14 +39,21 @@ function registerPlaying(player){
 		if(currentlyPlaying){
 			currentlyPlaying.pause();
 		}
-		
 		currentlyPlaying = player;
-	} 
-	
+	} 	
+}
+
+function stopPlaying(){
+	if(currentlyPlaying){
+		currentlyPlaying.pause();
+		currentlyPlaying = null;
+	}
 }
 
 
 module.exports = {
 	init: init,
-	registerAsset: registerAsset
+	registerAsset: registerAsset,
+	registerPlaying: registerPlaying,
+	stopPlaying: stopPlaying
 };

@@ -13,10 +13,12 @@ function mediaPlayer(el, data){
 		
 		player = el.querySelectorAll('audio,video')[0];
 		if(data.card === 'audio'){
-			// playerComponent = new AudioPlayer(el,player,data);
+			playerComponent = new AudioPlayer(el,player,data);
 		} else if(data.card === 'video'){
-			//playerComponent = new VideoPlayer(el,player,data);
+			playerComponent = new VideoPlayer(el,player,data);
 		}
+
+		playerComponent.loadSource();
 
 		player.addEventListener("play", function () {
 			assetManager.registerPlaying(player);
@@ -28,24 +30,36 @@ function mediaPlayer(el, data){
 
 
 
-		// el.getElementsByClassName('video-btn').addEventListener('click', function(){
+		el.getElementsByClassName('play-btn')[0].addEventListener('click', function(){
 
-		// 	if(!player.paused){
-		// 		pause();
-		// 	} else {
-		// 		play();
-		// 	}
-		// })
+			if(!player.paused){
+				pause();
+			} else {
+				play();
+			}
+		})
 
+		el.getElementsByClassName('media-container')[0].addEventListener('click', function(){
+
+			if(!player.paused){
+				pause();
+			} else {
+				play();
+			}
+		})
+
+		
 
 	}
 
 	function pause(){
 		player.pause();
+		
 	}
 
 	function play(){
 		player.play();
+		
 	}
 
 	function isReady(active){
