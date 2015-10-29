@@ -30,7 +30,6 @@ function setVideoBitrate(bitrate) {
 }
 
 function registerAsset(el, data){
-	console.log('herehere', el, data)
 	var player = new MediaPlayer(el, data);
 	queue.push(player);
 }

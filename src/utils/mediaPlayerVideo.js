@@ -39,14 +39,9 @@ function mediaDisplay(el,player,data){
 
 		
 
-		if(!coverLoaded){
-			coverLoaded = true;
-			player.setAttribute('poster', posterSrc);
-			player.setAttribute('height', 'auto');
-		}
 		if(!sourceLoaded){
 			sourceLoaded = true;
-			var videoURLs= getVideoURLS(src);
+			var videoURLs= getVideoURLS(data.mobile_video_url);
 			Object.keys(videoURLs).forEach(function(key) {
 				var sourceEl = document.createElement('source');
 				sourceEl.setAttribute('type', key);
@@ -138,11 +133,6 @@ function mediaDisplay(el,player,data){
 	 */
 	function getVideoURLS(filePath) {		
 		//search to see if the video is single source, meaning it's from a video published on a video page rather than through the interactive video workflow
-		if(isSingleSourceVideo ){
-			return {
-				'video/mp4': filePath
-			};
-		}
 
 		var videoPaths = getVideoCDNBasePaths(filePath);
 		return {
