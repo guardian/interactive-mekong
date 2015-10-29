@@ -179,6 +179,7 @@ function initMobile(elems){
             freeModeMomentumBounce: false
         })
         .on('slideChangeStart', function (e) {
+            assetManager.stopPlaying();
             lazyLoad(e.container[0]);
         });
 

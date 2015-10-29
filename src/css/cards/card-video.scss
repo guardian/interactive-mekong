@@ -1,5 +1,10 @@
-.card.card-video{
+.card.card-video {
 	overflow: hidden;
+
+	video {
+		width: 100%;
+		height: auto;
+	}
 
 	.video-container{
 		display:none;
@@ -8,10 +13,11 @@
 		width:100%;
 		height:100%;
 	}
+
+	
 	.placeholder-background{
 		height:100%;
 		width:100%;
-		background-image:url(http://31.media.tumblr.com/660412bc8ec32b5f3ed33a38e35b02ee/tumblr_mixwb2O8Vt1r4zr2vo2_r2_500.gif);
 		background-size:cover;
 		position: absolute;
 		top:0;
@@ -43,7 +49,7 @@
 			color:#fff;
 		}
 	}
-	.video-btn{
+	.play-btn{
 		width:80px;
 		height:80px;
 		background-color:#fff;
@@ -122,5 +128,14 @@
 			
 		}
 		
+	}
+}
+
+.card.card-video.video-playing {
+	.photo-placeholder-container {
+		display: none;
+	}
+	.video-container{
+		display:block;
 	}
 }

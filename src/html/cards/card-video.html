@@ -1,15 +1,15 @@
 <div class="card card-video">
-	<div class="video-container">
-		<video width="100%" height="auto" {{#isMobile}}muted{{/isMobile}}>
+	<div class="video-container media-container">
+		<video {{#isMobile}}muted{{/isMobile}}>
 		  <source src="imgs/testvideo.mp4" type="video/mp4" >
 		</video>
 	</div>
-	<div class="photo-placeholder-container">
+	<div class="photo-placeholder-container" style="background-image:url({{poster_img}});">
 		<div class="placeholder-background"></div>
 		<div class="placeholder-content">
 			<div class="placeholder-mobile">
-				<button class="video-btn"></button>
-				<p><strong>Watch</strong> How did they manage to build 3 dams in a year?</p>
+				<button class="play-btn"></button>
+				<p><strong>Watch</strong> {{caption}}</p>
 			</div>
 
 			<div class="placeholder-desktop">
