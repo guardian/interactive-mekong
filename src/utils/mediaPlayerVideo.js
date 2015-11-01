@@ -34,7 +34,6 @@ function mediaDisplay(el,player,data){
 
 	}
 
-
 	function loadSource(){
 
 		

@@ -1,11 +1,19 @@
-{{#if_eq card "photo"}}
-	{{> photoCard }}
-{{else if_eq card "quote"}}
-	{{> quoteCard }}
-{{else if_eq card "video"}}
-	{{> videoCard }}
-{{else if_eq card "text"}}
-	{{> paragraphCard }}
-{{else if_eq card "audio"}}
-	{{> audioCard }}
-{{/if_eq}}
+ <div class="swiper-slide {{get_pending_status card isMobile}} size-{{size}} margin-{{margin}}-col" data-card-id="{{card}}_{{id}}">
+
+ 	{{#if_eq card "photo"}}
+		{{> photoCard }}
+	{{else if_eq card "quote"}}
+		{{> quoteCard }}
+	{{else if_eq card "video"}}
+		{{> videoCard }}
+	{{else if_eq card "text"}}
+		{{> paragraphCard }}
+	{{else if_eq card "audio"}}
+		{{> audioCard }}
+	{{/if_eq}}
+
+
+
+</div>
+
+

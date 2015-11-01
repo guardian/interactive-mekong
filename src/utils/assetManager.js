@@ -9,10 +9,12 @@ var videoBitRate = DEFAULT_BITRATE;
 var queue = [];		
 var currentlyPlaying;
 var isMobile = true;
+var assetList = {};
+var cardLookup;
 
-function init(mobile){
+function init(mobile, data){
 	isMobile = mobile;
-
+	cardLookup = data;
 	//determine bitrate
 	setTimeout(function() {
         bandwidth.getSpeed(setVideoBitrate);
@@ -29,9 +31,42 @@ function setVideoBitrate(bitrate) {
 	if (kbps < 512)  { videoBitRate  = '220k'; }
 }
 
-function registerAsset(el, data){
-	var player = new MediaPlayer(el, data);
-	queue.push(player);
+function initAsset(cardId, el){
+
+	//check to see if assets have been loaded
+	//if not, load them
+
+	if(!(cardId in assetList)){
+		var cardData = cardLookup[cardId];
+		//if the player has not been created, create it
+		assetList[cardId] = {
+			loaded : true,
+			card: cardData['card'],
+			data: cardData,
+			playerComponent: (cardData.card === 'video' || cardData.card === 'audio') ? new MediaPlayer(el, cardData) : ''
+		}
+
+	}
+
+	//load the source of of the media player
+	if( assetList[cardId].card === 'audio' || assetList[cardId].card === 'video'){
+		assetList[cardId].playerComponent.isReady(true);
+	}
+	
+}
+
+function disableAsset(cardId){
+
+	//see if the card has been created
+	if(cardId in assetList){
+
+		//unload the source of of the media player
+		if( assetList[cardId].card === 'audio' || assetList[cardId].card === 'video'){
+			assetList[cardId].playerComponent.isReady(false);
+		}
+
+	}
+
 }
 
 function registerPlaying(player){
@@ -53,7 +88,8 @@ function stopPlaying(){
 
 module.exports = {
 	init: init,
-	registerAsset: registerAsset,
+	initAsset: initAsset,
+	disableAsset: disableAsset,
 	registerPlaying: registerPlaying,
 	stopPlaying: stopPlaying
 };
