@@ -135,8 +135,8 @@ function mediaDisplay(el,player,data){
 
 		var videoPaths = getVideoCDNBasePaths(filePath);
 		return {
-			'video/mp4': getMP4URL(videoPaths.path),
-			'video/webm': getWebmURL(videoPaths.path),
+			// 'video/mp4': getMP4URL(videoPaths.path),
+			// 'video/webm': getWebmURL(videoPaths.path),
 			'video/ogg': getOggURL(videoPaths.oggPath),
 			'video/m3u8': 'http://multimedia.guardianapis.com/interactivevideos/video.php?file='+
 	            videoPaths.filename + '&format=application/x-mpegURL&maxbitrate=2000'	
