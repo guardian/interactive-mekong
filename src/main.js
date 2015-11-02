@@ -228,14 +228,20 @@ function handleDesktopCard(div, wTop, wHeight){
 
     if(midPoint > wTop - wHeight && midPoint < wTop + wHeight * 2 ) {
         //load if in the viewport
-        enableCard(div, true);
+        var autoPlay = false;
+        if( midPoint > wTop + wHeight * .25 && midPoint < wTop + wHeight * .75){
+            autoPlay = true;
+        }
+
+        enableCard(div, true, autoPlay);
+
     } else {
-        enableCard(div, false);
+        enableCard(div, false, false);
     }
 }
 
 
-function enableCard(div, isEnabled){
+function enableCard(div, isEnabled, autoPlay){
 
     //lookup card id
     var cardId = div.getAttribute('data-card-id');
@@ -244,11 +250,15 @@ function enableCard(div, isEnabled){
     if(isEnabled){
         div.classList.remove('swiper-slide-pending')
         assetManager.initAsset(cardId, div);
+
+        if( autoPlay ){
+            //assetManager.autoPlay(cardId);
+        }
+            
     } else {
         assetManager.disableAsset(cardId);
     }
     
-
 }
 
 function initDesktop(el){

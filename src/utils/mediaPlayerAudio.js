@@ -3,8 +3,7 @@ function mediaDisplay(el,player,data){
 	var utils = require('./detect');
 
 
-	//player.addEventListener("timeupdate", utils.debounce(function(){ updateProgress(); }, 250), false);
-
+	player.addEventListener("timeupdate", utils.debounce(function(){ updateProgress(); }, 250), false);
 
 	function loadSource(){
 		sourceLoaded = true;
@@ -24,30 +23,27 @@ function mediaDisplay(el,player,data){
 
 	function updateProgress(){
 		if(player.duration && player.currentTime){
-			el.querySelector('.audio-progress-circle').setAttribute( 'points',  updateVisualProgress( player.currentTime / player.duration, 50, 40, 0 ) );
+			el.querySelector('.audio-time p').innerHTML = getTime( player.currentTime, player.duration );
+		
 		}
 	}
 
-	function updateVisualProgress ( pct, innerRadius, outerRadius, c ) {
-		// get an SVG points list for the segment
-		var points = [], i, angle, start, end, getPoint;
-		start = 0;
-		end = 2 * (Math.PI)  * pct;
-		getPoint = function ( angle, radius ) {
-		return ( ( radius * Math.sin( angle ) ).toFixed( 2 ) + ',' + ( radius * -Math.cos( angle ) ).toFixed( 2 ) );
-		};
-		// get points along the outer edge of the segment
-		for ( angle = start; angle < end; angle += 0.05 ) {
-		points[ points.length ] = getPoint( angle, outerRadius );
+	function getTime(currTime, duration){
+	
+		var time = Math.floor(duration - currTime);
+		if(time == 0){
+			time = Math.floor(duration);
 		}
-		points[ points.length ] = getPoint( end, outerRadius );
-		// get points along the inner edge of the segment
-		for ( angle = end; angle > start; angle -= 0.05 ) {
-		points[ points.length ] = getPoint( angle, innerRadius );
-		}
-		points[ points.length ] = getPoint( start, innerRadius );
-		// join them up as an SVG points list
-		return points.join( ' ' );
+
+		var mins = ~~(time / 60);
+		var secs = time % 60;
+
+		// Output like "1:01" or "4:03:59" or "123:03:59"
+		ret = "";
+
+		ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+		ret += "" + secs;
+		return ret;
 	}
 
 	return {

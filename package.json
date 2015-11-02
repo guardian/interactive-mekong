@@ -25,6 +25,7 @@
     "handlebars": "^4.0.3",
     "jit-grunt": "^0.9.1",
     "json-loader": "^0.5.2",
-    "raw-loader": "^0.5.1"
+    "raw-loader": "^0.5.1",
+    "swiper": "^3.1.7"
   }
 }

@@ -69,6 +69,11 @@ function disableAsset(cardId){
 
 }
 
+function autoPlay(cardId){
+
+
+}
+
 function registerPlaying(player){
 	if(currentlyPlaying != player){
 		if(currentlyPlaying){
