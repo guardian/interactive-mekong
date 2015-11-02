@@ -37,9 +37,6 @@ body {
         width:100%;
         height:100%;
     }
-    .swiper-slide{
-        overflow:hidden;
-    }
     .swiper-button-prev, .swiper-button-next{
         display: none;
     }
@@ -91,6 +88,9 @@ body {
             outline: none;
             &.swiper-button-next{
                 display:block;
+                background-image: url(../imgs/arrow-icon.svg);
+                background-position: center;
+                background-repeat:no-repeat;
             }
         }
     }
@@ -107,7 +107,11 @@ body {
 
     }
 
-
+    @media(max-width: breakpoints(tablet)){
+        .swiper-slide{
+            overflow:hidden;
+        }
+    }
     @media(min-width: breakpoints(tablet)){
         .swiper-pagination{
             display: none;

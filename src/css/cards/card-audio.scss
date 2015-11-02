@@ -75,6 +75,7 @@
 			line-height:24px;
 			padding-top:6px;
 			margin:0;
+			max-width:320px;
 		}
 	}
 
@@ -102,6 +103,19 @@
 	    100% {transform: scale(1);}
 	}
 
+	@media (min-width:480px) and (max-width:breakpoints(tablet)){
+		.audio-container{
+			right:40px;
+			left:40px;
+		}
+	}
+	@media (min-width:620px) and (max-width:breakpoints(tablet)){
+		.audio-container{
+			right:60px;
+			left:60px;
+		}
+	}
+
 	@media(min-width: breakpoints(tablet)){
 		height:auto;
 
@@ -115,8 +129,9 @@
 
 		}
 	}
-
 }
+
+
 
 @media(min-width: breakpoints(desktop)){
 	.size-m, .size-l, .size-xl{

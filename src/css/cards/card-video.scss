@@ -58,6 +58,7 @@
 			margin:0;
 			color:#fff;
 			font-weight:100;
+			width:75%;
 		}
 	}
 	.play-btn{
@@ -141,7 +142,27 @@
 		}
 		
 	}
+	@media (min-width:480px) and (max-width:breakpoints(tablet)){
+		.placeholder-content{
+			right:40px;
+			left:40px;
+		}
+	}
+	@media (min-width:620px) and (max-width:breakpoints(tablet)){
+		.placeholder-content{
+			right:60px;
+			left:60px;
+			.placeholder-mobile{
+				.video-caption{
+					font-size:36px;
+					line-height:42px;
+				}
+			}
+		}
+
+	}
 }
+
 
 .card.card-video.video-playing {
 	.photo-placeholder-container {
