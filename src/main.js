@@ -17,16 +17,15 @@ var assetManager = require('./utils/assetManager.js')
  Handlebars.registerPartial({
     'layoutMobile': require('./html/layout-mobile.html'),
     'layoutDesktop': require('./html/layout-desktop.html'),
-    'card': require('./html/cards/card-slide.html'),
+    'card': require('./html/cards/card-base.html'),
     'photoCard': require('./html/cards/card-photo.html'),
     'quoteCard': require('./html/cards/card-quote.html'),
     'audioCard': require('./html/cards/card-audio.html'),
     'paragraphCard': require('./html/cards/card-paragraph.html'),
-    'videoCard': require('./html/cards/card-video.html'),
-    'cardContent': require('./html/cards/card-base.html')
+    'videoCard': require('./html/cards/card-video.html')
 });
 
-
+var isAlt = false;
 var isMobile = true;
 var cardData;
 var cardContent = Handlebars.compile( 
@@ -56,15 +55,12 @@ Handlebars.registerHelper({
         }
         return opts.fn(this);
     },
-    'get_card_content': function(id){
-        return cardData.cardLookup[id];
-    },
-    'get_card_size': function(id){
+    'get_pending_status': function(cardType, isMobile){
 
-        return cardData.cardLookup[id].size;
-    },
-    'get_card_margin': function(id){
-        return cardData.cardLookup[id].margin;
+        if( !isMobile ){ 
+           return (cardType === 'audio' || cardType ==='video') ? 'swiper-slide-pending' : false;
+        } 
+        return false;
     }
 });
 
@@ -83,14 +79,11 @@ function boot(el) {
 
     getJSON('https://interactive.guim.co.uk/' + folder + '/' + key + '.json', 
         function(json){
-            //init the asset manager
-            assetManager.init(isMobile);
             
             //determine if display is mobile or desktop
             //organize the cards
             json.isMobile = isMobile;
             var cardLookup = {};
-            var currentChapter;
             json.stories = [];
             
             for(var key in json.sheets){
@@ -106,25 +99,22 @@ function boot(el) {
                 if(e.chapter){
                     json.stories.push({
                         chapter: e.chapter,
-                        cards: [
-                            {
-                                "card": e.card,
-                                "alternate_card": e.alternate_card
-                            }
-                        ]
-                    })
-                    currentChapter = json.stories[json.stories.length-1];
-                }else{
-                    currentChapter.cards.push({
-                        "card": e.card,
-                        "alternate_card": e.alternate_card
+                        cards: []
                     })
                 }
+       
+                //store the card data
+                json.stories[ json.stories.length - 1 ].cards.push( cardLookup[ getCardData(e)] )
             })
 
-            json.cardLookup = cardLookup;
-            
+            //init the asset manager
+            assetManager.init(isMobile, cardLookup);
+
+            //render            
             if(document.location.search.indexOf('preview')>-1){
+                //render alt cards
+
+
                 var value = document.location.search.split('=')[1].split(',');  
                 json.stories = [];
                 value.forEach(function(i){
@@ -143,6 +133,10 @@ function boot(el) {
     );
 }
 
+function getCardData(cardData){
+    return (isAlt && cardData.alternate_card) ? cardData.alternate_card : cardData.card;
+}
+
 function render(json, el){
     cardData = json;
     console.log(cardData);
@@ -154,7 +148,7 @@ function render(json, el){
     );
 	el.innerHTML = content(json);
 
-    if(json.isMobile){
+    if(isMobile){
         //init the swiper UX for mobile
         var hSwipers = el.getElementsByClassName('swiper-container-h')
         initMobile(hSwipers);
@@ -179,69 +173,100 @@ function initMobile(elems){
             mousewheelReleaseOnEdges: true,
             freeModeMomentumBounce: false
         })
-        .on('slideChangeStart', function (e) {
-            var cardCategory = e.container[0].querySelector('.swiper-slide-active .card').className.replace('card ','').replace('card-','');
-            e.container[0].setAttribute('data-card-category', cardCategory);
+        .on('onSlideChangeStart', function (e) {
             assetManager.stopPlaying();
-            lazyLoad(e.container[0]);
+            scanCards(e.container[0]);
         });
 
-       
-        lazyLoad(el)
+        scanCards(el);
+
     }
 
 }
 
+
+
+function scanCards(el){
+    
+    var slides = el.querySelectorAll('.swiper-slide'),
+        wtop,
+        wheight;
+    
+    //measure if on desktop to know what to load
+    if(!isMobile){
+        wTop = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
+        wHeight = window.innerHeight;
+    }
+
+    
+
+    for(var s = 0; s < slides.length; s ++){
+
+        var slide = slides[s];
+        
+        if(isMobile){
+            handleMobileCard(slide);
+        } else {
+            handleDesktopCard(slide, wTop, wHeight);
+        }
+    }
+}
+
+function handleMobileCard(div){
+    //manage the cards on mobile
+    if( div.classList.contains('swiper-slide-active') || div.classList.contains('swiper-slide-prev') || div.classList.contains('swiper-slide-next')){
+        enableCard(div, true);
+    } else {
+        enableCard(div, false);
+    }
+}
+
+function handleDesktopCard(div, wTop, wHeight){
+    //manage the cards on mobile
+    var rect = div.getBoundingClientRect();
+    var midPoint = rect.top + rect.height/2;
+
+    if(midPoint > wTop - wHeight && midPoint < wTop + wHeight * 2 ) {
+        //load if in the viewport
+        enableCard(div, true);
+    } else {
+        enableCard(div, false);
+    }
+}
+
+
+function enableCard(div, isEnabled){
+
+    //lookup card id
+    var cardId = div.getAttribute('data-card-id');
+    
+    //load/activate the card media
+    if(isEnabled){
+        div.classList.remove('swiper-slide-pending')
+        assetManager.initAsset(cardId, div);
+    } else {
+        assetManager.disableAsset(cardId);
+    }
+    
+
+}
+
 function initDesktop(el){
-    lazyLoad(el);
+    scanCards(el);
 
     window.addEventListener(
         'scroll', 
         detect.debounce(function(){
-            lazyLoad(el);
+            scanCards(el);
         }, 250)
     );
 
     window.addEventListener(
         'resize', 
         detect.debounce(function(){
-            lazyLoad(el);
+            scanCards(el);
         }, 250)
     );
-
-}
-
-function lazyLoad(el){
-    var top = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
-    var height = window.innerHeight;
-    var toLoad;
-    if( cardData.isMobile ){
-        toLoad = el.querySelectorAll('.swiper-slide-active, .swiper-slide-next, .swiper-slide-prev');
-    } else {
-        toLoad = el.querySelectorAll('.swiper-slide-pending');
-    }
-    
-
-    for(var s = 0; s < toLoad.length; s++){
-        var div = toLoad[s];
-
-        //if mobile
-        if(div.classList.contains('swiper-slide-pending') && cardData.isMobile ){
-            loadCard(div)
-        }
-
-        //if desktop
-        if(!cardData.isMobile){
-            // console.log(div)
-            var rect = div.getBoundingClientRect();
-        
-            if(inDesktopView(top,height,rect)){
-                loadCard(div);
-            } else {
-                break;
-            }
-        }
-    }
 
 }
 
@@ -252,18 +277,7 @@ function inDesktopView(top,height,rect){
     return false;
 }
 
-function loadCard(div){
-    div.classList.remove('swiper-slide-pending');
-    var id = div.getAttribute('data-card-id');
 
-    var content = cardData.cardLookup[id];
-    div.innerHTML  = cardContent(content);
-
-    if(content.card == 'video' || content.card == 'audio'){
-        assetManager.registerAsset(div, content);
-    }
-
-}
 
 
 module.exports = { boot: boot };
