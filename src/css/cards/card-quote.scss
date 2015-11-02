@@ -47,6 +47,23 @@
 		}
 	}
 
+	@media (min-width:480px) and (max-width:breakpoints(tablet)){
+		.quote-container{
+			right:40px;
+			left:40px;
+		}
+	}
+	@media (min-width:620px) and (max-width:breakpoints(tablet)){
+		.quote-container{
+			right:60px;
+			left:60px;
+		}
+		quote{
+			font-size:36px;
+			line-height:42px;
+		}
+	}
+
 	@media(min-width: breakpoints(tablet)){
 		height:auto;
 		padding:1px 20px;
