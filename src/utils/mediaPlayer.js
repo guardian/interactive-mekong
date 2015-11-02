@@ -47,7 +47,7 @@ function mediaPlayer(el, data){
 		})
 
 		if( data.card === 'video'){
-			el.getElementsByClassName('unmute-button')[0].addEventListener('click', function(){
+			el.getElementsByClassName('photo-placeholder-container')[0].addEventListener('click', function(){
 
 				if(!player.paused){
 					pause();

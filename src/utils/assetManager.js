@@ -23,7 +23,6 @@ function init(mobile, data){
 
 function setVideoBitrate(bitrate) {
 	var kbps = bitrate / 1024;
-	console.log(kbps)
 	if (kbps >= 4068) { videoBitRate = '4M'; }
 	if (kbps < 4068) { videoBitRate  = '2M'; }
 	if (kbps < 2048) { videoBitRate  = '768k'; }
@@ -39,13 +38,14 @@ function initAsset(cardId, el){
 	if(!(cardId in assetList)){
 		var cardData = cardLookup[cardId];
 		//if the player has not been created, create it
-		assetList[cardId] = {
-			loaded : true,
-			card: cardData['card'],
-			data: cardData,
-			playerComponent: (cardData.card === 'video' || cardData.card === 'audio') ? new MediaPlayer(el, cardData) : ''
+		if(cardData){
+			assetList[cardId] = {
+				loaded : true,
+				card: cardData['card'],
+				data: cardData,
+				playerComponent: (cardData.card === 'video' || cardData.card === 'audio') ? new MediaPlayer(el, cardData) : ''
+			}
 		}
-
 	}
 
 	//load the source of of the media player
