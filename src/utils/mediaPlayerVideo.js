@@ -45,6 +45,7 @@ function mediaDisplay(el,player,data){
 		if(!sourceLoaded){
 			sourceLoaded = true;
 			var videoURLs= getVideoURLS(data.mobile_video_url || data.drone_video);
+			console.log(videoURLs);
 			Object.keys(videoURLs).forEach(function(key) {
 				var sourceEl = document.createElement('source');
 				sourceEl.setAttribute('type', key);

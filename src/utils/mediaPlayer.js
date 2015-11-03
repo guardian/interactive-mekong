@@ -27,7 +27,7 @@ function mediaPlayer(el, data){
 			el.classList.remove("playing");
 		}, false);
 
-		if(data.card === 'video'){
+		if(data.card !== 'title'){
 		//play button event 
 			el.getElementsByClassName('play-btn')[0].addEventListener('click', function(){
 
