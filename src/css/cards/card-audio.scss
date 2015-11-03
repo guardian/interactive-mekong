@@ -38,7 +38,6 @@
 		    left: -50px;
 		    top: -50px;
 		    z-index:0;
-		    animation:audioplay 2.5s infinite;
 		}
 		.audio-time{
 			font-family:$f-sans-serif-text;
@@ -52,12 +51,7 @@
 			}
 		}
 	}
-	&.playing{
-		.button-background{
-			animation:audioplay 2s infinite;
-		}
-		
-	}
+	
 	.audio-info-container{
 		margin-top:40px;
 		position: relative;
@@ -128,6 +122,12 @@
 			right:auto;
 
 		}
+	}
+}
+
+.playing{
+	.button-background{
+		animation:audioplay 2s infinite;
 	}
 }
 

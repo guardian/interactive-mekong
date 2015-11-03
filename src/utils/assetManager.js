@@ -43,13 +43,13 @@ function initAsset(cardId, el){
 				loaded : true,
 				card: cardData['card'],
 				data: cardData,
-				playerComponent: (cardData.card === 'video' || cardData.card === 'audio') ? new MediaPlayer(el, cardData) : ''
+				playerComponent: (cardData.card === 'video' || cardData.card === 'audio' || cardData.card === 'title') ? new MediaPlayer(el, cardData) : ''
 			}
 		}
 	}
 
 	//load the source of of the media player
-	if( assetList[cardId].card === 'audio' || assetList[cardId].card === 'video'){
+	if( assetList[cardId].card === 'audio' || assetList[cardId].card === 'video' || assetList[cardId].card === 'title'){
 		assetList[cardId].playerComponent.isReady(true);
 	}
 	
@@ -61,7 +61,7 @@ function disableAsset(cardId){
 	if(cardId in assetList){
 
 		//unload the source of of the media player
-		if( assetList[cardId].card === 'audio' || assetList[cardId].card === 'video'){
+		if( assetList[cardId].card === 'audio' || assetList[cardId].card === 'video' || assetList[cardId].card === 'title'){
 			assetList[cardId].playerComponent.isReady(false);
 		}
 

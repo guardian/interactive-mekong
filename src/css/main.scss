@@ -16,8 +16,9 @@ body {
 
 // Remove <figure> margin
 .interactive {
-
+    @import 'header';
     @import 'cards/card-photo';
+    @import 'cards/card-title';
     @import 'cards/card-quote';
     @import 'cards/card-paragraph';
     @import 'cards/card-video';
@@ -131,6 +132,9 @@ body {
                 margin-top:0;
                 
             }
+        }
+        .slides-chapter{
+            margin-bottom:180px;
         }
     }
 }

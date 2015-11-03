@@ -22,7 +22,8 @@ var assetManager = require('./utils/assetManager.js')
     'quoteCard': require('./html/cards/card-quote.html'),
     'audioCard': require('./html/cards/card-audio.html'),
     'paragraphCard': require('./html/cards/card-paragraph.html'),
-    'videoCard': require('./html/cards/card-video.html')
+    'videoCard': require('./html/cards/card-video.html'),
+    'titleCard': require('./html/cards/card-title.html')
 });
 
 var isAlt = false;

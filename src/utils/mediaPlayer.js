@@ -12,40 +12,42 @@ function mediaPlayer(el, data){
 
 	function init(){
 		player = el.querySelectorAll('audio,video')[0];
+		console.log(player);
 		if(data.card === 'audio'){
 			playerComponent = new AudioPlayer(el,player,data);
-		} else if(data.card === 'video'){
+		} else if(data.card === 'video' || data.card === 'title'){
 			playerComponent = new VideoPlayer(el,player,data);
 		}
 
 		player.addEventListener("play", function () {
 			assetManager.registerPlaying(player);
+			el.classList.add("playing");
 		}, false);
-
 		player.addEventListener("pause", function () {
-
+			el.classList.remove("playing");
 		}, false);
 
-
+		if(data.card === 'video'){
 		//play button event 
-		el.getElementsByClassName('play-btn')[0].addEventListener('click', function(){
+			el.getElementsByClassName('play-btn')[0].addEventListener('click', function(){
 
-			if(!player.paused){
-				pause();
-			} else {
-				play();
-			}
-		})
+				if(!player.paused){
+					pause();
+				} else {
+					play();
+				}
+			})
 
-		//pause button event 
-		el.getElementsByClassName('media-container')[0].addEventListener('click', function(){
+			//pause button event 
+			el.getElementsByClassName('media-container')[0].addEventListener('click', function(){
 
-			if(!player.paused){
-				pause();
-			} else {
-				play();
-			}
-		})
+				if(!player.paused){
+					pause();
+				} else {
+					play();
+				}
+			})
+		}
 
 		if( data.card === 'video'){
 			el.getElementsByClassName('photo-placeholder-container')[0].addEventListener('click', function(){
@@ -97,9 +99,8 @@ function mediaPlayer(el, data){
 	}
 
 	function isReady(active){
-
+		console.log(playerComponent);
 		if(active){
-
 			if(!sourceLoaded){
 				sourceLoaded = true;
 				playerComponent.loadSource();

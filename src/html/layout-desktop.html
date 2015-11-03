@@ -1,14 +1,22 @@
 <div id="blocks-wrapper">
 	<div id="inner-wrapper">
 
+	<div id="header-wrapper">
+		<div class="header-image-container">
+			<img src="/imgs/river-mask.png" />
+		</div>
+		<div class="header-inner">
+			<h1>The tale <span id="title-break-1">of a</span> <span id="title-break-2">river</span></h1>
+			<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h2>
+		</div>
+	</div>
+
 	{{#stories}}
-		{{#each cards}}
-
-			{{>card}}
-
-	    {{/each}}
-
+		<div class="slides-chapter">
+			{{#each cards}}
+				{{>card}}
+		    {{/each}}
+		</div>
 	{{/stories}}
-
 	</div>
 </div>

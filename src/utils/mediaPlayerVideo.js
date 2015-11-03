@@ -11,6 +11,7 @@ function mediaDisplay(el,player,data){
 	function init(){
 
 		player = el.getElementsByTagName('video')[0];
+		console.log(player);
 		var width = player.getBoundingClientRect().width;
         var height = (width * 0.5625) + 'px';
         player.setAttribute('height', height);
@@ -18,11 +19,15 @@ function mediaDisplay(el,player,data){
 
 	
 		player.addEventListener("play", function () {
-			el.getElementsByClassName('card-video')[0].classList.add('video-playing');
+			if(data.card === 'video'){
+				el.getElementsByClassName('card-video')[0].classList.add('video-playing');
+			}
 		}, false);
 
 		player.addEventListener("pause", function () {
-			el.getElementsByClassName('card-video')[0].classList.remove('video-playing');
+			if(data.card === 'video'){
+				el.getElementsByClassName('card-video')[0].classList.remove('video-playing');
+			}
 		}, false);
 
 		// el.addEventListener("mouseover", function(){
@@ -37,12 +42,9 @@ function mediaDisplay(el,player,data){
 	}
 
 	function loadSource(){
-
-		
-
 		if(!sourceLoaded){
 			sourceLoaded = true;
-			var videoURLs= getVideoURLS(data.mobile_video_url);
+			var videoURLs= getVideoURLS(data.mobile_video_url || data.drone_video);
 			Object.keys(videoURLs).forEach(function(key) {
 				var sourceEl = document.createElement('source');
 				sourceEl.setAttribute('type', key);
