@@ -2,7 +2,9 @@ function mediaDisplay(el,player,data){
 
 	var utils = require('./detect');
 	var assetManager = require('./assetManager');
-	var videoBitRate = assetManager.videoBitRate;
+	// var videoBitRate = assetManager.videoBitRate;
+	var videoBitRate = '4M'; //debugging
+
 
 	var	sourceLoaded = false;
 

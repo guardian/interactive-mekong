@@ -38,13 +38,14 @@ function initAsset(cardId, el){
 	if(!(cardId in assetList)){
 		var cardData = cardLookup[cardId];
 		//if the player has not been created, create it
-		assetList[cardId] = {
-			loaded : true,
-			card: cardData['card'],
-			data: cardData,
-			playerComponent: (cardData.card === 'video' || cardData.card === 'audio') ? new MediaPlayer(el, cardData) : ''
+		if(cardData){
+			assetList[cardId] = {
+				loaded : true,
+				card: cardData['card'],
+				data: cardData,
+				playerComponent: (cardData.card === 'video' || cardData.card === 'audio') ? new MediaPlayer(el, cardData) : ''
+			}
 		}
-
 	}
 
 	//load the source of of the media player
