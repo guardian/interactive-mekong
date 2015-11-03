@@ -23,7 +23,6 @@ function init(mobile, data){
 
 function setVideoBitrate(bitrate) {
 	var kbps = bitrate / 1024;
-	console.log(kbps)
 	if (kbps >= 4068) { videoBitRate = '4M'; }
 	if (kbps < 4068) { videoBitRate  = '2M'; }
 	if (kbps < 2048) { videoBitRate  = '768k'; }
@@ -69,8 +68,11 @@ function disableAsset(cardId){
 
 }
 
-function autoPlay(cardId){
-
+function autoPlay(cardId, isPlaying){
+	console.log(cardId, assetList[cardId])
+	if(assetList[cardId].card === 'video'){
+		assetList[cardId].playerComponent.autoPlay(isPlaying);
+	}
 
 }
 
@@ -96,5 +98,6 @@ module.exports = {
 	initAsset: initAsset,
 	disableAsset: disableAsset,
 	registerPlaying: registerPlaying,
-	stopPlaying: stopPlaying
+	stopPlaying: stopPlaying,
+	autoPlay: autoPlay
 };

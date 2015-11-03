@@ -224,13 +224,18 @@ function handleMobileCard(div){
 function handleDesktopCard(div, wTop, wHeight){
     //manage the cards on mobile
     var rect = div.getBoundingClientRect();
-    var midPoint = rect.top + rect.height/2;
+    var midPoint = rect.top + rect.height/2 + wTop;
 
-    if(midPoint > wTop - wHeight && midPoint < wTop + wHeight * 2 ) {
+    if(midPoint > wTop - wHeight * .5 && midPoint < wTop + wHeight * 2 ) {
         //load if in the viewport
         var autoPlay = false;
-        if( midPoint > wTop + wHeight * .25 && midPoint < wTop + wHeight * .75){
+        if( midPoint > wTop + wHeight * .33 && midPoint < wTop + wHeight * .66){
+           // console.log(rect)
+            //console.log('autoplayin', midPoint, wTop + wHeight * .33, wTop + wHeight * .66)
+
             autoPlay = true;
+        } else {
+            autoPlay = false;
         }
 
         enableCard(div, true, autoPlay);
@@ -252,7 +257,10 @@ function enableCard(div, isEnabled, autoPlay){
         assetManager.initAsset(cardId, div);
 
         if( autoPlay ){
-            //assetManager.autoPlay(cardId);
+            //console.log('autoplayin', cardId)
+            assetManager.autoPlay(cardId, true);
+        } else {
+            assetManager.autoPlay(cardId, false);
         }
             
     } else {

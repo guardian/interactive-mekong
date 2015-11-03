@@ -8,6 +8,7 @@ function mediaPlayer(el, data){
 	var player;
 	var playerComponent;
 	var sourceLoaded = false;
+	var isAutoPlaying = false;
 
 	function init(){
 		player = el.querySelectorAll('audio,video')[0];
@@ -73,6 +74,28 @@ function mediaPlayer(el, data){
 		player.play();
 	}
 
+	function autoPlay(isPlaying){
+
+		if(isAutoPlaying != isPlaying){
+			//console.log(isPlaying)
+			if(isPlaying){
+				//turn autplaying on
+				isAutoPlaying = true;
+				player.currentTime = 0;
+				player.muted = true;
+				player.play();
+
+			} else {
+				//turn autplaying off
+				//console.log('off')
+				isAutoPlaying = false;
+				player.pause();
+			}
+
+		}
+
+	}
+
 	function isReady(active){
 
 		if(active){
@@ -102,7 +125,8 @@ function mediaPlayer(el, data){
 	return {
 		play: play,
 		pause: pause,
-		isReady: isReady
+		isReady: isReady,
+		autoPlay: autoPlay
 	};
 }
 
