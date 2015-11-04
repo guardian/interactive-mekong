@@ -123,5 +123,22 @@
 			}
 		}
 	}
-	
+}
+
+@media(min-width: breakpoints(tablet)){
+	.slide-text+.slide-text{
+		.card.card-paragraph{
+			box-shadow:none;
+			margin-top:-40px;
+			.paragraph-container{
+				margin-top:0;
+				p{
+					margin:0;
+					&:before{
+						display:none;
+					}
+				}
+			}
+		}
+	}
 }

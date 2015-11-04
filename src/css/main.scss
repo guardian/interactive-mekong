@@ -137,6 +137,9 @@ body {
         .slides-chapter{
             margin-bottom:180px;
         }
+        #blocks-wrapper{
+            overflow: hidden;
+        }
         #inner-wrapper{
             position: relative;
             &:before{

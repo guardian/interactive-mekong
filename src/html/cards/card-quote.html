@@ -1,9 +1,12 @@
 <div class="card card-quote">
 	<div class="quote-container">
-		<img class="quote-icon" src="/imgs/quoteMark.svg" />
+		<!-- <img class="quote-icon" src="/imgs/quoteMark.svg" /> -->
 		<quote>{{{quote}}}</quote>
+
+		{{#if credit_name}}
 		<div class="quote-credit">
 			<p><strong>{{{credit_name}}}</strong> {{{credit_title}}}</p>
 		</div>
+		{{/if}}
 	</div>
 </div>
