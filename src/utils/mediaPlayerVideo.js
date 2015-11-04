@@ -11,7 +11,6 @@ function mediaDisplay(el,player,data){
 	function init(){
 
 		player = el.getElementsByTagName('video')[0];
-		console.log(player);
 		var width = player.getBoundingClientRect().width;
         var height = (width * 0.5625) + 'px';
         player.setAttribute('height', height);
@@ -45,7 +44,6 @@ function mediaDisplay(el,player,data){
 		if(!sourceLoaded){
 			sourceLoaded = true;
 			var videoURLs= getVideoURLS(data.mobile_video_url || data.drone_video);
-			console.log(videoURLs);
 			Object.keys(videoURLs).forEach(function(key) {
 				var sourceEl = document.createElement('source');
 				sourceEl.setAttribute('type', key);

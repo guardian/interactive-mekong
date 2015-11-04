@@ -12,7 +12,6 @@ function mediaPlayer(el, data){
 
 	function init(){
 		player = el.querySelectorAll('audio,video')[0];
-		console.log(player);
 		if(data.card === 'audio'){
 			playerComponent = new AudioPlayer(el,player,data);
 		} else if(data.card === 'video' || data.card === 'title'){
@@ -99,7 +98,6 @@ function mediaPlayer(el, data){
 	}
 
 	function isReady(active){
-		console.log(playerComponent);
 		if(active){
 			if(!sourceLoaded){
 				sourceLoaded = true;

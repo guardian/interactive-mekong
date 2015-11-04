@@ -26,7 +26,7 @@
         	z-index:2;
         	font-family: $f-serif-headline;
         	color:#FFBB24;
-        	padding:320px 20px 0 180px;
+        	padding:320px 20px 0 20px;
         	overflow:hidden;
         	h1{
         		font-size:90px;
@@ -49,10 +49,10 @@
         		font-weight:100;
         		font-size:22px;
         		line-height:30px;
-        		max-width:480px;
+        		max-width:540px;
         		position: absolute;
         		bottom:10px;
-        		left:500px;
+        		left:340px;
         		margin:0;
         	}
         }
@@ -64,5 +64,11 @@
 @media(min-width: breakpoints(wide)){
 	#header-wrapper{
 		margin-left:-180px;
+        .header-inner{
+            padding-left:180px;
+            h2{
+                left:500px;
+            }
+        }
 	}
 }

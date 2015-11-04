@@ -29,6 +29,7 @@ var assetManager = require('./utils/assetManager.js')
 var isAlt = false;
 var isMobile = true;
 var cardData;
+var newChapter;
 var cardContent = Handlebars.compile( 
             require('./html/cards/card-base.html'), 
             { 
@@ -124,7 +125,6 @@ function boot(el) {
                     })
                 })
                 
-                console.log(json)
                 render(json,el);
             }else{
                 render(json, el);
@@ -140,7 +140,6 @@ function getCardData(cardData){
 
 function render(json, el){
     cardData = json;
-    console.log(cardData);
 	var content = Handlebars.compile( 
         template, 
         { 
@@ -223,9 +222,19 @@ function handleMobileCard(div){
 }
 
 function handleDesktopCard(div, wTop, wHeight){
+    
     //manage the cards on mobile
     var rect = div.getBoundingClientRect();
     var midPoint = rect.top + rect.height/2 + wTop;
+    
+    if(div.className.indexOf('slide-title') > -1){
+        if(rect.top < 0){
+            var colors = ["#333","#FCEDE0","#7D7569","#484f53"]
+            var currentChapter = div.getAttribute('data-card-id').split('_')[1];
+            console.log(currentChapter);
+            document.querySelector('body').style.background = colors[currentChapter-1];
+        }
+    }
 
     if(midPoint > wTop - wHeight * .5 && midPoint < wTop + wHeight * 2 ) {
         //load if in the viewport
@@ -240,6 +249,7 @@ function handleDesktopCard(div, wTop, wHeight){
         }
 
         enableCard(div, true, autoPlay);
+        
 
     } else {
         enableCard(div, false, false);

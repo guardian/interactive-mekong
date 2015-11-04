@@ -70,7 +70,6 @@ function disableAsset(cardId){
 }
 
 function autoPlay(cardId, isPlaying){
-	console.log(cardId, assetList[cardId])
 	if(assetList[cardId].card === 'video'){
 		assetList[cardId].playerComponent.autoPlay(isPlaying);
 	}

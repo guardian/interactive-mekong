@@ -11,7 +11,8 @@
 body {
     margin: 0;
     padding: 0;
-    background:#333;
+    background:#867f74;
+    transition:background 1s;
 }
 
 // Remove <figure> margin
@@ -135,6 +136,29 @@ body {
         }
         .slides-chapter{
             margin-bottom:180px;
+        }
+        #inner-wrapper{
+            position: relative;
+            &:before{
+                display:block;
+                content: '';
+                position: absolute;
+                height:100%;
+                background:rgba(0,0,0,0.05);
+                width:2000px;
+                right:100%;
+                top:0;
+            }
+            &:after{
+                display:block;
+                content: '';
+                position: absolute;
+                height:100%;
+                background:rgba(0,0,0,0.05);
+                width:2000px;
+                left:100%;
+                top:0
+            }
         }
     }
 }
