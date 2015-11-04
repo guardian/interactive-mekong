@@ -18,7 +18,9 @@ function mediaDisplay(el,player,data, isMobile){
 
 	
 		player.addEventListener("play", function () {
+			
 			if(data.card === 'video'){
+				console.log('hey')
 				el.getElementsByClassName('card-video')[0].classList.add('video-playing');
 			}
 		}, false);
@@ -41,11 +43,15 @@ function mediaDisplay(el,player,data, isMobile){
 	}
 
 	function loadSource(){
-
-		console.log(data)
 		if(!sourceLoaded){
 			sourceLoaded = true;
-			var videoURLs= (isMobile) ? getVideoURLS(data.mobile_video_url) : getVideoURLS(data.desktop_video_url|| data.drone_video);
+			var videoURLs
+			if(data.card === "title"){
+				videoURLs = getVideoURLS(data.desktop_video_url)
+			}else{
+				videoURLs = (isMobile) ? getVideoURLS(data.mobile_video_url) : getVideoURLS(data.desktop_video_url);
+			}
+
 			Object.keys(videoURLs).forEach(function(key) {
 				var sourceEl = document.createElement('source');
 				sourceEl.setAttribute('type', key);

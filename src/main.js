@@ -115,18 +115,29 @@ function boot(el) {
             //render            
             if(document.location.search.indexOf('preview')>-1){
                 //render alt cards
-
-
-                var value = document.location.search.split('=')[1].split(',');  
-                json.stories = [];
-                value.forEach(function(i){
-                    json.stories.push({
-                        cards: [ {card: i} ]
-                    })
-                })
-                
+                var value = document.location.search.split('=')[1]  ;  
+                // json.stories = [];
+                // value.forEach(function(i){
+                //     json.stories.push({
+                //         cards: [ {card: i} ]
+                //     })
+                // })
+                for(sheet in json.sheets){
+                    if(sheet !== "overview"){
+                        json.sheets[sheet].forEach(function(e){
+                            if(e.card + "_" + e.id === value){
+                                json.stories = [{
+                                    "chapter": 1,
+                                    "cards": [e]
+                                }] 
+                            }
+                        })
+                    }
+                }
+                console.log(json);
                 render(json,el);
             }else{
+
                 render(json, el);
             }
             
@@ -229,7 +240,7 @@ function handleDesktopCard(div, wTop, wHeight){
     
     if(div.className.indexOf('slide-title') > -1){
         if(rect.top < 0){
-            var colors = ["#333","#FCEDE0","#7D7569","#484f53"]
+            var colors = ["#333","#867F75","#7D7569","#484f53"]
             var currentChapter = div.getAttribute('data-card-id').split('_')[1];
             console.log(currentChapter);
             document.querySelector('body').style.background = colors[currentChapter-1];
