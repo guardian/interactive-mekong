@@ -1,4 +1,4 @@
-function mediaDisplay(el,player,data){
+function mediaDisplay(el,player,data, isMobile){
 
 	var utils = require('./detect');
 

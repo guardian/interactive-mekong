@@ -1,4 +1,4 @@
-function mediaDisplay(el,player,data){
+function mediaDisplay(el,player,data, isMobile){
 
 	var utils = require('./detect');
 	var assetManager = require('./assetManager');
@@ -41,9 +41,11 @@ function mediaDisplay(el,player,data){
 	}
 
 	function loadSource(){
+
+		console.log(data)
 		if(!sourceLoaded){
 			sourceLoaded = true;
-			var videoURLs= getVideoURLS(data.mobile_video_url || data.drone_video);
+			var videoURLs= (isMobile) ? getVideoURLS(data.mobile_video_url) : getVideoURLS(data.desktop_video_url|| data.drone_video);
 			Object.keys(videoURLs).forEach(function(key) {
 				var sourceEl = document.createElement('source');
 				sourceEl.setAttribute('type', key);

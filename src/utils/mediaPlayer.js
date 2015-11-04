@@ -1,4 +1,4 @@
-function mediaPlayer(el, data){
+function mediaPlayer(el, data, isMobile){
 
 	var utils = require('./detect');
 	var assetManager = require('./assetManager');
@@ -13,9 +13,9 @@ function mediaPlayer(el, data){
 	function init(){
 		player = el.querySelectorAll('audio,video')[0];
 		if(data.card === 'audio'){
-			playerComponent = new AudioPlayer(el,player,data);
+			playerComponent = new AudioPlayer(el,player,data, isMobile);
 		} else if(data.card === 'video' || data.card === 'title'){
-			playerComponent = new VideoPlayer(el,player,data);
+			playerComponent = new VideoPlayer(el,player,data, isMobile);
 		}
 
 		player.addEventListener("play", function () {

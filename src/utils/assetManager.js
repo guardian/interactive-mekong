@@ -43,7 +43,7 @@ function initAsset(cardId, el){
 				loaded : true,
 				card: cardData['card'],
 				data: cardData,
-				playerComponent: (cardData.card === 'video' || cardData.card === 'audio' || cardData.card === 'title') ? new MediaPlayer(el, cardData) : ''
+				playerComponent: (cardData.card === 'video' || cardData.card === 'audio' || cardData.card === 'title') ? new MediaPlayer(el, cardData, isMobile) : ''
 			}
 		}
 	}
