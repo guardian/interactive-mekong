@@ -26,31 +26,9 @@ function mediaPlayer(el, data, isMobile){
 			el.classList.remove("playing");
 		}, false);
 
-		if(data.card !== 'title'){
-		//play button event 
-			el.getElementsByClassName('play-btn')[0].addEventListener('click', function(){
-
-				if(!player.paused){
-					pause();
-				} else {
-					play();
-				}
-			})
-
-			//pause button event 
-			el.getElementsByClassName('media-container')[0].addEventListener('click', function(){
-
-				if(!player.paused){
-					pause();
-				} else {
-					play();
-				}
-			})
-		}
-
 		if( data.card === 'video'){
 			el.getElementsByClassName('photo-placeholder-container')[0].addEventListener('click', function(){
-
+				console.log('clicked photo placeholder')
 				if(!player.paused){
 					pause();
 				} else {
@@ -59,7 +37,15 @@ function mediaPlayer(el, data, isMobile){
 					play();
 				}
 			})
-
+		}else if( data.card === 'audio'){
+			el.getElementsByClassName('media-container')[0].addEventListener('click', function(){
+				console.log('clicked media-container')
+				if(!player.paused){
+					pause();
+				} else {
+					play();
+				}
+			})
 		}
 
 		

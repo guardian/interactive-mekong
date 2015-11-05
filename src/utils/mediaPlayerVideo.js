@@ -9,7 +9,6 @@ function mediaDisplay(el,player,data, isMobile){
 	var	sourceLoaded = false;
 
 	function init(){
-
 		player = el.getElementsByTagName('video')[0];
 		var width = player.getBoundingClientRect().width;
         var height = (width * 0.5625) + 'px';
