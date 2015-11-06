@@ -10,6 +10,7 @@ var currentlyPlaying;
 var isMobile = true;
 var assetList = {};
 var cardLookup;
+var isMuted = true;
 
 function init(mobile, data){
 	isMobile = mobile;
@@ -101,9 +102,18 @@ function stopPlaying(){
 	}
 }
 
+function unMute(){
+	isMuted = false;
+}
+
+function getMuteStatus(){
+	return isMuted
+}
+
 function getBitRate(){
 	return videoBitRate
 }
+
 
 
 module.exports = {
@@ -113,5 +123,7 @@ module.exports = {
 	registerPlaying: registerPlaying,
 	stopPlaying: stopPlaying,
 	autoPlay: autoPlay,
+	unMute: unMute,
+	getMuteStatus: getMuteStatus,
 	getBitRate: getBitRate
 };

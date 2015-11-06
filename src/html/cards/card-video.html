@@ -1,4 +1,4 @@
-<div class="card card-video">
+<div class="card card-video video-muted">
 	<div class="video-container media-container">
 		<video {{#if_eq isMobile false }}muted{{/if_eq}}>
 		  
@@ -9,12 +9,14 @@
 		<div class="placeholder-content">
 			<div class="placeholder-mobile">
 				<button class="play-btn"></button>
-				<p class="video-time">02:34</p>
 				<p class="video-caption">{{caption}}</p>
 			</div>
 
 			<div class="placeholder-desktop">
-				<button class="unmute-button">Replay with sound</button> 
+				<button class="play-btn"></button> 
+				<button class="unmute-btn"></button> 
+				<button class="pause-btn"></button>
+				<p class="video-time"></p>
 			</div>
 		</div>
 	</div>

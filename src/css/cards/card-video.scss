@@ -90,59 +90,113 @@
 			top:0;
 			left:0;
 			cursor:pointer;
+			background:rgba(0,0,0,0.4);
+			opacity:0;
+			transition: 0.4s opacity;
 			&:hover{
-				.unmute-button{
-					background-color:rgba(0,0,0,1);
-				}
+				opacity:1;
+				
 			}
 		}
+
 		.placeholder-background{
 			display:none;
 			background:none;
 		}
 
-		.placeholder-mobile{
-			display:none;
-		}
-		.placeholder-desktop{
-			display:block;
-			text-align:center;
-			p{
-				position: relative;
-				transform:none;
-			}
-		}
 		.video-container{
 			display:block;
 			line-height:0;
 		}
-		.unmute-button{
-			background-color:rgba(0,0,0,0.4);
-			background-image: url(/imgs/unmute-btn.svg);
-			background-size:20px;
-			background-repeat:no-repeat;
-			background-position:14px center;
-			border:none;
-			border-radius:80px;
-			color:#fff;
-			font-family:$f-sans-serif-text;
-			font-size:14px;
-			height:36px;
-			transition:background-color 0.4s;
-			padding:1px 14px 0 44px;
-			outline: none;
-		}
-		
 
-		&.size-m, &.size-l, &.size-xl{
-			.unmute-button{
-				font-size:16px;
-				height:44px;
-				background-size:24px;
-				padding: 1px 20px 0 54px;
+		.placeholder-content{
+			transform:none;
+			top:40%;
+			text-align: center;
+		}
+
+		.placeholder-mobile{
+			display:none;
+		}
+
+		.placeholder-desktop{
+			display:block;
+			p{
+				position: relative;
+				transform:none;
+				vertical-align: top;
+				display:inline-block;
+				font-family: $f-sans-serif-text;
+				margin:32px 0 0 10px;
+				width:50px;
+				text-align: left;
+			}
+		}
+
+		.placeholder-desktop{
+			display: inline-block;
+		}
+
+		.pause-btn,.play-btn,.unmute-btn{
+			display:none;
+			width:88px;
+			height:88px;
+			border-radius:88px;
+			background:transparent;
+			border: 1px solid #fff;
+			outline:none;
+			background-repeat: no-repeat;
+			background-position:center;
+			cursor:pointer;
+		}
+
+		&.video-playing{
+			.play-btn{
+				display:inline-block;
+				background-image: url(/imgs/pause-btn.svg);
+				float:none;
+			}
+		}
+		&.video-paused{
+			.pause-btn{
+				display:inline-block;
+				background-image: url(/imgs/play-btn.svg);
+			}
+
+			.photo-placeholder-container{
+				opacity:1;
+			}
+		}
+
+		&.video-muted{
+			.unmute-btn{
+				display:inline-block;
+				background-image: url(/imgs/unmute-btn.svg);
+			}
+			&.video-paused{
+				.pause-btn{
+					display:none;
+				}
+			}
+			&.video-playing{
+				.play-btn{
+					display:none;
+				}
 			}
 			
 		}
+
+		
+
+		// &.size-m, &.size-l, &.size-xl{
+		// 	.unmute-button{
+		// 		font-size:16px;
+		// 		height:44px;
+		// 		background-size:24px;
+		// 		padding: 1px 20px 0 54px;
+		// 	}
+			
+		// }
 		
 	}
 	@media (min-width:480px) and (max-width:breakpoints(tablet)){
@@ -168,9 +222,6 @@
 
 
 .card.card-video.video-playing {
-	.photo-placeholder-container {
-		display: none;
-	}
 	.video-container{
 		display:block;
 	}

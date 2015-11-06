@@ -38,6 +38,7 @@ var cardContent = Handlebars.compile(
             }
         );
 
+
 Handlebars.registerHelper({
     'if_eq': function(a, b, opts) {
         if(a === b){
@@ -256,8 +257,8 @@ function handleMobileCard(div){
         enableCard(div, true);
 
         if(div.classList.contains('swiper-slide-active') && !div.classList.contains('slide-position-0')){
-             tracker.track(div.getAttribute('data-card-id'));
-         }
+            tracker.track(div.getAttribute('data-card-id'));
+        }
 
     } else {
         enableCard(div, false);
