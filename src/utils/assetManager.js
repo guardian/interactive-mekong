@@ -20,7 +20,7 @@ function init(mobile, data){
 	if(!isMobile){
 		videoBitRate = "4M";
 	} else {
-		videoBitRate = '488k';
+		videoBitRate = '768k';
 	}
 
 	setTimeout(function() {
