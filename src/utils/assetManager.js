@@ -2,8 +2,7 @@
 //video requirements
 var MediaPlayer = require('./mediaPlayer');
 var bandwidth = require('./bandwidth');
-var DEFAULT_BITRATE = '488k';
-var videoBitRate = DEFAULT_BITRATE;
+var videoBitRate;
 
 //manage assets currently playing
 var queue = [];		
@@ -17,6 +16,13 @@ function init(mobile, data){
 	isMobile = mobile;
 	cardLookup = data;
 	//determine bitrate
+
+	if(!isMobile){
+		videoBitRate = "4M";
+	} else {
+		videoBitRate = '488k';
+	}
+
 	setTimeout(function() {
         bandwidth.getSpeed(setVideoBitrate);
     }, 2000);
@@ -24,11 +30,13 @@ function init(mobile, data){
 
 function setVideoBitrate(bitrate) {
 	var kbps = bitrate / 1024;
+
 	if (kbps >= 4068) { videoBitRate = '4M'; }
 	if (kbps < 4068) { videoBitRate  = '2M'; }
 	if (kbps < 2048) { videoBitRate  = '768k'; }
 	if (kbps < 1024) { videoBitRate  = '488k'; }
 	if (kbps < 512)  { videoBitRate  = '220k'; }
+
 }
 
 function initAsset(cardId, el){
@@ -71,7 +79,7 @@ function disableAsset(cardId){
 }
 
 function autoPlay(cardId, isPlaying){
-	if(assetList[cardId].card === 'video'){
+	if(assetList[cardId].card === 'video' || assetList[cardId].card === 'title'){
 		assetList[cardId].playerComponent.autoPlay(isPlaying);
 	}
 
@@ -80,6 +88,7 @@ function autoPlay(cardId, isPlaying){
 function registerPlaying(player){
 	if(currentlyPlaying != player){
 		if(currentlyPlaying){
+
 			currentlyPlaying.pause();
 		}
 		currentlyPlaying = player;
@@ -101,6 +110,10 @@ function getMuteStatus(){
 	return isMuted
 }
 
+function getBitRate(){
+	return videoBitRate
+}
+
 
 
 module.exports = {
@@ -111,5 +124,6 @@ module.exports = {
 	stopPlaying: stopPlaying,
 	autoPlay: autoPlay,
 	unMute: unMute,
-	getMuteStatus: getMuteStatus
+	getMuteStatus: getMuteStatus,
+	getBitRate: getBitRate
 };

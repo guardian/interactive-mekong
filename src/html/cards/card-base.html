@@ -1,4 +1,5 @@
- <div class="swiper-slide {{get_pending_status card isMobile}} size-{{size}} margin-{{margin}}-col slide-{{card}}" data-card-id="{{card}}_{{id}}">
+ <div class="gv-slide swiper-slide slide-position-{{@index}} {{get_pending_status card isMobile}} size-{{size}} margin-{{margin}}-col slide-{{card}}" data-card-id="{{card}}_{{id}}">
+
  	{{#if_eq card "photo"}}
 		{{> photoCard }}
 	{{else if_eq card "quote"}}

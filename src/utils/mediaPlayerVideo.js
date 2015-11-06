@@ -2,8 +2,7 @@ function mediaDisplay(el,player,data, isMobile){
 
 	var utils = require('./detect');
 	var assetManager = require('./assetManager');
-	// var videoBitRate = assetManager.videoBitRate;
-	var videoBitRate = '4M'; //debugging
+	var videoBitRate;
 	var	sourceLoaded = false;
 
 	function init(){
@@ -68,8 +67,9 @@ function mediaDisplay(el,player,data, isMobile){
 
 	function loadSource(){
 		if(!sourceLoaded){
+			
 			sourceLoaded = true;
-			var videoURLs
+			videoBitRate = assetManager.getBitRate();
 			if(data.card === "title"){
 				videoURLs = getVideoURLS(data.desktop_video_url)
 			}else{

@@ -4,7 +4,8 @@ var detect = require('./utils/detect');
 var Handlebars = require('handlebars/dist/cjs/handlebars');
 var getJSON = require('./utils/getjson');
 var template = require('./html/base.html');
-var assetManager = require('./utils/assetManager.js')
+var assetManager = require('./utils/assetManager');
+var tracker = require('./utils/tracker')
 
 // var cardTemplate = require('./html/card-base.html');
 /**
@@ -187,6 +188,8 @@ function initMobile(elems){
         })
         .on('onSlideChangeStart', function (e) {
             assetManager.stopPlaying();
+        })
+        .on('onSlideChangeEnd', function (e) {
             scanCards(e.container[0]);
         });
 
@@ -194,16 +197,40 @@ function initMobile(elems){
 
     }
 
+
+    window.addEventListener(
+        'scroll', 
+        detect.debounce(function(){
+            scanChapters(elems);
+        }, 250)
+    );
+
+}
+
+function scanChapters(chapters){
+
+    var wTop = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
+    var wHeight = window.innerHeight;
+
+
+    for(var c = 0; c < chapters.length; c++){
+        var rect = chapters[c].getBoundingClientRect();
+        var position = getPosition(wTop,wHeight,rect);
+        if(position.inViewport){
+            tracker.track(chapters[c].querySelector('.swiper-slide').getAttribute('data-card-id'));
+            break;
+        }
+    }
 }
 
 
 
 function scanCards(el){
     
-    var slides = el.querySelectorAll('.swiper-slide'),
+    var slides = el.querySelectorAll('.gv-slide'),
         wtop,
         wheight;
-    
+
     //measure if on desktop to know what to load
     if(!isMobile){
         wTop = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
@@ -228,42 +255,13 @@ function handleMobileCard(div){
     //manage the cards on mobile
     if( div.classList.contains('swiper-slide-active') || div.classList.contains('swiper-slide-prev') || div.classList.contains('swiper-slide-next')){
         enableCard(div, true);
+
+        if(div.classList.contains('swiper-slide-active') && !div.classList.contains('slide-position-0')){
+            tracker.track(div.getAttribute('data-card-id'));
+        }
+
     } else {
         enableCard(div, false);
-    }
-}
-
-function handleDesktopCard(div, wTop, wHeight){
-    
-    //manage the cards on mobile
-    var rect = div.getBoundingClientRect();
-    var midPoint = rect.top + rect.height/2 + wTop;
-    
-    if(div.className.indexOf('slide-title') > -1){
-        if(rect.top < 0){
-            var colors = ["#333","#867F75","#7D7569","#484f53"]
-            var currentChapter = div.getAttribute('data-card-id').split('_')[1];
-            document.querySelector('body').style.background = colors[currentChapter-1];
-        }
-    }
-
-    if(midPoint > wTop - wHeight * .5 && midPoint < wTop + wHeight * 2 ) {
-        //load if in the viewport
-        var autoPlay = false;
-        if( midPoint > wTop + wHeight * .33 && midPoint < wTop + wHeight * .66){
-           // console.log(rect)
-            //console.log('autoplayin', midPoint, wTop + wHeight * .33, wTop + wHeight * .66)
-
-            autoPlay = true;
-        } else {
-            autoPlay = false;
-        }
-
-        enableCard(div, true, autoPlay);
-        
-
-    } else {
-        enableCard(div, false, false);
     }
 }
 
@@ -272,7 +270,9 @@ function enableCard(div, isEnabled, autoPlay){
 
     //lookup card id
     var cardId = div.getAttribute('data-card-id');
-    
+
+   
+   
     //load/activate the card media
     if(isEnabled){
         div.classList.remove('swiper-slide-pending')
@@ -310,13 +310,61 @@ function initDesktop(el){
 
 }
 
-function inDesktopView(top,height,rect){
-    if(rect.top <= top + height){
-        return true;
-    } 
-    return false;
+function handleDesktopCard(div, wTop, wHeight){
+    
+    //manage the cards on mobile
+    var rect = div.getBoundingClientRect();
+    var midPoint = rect.top + rect.height/2 + wTop;
+    var position = getPosition(wTop,wHeight,rect);
+
+    if(div.classList.contains('slide-title')){
+        if(rect.top < 0){
+            var colors = ["#333","#867F75","#7D7569","#484f53"]
+            var currentChapter = div.getAttribute('data-card-id').split('_')[1];
+            //console.log(currentChapter);
+            document.querySelector('body').style.background = colors[currentChapter-1];
+        }
+    }    
+
+    if(position.nearViewport ) {
+        //load if in the viewport
+        var autoPlay = false;
+
+        //slide tracking etc
+        if(position.inViewport){
+            if( !div.classList.contains('slide-video') && !div.classList.contains('slide-audio') && !div.classList.contains('slide-title') ){
+                div.classList.remove('gv-slide');
+            }
+
+            tracker.track(div.getAttribute('data-card-id'));
+        }
+        
+        
+        if( position.inMiddle ){
+            //console.log(div, rect, midPoint, wTop + wHeight * .33, wTop + wHeight * .66);
+
+            autoPlay = true;
+        } else {
+            autoPlay = false;
+        }
+
+        enableCard(div, true, autoPlay);
+        
+
+    } else {
+        enableCard(div, false, false);
+    }
 }
 
+function getPosition(wTop, wHeight, rect){
+    var midPoint = rect.top + rect.height/2 + wTop;
+
+    return {
+        inViewport: (midPoint > wTop - wHeight && midPoint < wTop + wHeight) ? true : false,
+        nearViewport: ( Math.abs(rect.top) < wHeight * 2.5 ) ? true : false,
+        inMiddle: midPoint > wTop + wHeight * .3 && midPoint < wTop + wHeight * .7
+    }
+}
 
 
 
