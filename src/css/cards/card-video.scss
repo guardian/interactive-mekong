@@ -80,6 +80,13 @@
 	.placeholder-desktop{
 		display:none;
 	}
+	@media(max-width: breakpoints(tablet)){
+		&.video-playing {
+			.photo-placeholder-container{
+				display:none;
+			}
+		}
+	}
 
 	@media(min-width: breakpoints(tablet)){
 		height:auto;
