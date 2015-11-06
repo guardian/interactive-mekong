@@ -11,6 +11,7 @@ var currentlyPlaying;
 var isMobile = true;
 var assetList = {};
 var cardLookup;
+var isMuted = true;
 
 function init(mobile, data){
 	isMobile = mobile;
@@ -92,6 +93,15 @@ function stopPlaying(){
 	}
 }
 
+function unMute(){
+	isMuted = false;
+}
+
+function getMuteStatus(){
+	return isMuted
+}
+
+
 
 module.exports = {
 	init: init,
@@ -99,5 +109,7 @@ module.exports = {
 	disableAsset: disableAsset,
 	registerPlaying: registerPlaying,
 	stopPlaying: stopPlaying,
-	autoPlay: autoPlay
+	autoPlay: autoPlay,
+	unMute: unMute,
+	getMuteStatus: getMuteStatus
 };

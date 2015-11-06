@@ -37,6 +37,7 @@ var cardContent = Handlebars.compile(
             }
         );
 
+
 Handlebars.registerHelper({
     'if_eq': function(a, b, opts) {
         if(a === b){
@@ -242,7 +243,6 @@ function handleDesktopCard(div, wTop, wHeight){
         if(rect.top < 0){
             var colors = ["#333","#867F75","#7D7569","#484f53"]
             var currentChapter = div.getAttribute('data-card-id').split('_')[1];
-            console.log(currentChapter);
             document.querySelector('body').style.background = colors[currentChapter-1];
         }
     }

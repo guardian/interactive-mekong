@@ -9,6 +9,7 @@ function mediaPlayer(el, data, isMobile){
 	var playerComponent;
 	var sourceLoaded = false;
 	var isAutoPlaying = false;
+	var isMuted = assetManager.getMuteStatus();
 
 	function init(){
 		player = el.querySelectorAll('audio,video')[0];
@@ -28,12 +29,21 @@ function mediaPlayer(el, data, isMobile){
 
 		if( data.card === 'video'){
 			el.getElementsByClassName('photo-placeholder-container')[0].addEventListener('click', function(){
-				console.log('clicked photo placeholder')
 				if(!player.paused){
-					pause();
+					if(isMuted){
+						player.muted = false;
+						assetManager.unMute();
+						isMuted = assetManager.getMuteStatus();
+						el.getElementsByClassName('card-video')[0].classList.remove('video-muted');
+					}else{
+						pause();
+					}
 				} else {
-					player.currentTime = 0;
-					player.muted = false;
+					if(isMuted){
+						player.muted = false;
+						assetManager.unMute();
+						el.getElementsByClassName('card-video')[0].classList.remove('video-muted');
+					}
 					play();
 				}
 			})
@@ -47,14 +57,13 @@ function mediaPlayer(el, data, isMobile){
 				}
 			})
 		}
-
+		
 		
 
 	}
 
 	function pause(){
 		player.pause();
-		
 	}
 
 	function play(){
@@ -62,15 +71,19 @@ function mediaPlayer(el, data, isMobile){
 	}
 
 	function autoPlay(isPlaying){
+		isMuted = assetManager.getMuteStatus();
 
 		if(isAutoPlaying != isPlaying){
 			//console.log(isPlaying)
 			if(isPlaying){
 				//turn autplaying on
 				isAutoPlaying = true;
-				player.currentTime = 0;
-				player.muted = true;
+				player.muted = isMuted;
 				player.play();
+				
+				if(!isMuted){
+					el.getElementsByClassName('card-video')[0].classList.remove('video-muted');
+				}
 
 			} else {
 				//turn autplaying off

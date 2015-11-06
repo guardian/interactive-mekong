@@ -70,6 +70,9 @@
 			padding-top:6px;
 			margin:0;
 			max-width:320px;
+			margin-left:-20px;
+			padding: 0 0 10px 20px;
+			background: radial-gradient(ellipse at 0 50%, rgba(0,0,0,0.55) 0%,rgba(0,0,0,0) 75%)
 		}
 	}
 
@@ -114,7 +117,7 @@
 		height:auto;
 
 		.audio-container{
-			margin:40px 0 80px;
+			margin:180px 0 20px;
 			position: relative;
 			transform:none;
 			top:auto;

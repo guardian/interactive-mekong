@@ -1,42 +1,42 @@
-@media(max-width:breakpoints(tablet)){
-	.title-heading-container{
-		padding:0 20px;
-		font-family:$f-serif-headline;
-		width:100%;
-	}
-	.title-locator{
-		display:none;
-	}
-	.title-heading{
-		max-width:480px;
-		
-		p{
-			font-family: $f-sans-serif-text;
-			margin:0;
-			font-size:14px;
-			color:rgba(255,255,255,0.6);
-			strong{
-				color:#ffbb00;
-			}
-		}
 
-		
-		h2{
-			font-size:42px;
-			line-height:42px;
-			margin:0;
-		}
-		h3{
-			font-size:18px;
-			line-height:24px;
-			font-weight:100;
-			margin:24px 0 0;
+.title-heading-container{
+	padding:0 20px;
+	font-family:$f-serif-headline;
+	width:100%;
+}
+.title-locator{
+	display:none;
+}
+.title-heading{
+	max-width:480px;
+	
+	p{
+		font-family: $f-sans-serif-text;
+		margin:0;
+		font-size:14px;
+		color:rgba(255,255,255,0.6);
+		strong{
+			color:#ffbb00;
 		}
 	}
-	.drone-stroke{
-		display:none;
+
+	
+	h2{
+		font-size:42px;
+		line-height:42px;
+		margin:0;
+	}
+	h3{
+		font-size:18px;
+		line-height:24px;
+		font-weight:100;
+		margin:24px 0 0;
 	}
 }
+.drone-stroke{
+	display:none;
+}
+
 
 @media(min-width:breakpoints(tablet)){
 	.swiper-slide.slide-title{
@@ -47,6 +47,7 @@
 		position: relative;
 		.title-heading-container{
             position: relative;
+            padding:0;
         }
         .title-locator{
         	position: absolute;
@@ -70,6 +71,7 @@
 		width:100%;
 		height:280px;
 		overflow: hidden;
+		display:block;
 		background:rgba(255,255,255,0.2);
 		video{
 			width:100%;

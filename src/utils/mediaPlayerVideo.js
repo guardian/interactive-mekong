@@ -4,32 +4,32 @@ function mediaDisplay(el,player,data, isMobile){
 	var assetManager = require('./assetManager');
 	// var videoBitRate = assetManager.videoBitRate;
 	var videoBitRate = '4M'; //debugging
-
-
 	var	sourceLoaded = false;
 
 	function init(){
 		player = el.getElementsByTagName('video')[0];
+		console.log('loading new player');
 		var width = player.getBoundingClientRect().width;
         var height = (width * 0.5625) + 'px';
         player.setAttribute('height', height);
-		
-
-	
 		player.addEventListener("play", function () {
-			
 			if(data.card === 'video'){
-				console.log('hey')
 				el.getElementsByClassName('card-video')[0].classList.add('video-playing');
+				el.getElementsByClassName('card-video')[0].classList.remove('video-paused');
 			}
 		}, false);
 
 		player.addEventListener("pause", function () {
 			if(data.card === 'video'){
 				el.getElementsByClassName('card-video')[0].classList.remove('video-playing');
+				el.getElementsByClassName('card-video')[0].classList.add('video-paused');
 			}
 		}, false);
 
+		if(data.card === 'video'){
+			player.addEventListener("timeupdate", utils.debounce(function(){ updateProgress(); }, 250), false);
+		}
+		
 		// el.addEventListener("mouseover", function(){
 		// 	el.classList.add("gv-state-hovering");
 		// }, false);
@@ -39,6 +39,31 @@ function mediaDisplay(el,player,data, isMobile){
 		// }, false);
 
 
+	}
+
+	function updateProgress(){
+		console.log(player);
+		if(player.duration && player.currentTime){
+			el.querySelector('.video-time').innerHTML = getTime( player.currentTime, player.duration );
+
+		}
+	}
+
+	function getTime(currTime, duration){
+		var time = Math.floor(duration - currTime);
+		if(time == 0){
+			time = Math.floor(duration);
+		}
+
+		var mins = ~~(time / 60);
+		var secs = time % 60;
+
+		// Output like "1:01" or "4:03:59" or "123:03:59"
+		ret = "";
+
+		ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+		ret += "" + secs;
+		return ret;
 	}
 
 	function loadSource(){
