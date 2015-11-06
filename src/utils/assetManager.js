@@ -70,7 +70,7 @@ function disableAsset(cardId){
 }
 
 function autoPlay(cardId, isPlaying){
-	if(assetList[cardId].card === 'video'){
+	if(assetList[cardId].card === 'video' || assetList[cardId].card === 'title'){
 		assetList[cardId].playerComponent.autoPlay(isPlaying);
 	}
 
@@ -79,6 +79,7 @@ function autoPlay(cardId, isPlaying){
 function registerPlaying(player){
 	if(currentlyPlaying != player){
 		if(currentlyPlaying){
+
 			currentlyPlaying.pause();
 		}
 		currentlyPlaying = player;

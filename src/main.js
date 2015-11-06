@@ -232,41 +232,6 @@ function handleMobileCard(div){
     }
 }
 
-function handleDesktopCard(div, wTop, wHeight){
-    
-    //manage the cards on mobile
-    var rect = div.getBoundingClientRect();
-    var midPoint = rect.top + rect.height/2 + wTop;
-    
-    if(div.className.indexOf('slide-title') > -1){
-        if(rect.top < 0){
-            var colors = ["#333","#867F75","#7D7569","#484f53"]
-            var currentChapter = div.getAttribute('data-card-id').split('_')[1];
-            console.log(currentChapter);
-            document.querySelector('body').style.background = colors[currentChapter-1];
-        }
-    }
-
-    if(midPoint > wTop - wHeight * .5 && midPoint < wTop + wHeight * 2 ) {
-        //load if in the viewport
-        var autoPlay = false;
-        if( midPoint > wTop + wHeight * .33 && midPoint < wTop + wHeight * .66){
-           // console.log(rect)
-            //console.log('autoplayin', midPoint, wTop + wHeight * .33, wTop + wHeight * .66)
-
-            autoPlay = true;
-        } else {
-            autoPlay = false;
-        }
-
-        enableCard(div, true, autoPlay);
-        
-
-    } else {
-        enableCard(div, false, false);
-    }
-}
-
 
 function enableCard(div, isEnabled, autoPlay){
 
@@ -310,13 +275,51 @@ function initDesktop(el){
 
 }
 
-function inDesktopView(top,height,rect){
-    if(rect.top <= top + height){
-        return true;
-    } 
-    return false;
+function handleDesktopCard(div, wTop, wHeight){
+    
+    //manage the cards on mobile
+    var rect = div.getBoundingClientRect();
+    var midPoint = rect.top + rect.height/2 + wTop;
+    
+    if(div.className.indexOf('slide-title') > -1){
+        if(rect.top < 0){
+            var colors = ["#333","#867F75","#7D7569","#484f53"]
+            var currentChapter = div.getAttribute('data-card-id').split('_')[1];
+            //console.log(currentChapter);
+            document.querySelector('body').style.background = colors[currentChapter-1];
+        }
+    }
+    var position = getPosition(wTop,wHeight,rect);
+
+    if(position.nearViewport ) {
+        //load if in the viewport
+        var autoPlay = false;
+        
+        if( position.inMiddle ){
+            //console.log(div, rect, midPoint, wTop + wHeight * .33, wTop + wHeight * .66);
+
+            autoPlay = true;
+        } else {
+            autoPlay = false;
+        }
+
+        enableCard(div, true, autoPlay);
+        
+
+    } else {
+        enableCard(div, false, false);
+    }
 }
 
+function getPosition(wTop, wHeight, rect){
+    var midPoint = rect.top + rect.height/2 + wTop;
+
+    return {
+        inViewport: (midPoint > wTop - wHeight && midPoint < wTop + wHeight) ? true : false,
+        nearViewport: ( Math.abs(rect.top) < wHeight * 2.5 ) ? true : false,
+        inMiddle: midPoint > wTop + wHeight * .3 && midPoint < wTop + wHeight * .7
+    }
+}
 
 
 

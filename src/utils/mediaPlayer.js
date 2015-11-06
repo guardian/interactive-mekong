@@ -19,7 +19,10 @@ function mediaPlayer(el, data, isMobile){
 		}
 
 		player.addEventListener("play", function () {
-			assetManager.registerPlaying(player);
+			if(data.card !== 'title'){
+				assetManager.registerPlaying(player);
+			}
+			
 			el.classList.add("playing");
 		}, false);
 		player.addEventListener("pause", function () {
@@ -64,11 +67,11 @@ function mediaPlayer(el, data, isMobile){
 	function autoPlay(isPlaying){
 
 		if(isAutoPlaying != isPlaying){
-			//console.log(isPlaying)
+			console.log(isPlaying)
 			if(isPlaying){
 				//turn autplaying on
 				isAutoPlaying = true;
-				player.currentTime = 0;
+				
 				player.muted = true;
 				player.play();
 
