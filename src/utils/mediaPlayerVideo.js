@@ -2,8 +2,7 @@ function mediaDisplay(el,player,data, isMobile){
 
 	var utils = require('./detect');
 	var assetManager = require('./assetManager');
-	// var videoBitRate = assetManager.videoBitRate;
-	var videoBitRate = '4M'; //debugging
+	var videoBitRate;
 
 
 	var	sourceLoaded = false;
@@ -19,7 +18,6 @@ function mediaDisplay(el,player,data, isMobile){
 		player.addEventListener("play", function () {
 			
 			if(data.card === 'video'){
-				console.log('hey')
 				el.getElementsByClassName('card-video')[0].classList.add('video-playing');
 			}
 		}, false);
@@ -43,8 +41,9 @@ function mediaDisplay(el,player,data, isMobile){
 
 	function loadSource(){
 		if(!sourceLoaded){
+			
 			sourceLoaded = true;
-			var videoURLs
+			videoBitRate = assetManager.getBitRate();
 			if(data.card === "title"){
 				videoURLs = getVideoURLS(data.desktop_video_url)
 			}else{
