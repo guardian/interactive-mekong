@@ -3,11 +3,8 @@ function mediaDisplay(el,player,data, isMobile){
 	var utils = require('./detect');
 	var assetManager = require('./assetManager');
 	var videoBitRate;
-	var	sourceLoaded = false;
 
 	function init(){
-		player = el.getElementsByTagName('video')[0];
-		console.log('loading new player');
 		var width = player.getBoundingClientRect().width;
         var height = (width * 0.5625) + 'px';
         player.setAttribute('height', height);
@@ -64,9 +61,8 @@ function mediaDisplay(el,player,data, isMobile){
 		return ret;
 	}
 
-	function loadSource(){
+	function loadSource(sourceLoaded){
 		if(!sourceLoaded){
-			
 			sourceLoaded = true;
 			videoBitRate = assetManager.getBitRate();
 			if(data.card === "title"){

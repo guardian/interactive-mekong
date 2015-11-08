@@ -102,6 +102,7 @@ function mediaPlayer(el, data, isMobile){
 	function isReady(active){
 		if(active){
 			if(!sourceLoaded){
+				console.log('laod source')
 				sourceLoaded = true;
 				playerComponent.loadSource();
 			}

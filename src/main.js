@@ -254,14 +254,14 @@ function scanCards(el){
 function handleMobileCard(div){
     //manage the cards on mobile
     if( div.classList.contains('swiper-slide-active') || div.classList.contains('swiper-slide-prev') || div.classList.contains('swiper-slide-next')){
-        enableCard(div, true);
-
+        enableCard(div, true, false);
+        
         if(div.classList.contains('swiper-slide-active') && !div.classList.contains('slide-position-0')){
             tracker.track(div.getAttribute('data-card-id'));
         }
 
     } else {
-        enableCard(div, false);
+        enableCard(div, false, false);
     }
 }
 
@@ -347,7 +347,7 @@ function handleDesktopCard(div, wTop, wHeight){
         } else {
             autoPlay = false;
         }
-
+ 
         enableCard(div, true, autoPlay);
         
 
