@@ -1,6 +1,7 @@
 
 //video requirements
 var MediaPlayer = require('./mediaPlayer');
+var imageLoader = require('./imageLoader');
 var bandwidth = require('./bandwidth');
 var videoBitRate;
 
@@ -51,9 +52,16 @@ function initAsset(cardId, el){
 			assetList[cardId] = {
 				loaded : true,
 				card: cardData['card'],
-				data: cardData,
-				playerComponent: (cardData.card === 'video' || cardData.card === 'audio' || cardData.card === 'title') ? new MediaPlayer(el, cardData, isMobile) : ''
+				data: cardData
 			}
+
+			//initialize media element
+			if(cardData.card === 'video' || cardData.card === 'audio' || cardData.card === 'title'){
+				assetList[cardId].playerComponent = new MediaPlayer(el, cardData, isMobile);
+			} else if(cardData.card === 'photo'){
+				imageLoader.loadImage(el, cardData, isMobile);
+			}
+
 		}
 	}
 
@@ -61,6 +69,7 @@ function initAsset(cardId, el){
 	if( assetList[cardId].card === 'audio' || assetList[cardId].card === 'video' || assetList[cardId].card === 'title'){
 		assetList[cardId].playerComponent.isReady(true);
 	}
+
 	
 }
 
