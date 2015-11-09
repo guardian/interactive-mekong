@@ -3,7 +3,7 @@ function loadImage(el, cardData, isMobile){
 
 	if(isMobile){
 		//load image for mobile
-		el.querySelector('.photo-bg-container').style.backgroundImage = 'url(' + cardData.photo_url + ')';
+		el.querySelector('.photo-bg-container').style.backgroundImage = 'url(' + cardData.mobile_url + ')';
 	} else {
 		//load image for desktop
 		var url = cardData.photo_url;
