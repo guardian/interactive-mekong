@@ -77,7 +77,7 @@ function mediaPlayer(el, data, isMobile){
 		isMuted = assetManager.getMuteStatus();
 
 		if(isAutoPlaying != isPlaying){
-			console.log(isPlaying)
+
 			if(isPlaying){
 				//turn autplaying on
 				isAutoPlaying = true;
@@ -102,7 +102,6 @@ function mediaPlayer(el, data, isMobile){
 	function isReady(active){
 		if(active){
 			if(!sourceLoaded){
-				console.log('laod source')
 				sourceLoaded = true;
 				playerComponent.loadSource();
 			}
