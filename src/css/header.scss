@@ -1,33 +1,31 @@
 @media(min-width: breakpoints(tablet)){
     #header-wrapper{
-        background-color:#867F74;
+        background:#665C50;
         width:auto;
         margin:0 -20px;
-        padding-top:1px;
         min-height:740px;
         position: relative;
-        overflow: hidden;
 
         .header-image-container{
-        	background: #333333;
+        	background: #FDEEE1;
         	line-height: 0;
-        	position: absolute;
-        	overflow: hidden;
-        	border: 1px solid #867F75;
+        	position: relative;
         	z-index: 1;
-        	top:-2px;
-        	left:-2px;
-        	height:513px;
+            margin-left:80px;
         	img{
-        		width:101%;
+        		width:115%;
+                margin-left:0;
         	}
         }
         .header-inner{
-        	position: relative;
+        	position: absolute;
+            top:0;
+            left:0;
+            right:0;
         	z-index:2;
         	font-family: $f-serif-headline;
-        	color:#FFBB24;
-        	padding:320px 20px 0 20px;
+        	color:#FDEEE1;
+        	padding:280px 20px 0 20px;
         	overflow:hidden;
         	h1{
         		font-size:90px;
@@ -40,7 +38,7 @@
         			display:block;
         		}
         		#title-break-1{
-        			margin-left:60px;
+        			margin-left:67px;
         		}
         		#title-break-2{
         			margin-left:96px;

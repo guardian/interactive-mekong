@@ -1,5 +1,5 @@
 .card.card-paragraph{
-	background:#F8CE4B;
+	// background:#F8CE4B;
 
 	.paragraph-container{
 		position: absolute;
@@ -10,7 +10,6 @@
 	}
 	h3{
 		font-family: $f-serif-headline;
-		color:#5A5238;
 		font-size:30px;
 		line-height:30px;
 		margin-bottom:48px;
@@ -18,7 +17,6 @@
 	p{
 		font-size:16px;
 		line-height:24px;
-		color:#5A5238;
 		&:before{
 			width:70px;
 			border-top:1px solid;
@@ -140,5 +138,8 @@
 				}
 			}
 		}
+	}
+	.slide-video.playing + .slide-text{
+		.card{margin-top: 0};
 	}
 }

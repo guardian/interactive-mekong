@@ -1,8 +1,5 @@
 .card.card-video {
 	overflow: hidden;
-	&.video-playing{
-		z-index:10;
-	}
 
 	video {
 		width: 100%;
