@@ -51,8 +51,10 @@
 	
 	@media(min-width: breakpoints(tablet)){
 		height:auto;
-		padding:1px 20px;
+		padding:0;
 		position: relative;
+		box-shadow:none;
+		margin-top:0;
 
 		.paragraph-container{
 			position: relative;
@@ -68,7 +70,11 @@
 			margin-bottom:46px;
 		}
 		p{
-			font-size:16px;
+			font-size:18px;
+			line-height:27px;
+			&:before{
+				display:none;
+			}
 		}
 	}
 
@@ -136,6 +142,13 @@
 						display:none;
 					}
 				}
+			}
+		}
+	}
+	.slide-title+.slide-text{
+		.card.card-paragraph{
+			p:before{
+				display:block;
 			}
 		}
 	}
