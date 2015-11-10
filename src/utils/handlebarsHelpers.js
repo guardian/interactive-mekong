@@ -4,19 +4,27 @@ function init(Handlebars){
     Handlebars.registerPartial({
         'layoutMobile': require('./../html/layout-mobile.html'),
         'layoutDesktop': require('./../html/layout-desktop.html'),
-        'card': require('./../html/cards/card-base.html'),
+        'cardMobile': require('./../html/cards/card-base-mobile.html'),
+        'cardDesktop': require('./../html/cards/card-base-desktop.html'),
         'photoCard': require('./../html/cards/card-photo.html'),
         'quoteCard': require('./../html/cards/card-quote.html'),
         'audioCard': require('./../html/cards/card-audio.html'),
         'paragraphCard': require('./../html/cards/card-paragraph.html'),
         'videoCard': require('./../html/cards/card-video.html'),
-        'titleCard': require('./../html/cards/card-title.html')
+        'titleCard': require('./../html/cards/card-title.html'),
+        'transitionCard': require('./../html/cards/card-transition.html')
     });
 
 
     Handlebars.registerHelper({
         'if_eq': function(a, b, opts) {
             if(a === b){
+                return opts.fn(this);
+            }
+            return opts.inverse(this);
+        },
+        'if_true': function(a, opts) {
+            if(a === true){
                 return opts.fn(this);
             }
             return opts.inverse(this);

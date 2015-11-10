@@ -1,0 +1,20 @@
+ <div class="gv-slide swiper-slide slide-position-{{@index}} slide-{{card}}" data-card-id="{{card}}_{{id}}">
+
+ 	{{#if_eq card "photo"}}
+		{{> photoCard }}
+	{{else if_eq card "quote"}}
+		{{> quoteCard }}
+	{{else if_eq card "video"}}
+		{{> videoCard }}
+	{{else if_eq card "text"}}
+		{{> paragraphCard }}
+	{{else if_eq card "audio"}}
+		{{> audioCard }}
+	{{else if_eq card "title"}}
+		{{> titleCard }}
+	{{else if_eq card "mobile"}}
+		{{> transitionCard }}
+	{{/if_eq}}
+</div>
+
+

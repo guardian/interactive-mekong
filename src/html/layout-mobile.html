@@ -18,14 +18,31 @@
     <div class="swiper-container swiper-container-v">
             <div class="swiper-wrapper">
 
+
+
                 {{#stories}}
+                    <div class="swiper-slide">
+                        {{#cards}}
+
+                            {{#if @first}}
+                                {{>cardMobile}}
+                            {{/if}}   
+
+                        {{/cards}}
+
+                    </div>
+
                     <div class="swiper-slide">
                         <div class="swiper-container swiper-container-h">
                             <div class="swiper-wrapper">
                                 {{#cards}}
 
-                                    {{>card}}
-                                
+                                    {{#if @first}}
+
+                                    {{else}}
+                                        {{>cardMobile}}
+
+                                    {{/if}}                                
                                 {{/cards}}
                             </div>
                             <!-- Add Pagination -->

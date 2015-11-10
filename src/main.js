@@ -16,13 +16,6 @@ var isMobile = true;
 var isMobileFullScreen = false;
 var cardData;
 var newChapter;
-var cardContent = Handlebars.compile( 
-            require('./html/cards/card-base.html'), 
-            { 
-                compat: true
-            }
-        );
-
 
 
 
