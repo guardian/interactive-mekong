@@ -1,34 +1,19 @@
-require('./utils/polyfills.js');
+require( './utils/polyfills.js');
+
 var Swiper = require('swiper');
-var detect = require('./utils/detect');
 var Handlebars = require('handlebars/dist/cjs/handlebars');
+var detect = require('./utils/detect');
 var getJSON = require('./utils/getjson');
-var template = require('./html/base.html');
 var assetManager = require('./utils/assetManager');
-var tracker = require('./utils/tracker')
+var tracker = require('./utils/tracker');
+var scroll = require('./utils/scroll-to');
+var templates = require('./utils/handlebarsHelpers.js');
 
-// var cardTemplate = require('./html/card-base.html');
-/**
- * Guardian visuals interactive project
- *
- * ./utils/analytics.js - Add Google analytics
- * ./utils/detect.js	- Device and env detection
- */
 
- Handlebars.registerPartial({
-    'layoutMobile': require('./html/layout-mobile.html'),
-    'layoutDesktop': require('./html/layout-desktop.html'),
-    'card': require('./html/cards/card-base.html'),
-    'photoCard': require('./html/cards/card-photo.html'),
-    'quoteCard': require('./html/cards/card-quote.html'),
-    'audioCard': require('./html/cards/card-audio.html'),
-    'paragraphCard': require('./html/cards/card-paragraph.html'),
-    'videoCard': require('./html/cards/card-video.html'),
-    'titleCard': require('./html/cards/card-title.html')
-});
-
+var windowHeight;
 var isAlt = false;
 var isMobile = true;
+var isMobileFullScreen = false;
 var cardData;
 var newChapter;
 var cardContent = Handlebars.compile( 
@@ -39,34 +24,7 @@ var cardContent = Handlebars.compile(
         );
 
 
-Handlebars.registerHelper({
-    'if_eq': function(a, b, opts) {
-        if(a === b){
-            return opts.fn(this);
-        }
-        return opts.inverse(this);
-    },
-    'if_not_eq': function(a, b, opts) {
-        if(a === b){
-            return opts.inverse(this);
-        }
-        return opts.fn(this);
-            
-    },
-    'if_contains': function(a, b, opts){
-        if(a.search(b) == -1 ){
-            return opts.inverse(this);
-        }
-        return opts.fn(this);
-    },
-    'get_pending_status': function(cardType, isMobile){
 
-        if( !isMobile ){ 
-           return (cardType === 'audio' || cardType ==='video') ? 'swiper-slide-pending' : false;
-        } 
-        return false;
-    }
-});
 
 
 function boot(el) {
@@ -75,11 +33,14 @@ function boot(el) {
         isMobile = false;
     }
 
-	// var key = '15ZNdHsQdrCuraPJNVkGfAKcpGhdmqgKngDQXcWak0eU';
+    //setup the handlebars templates
+    templates.init(Handlebars);
+
+    //decide where to load the data from
     var key = '1vqPIwCHblYbrRHrvH_xMaQMx_TkEODbW6p6iqFmiNus'; //spreadsheet data
-	var isLive = ( window.location.origin.search('localhost') > -1 || window.location.origin.search('gutools.co.uk') > -1) ? false : true;
-    // var folder = (!isLive)? 'docsdata-test' : 'docsdata';
-    var folder = 'docsdata-test';
+	var isLive = ( window.location.origin.search('localhost') > -1 || window.location.origin.search('gutools.co.uk') > -1 || window.location.origin.search('interactive.guim.co.uk') > -1) ? false : true;
+    var folder = (!isLive)? 'docsdata-test' : 'docsdata';
+
 
     getJSON('https://interactive.guim.co.uk/' + folder + '/' + key + '.json', 
         function(json){
@@ -118,12 +79,7 @@ function boot(el) {
             if(document.location.search.indexOf('preview')>-1){
                 //render alt cards
                 var value = document.location.search.split('=')[1]  ;  
-                // json.stories = [];
-                // value.forEach(function(i){
-                //     json.stories.push({
-                //         cards: [ {card: i} ]
-                //     })
-                // })
+
                 for(sheet in json.sheets){
                     if(sheet !== "overview"){
                         json.sheets[sheet].forEach(function(e){
@@ -139,7 +95,6 @@ function boot(el) {
                 console.log(json);
                 render(json,el);
             }else{
-
                 render(json, el);
             }
             
@@ -153,32 +108,67 @@ function getCardData(cardData){
 
 function render(json, el){
     cardData = json;
+
+    //render the template
 	var content = Handlebars.compile( 
-        template, 
-        { 
-            compat: true
-        }
+        require('./html/base.html'), 
+        { compat: true }
     );
 	el.innerHTML = content(json);
 
     if(isMobile){
         //init the swiper UX for mobile
-        var hSwipers = el.getElementsByClassName('swiper-container-h')
-        initMobile(hSwipers);
+        initMobile(el);
     } else {
         //init the loader / display for desktop
         initDesktop(el);
     }
 }
 
-function initMobile(elems){
-    for(var i = 0; i < elems.length; i++) {
-        var el = elems[i];
-        var gallery = new Swiper(el, {
+/******************************/
+//
+//START OF MOBILE FUNCTIONALITY
+//
+/******************************/
+
+function initMobile(el){
+
+    windowHeight = window.innerHeight;
+    document.querySelector('.mobile-cards').style.height = windowHeight + 'px';
+
+    var hSwipers = el.querySelectorAll('.swiper-container-h');
+    var vSwiper = el.querySelector('.swiper-container-v');
+
+
+    //load the container swiper
+    new Swiper(vSwiper, {
+        paginationClickable: true,
+        spaceBetween: 1,
+        direction: 'vertical',
+        //nextButton: el.getElementsByClassName('swiper-button-next')[0],
+        //prevButton: el.getElementsByClassName('swiper-button-prev')[0],
+        keyboardControl: true,
+        mousewheelControl: true,
+        mousewheelReleaseOnEdges: true,
+        freeModeMomentumBounce: false,
+    })
+    .on('onSlideChangeStart', function (e) {
+        assetManager.stopPlaying();
+    })
+    .on('onSlideChangeEnd', function (e) {
+        scanCardsMobile('chapters', e.container[0]);
+    });
+
+
+
+    for(var i = 0; i < hSwipers.length; i++) {
+        var el = hSwipers[i];
+
+        //initialize swiper
+        new Swiper(el, {
             pagination: el.getElementsByClassName('swiper-pagination')[0],
             paginationClickable: true,
             spaceBetween: 0,
-
             nextButton: el.getElementsByClassName('swiper-button-next')[0],
             prevButton: el.getElementsByClassName('swiper-button-prev')[0],
             keyboardControl: true,
@@ -190,75 +180,46 @@ function initMobile(elems){
             assetManager.stopPlaying();
         })
         .on('onSlideChangeEnd', function (e) {
-            scanCards(e.container[0]);
+            scanCardsMobile('section', e.container[0]);
         });
-
-        scanCards(el);
-
     }
 
+    scanCardsMobile('chapters', vSwiper);
 
-    window.addEventListener(
-        'scroll', 
-        detect.debounce(function(){
-            scanChapters(elems);
-        }, 250)
-    );
+    //initialize the scroll to button on mobile
+    document.querySelector('.gv-start-button').addEventListener('click', function(e){
+       document.querySelector('.mobile-cards-overlay').classList.add('mobile-cards-active');
+       scroll.scrollTo( document.querySelector('.mobile-cards') );
+       isMobileFullScreen = true;
+    })
+
+    window.addEventListener( 'resize', detect.debounce(resizeMobile, 250) );
 
 }
 
-function scanChapters(chapters){
-
-    var wTop = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
-    var wHeight = window.innerHeight;
-
-
-    for(var c = 0; c < chapters.length; c++){
-        var rect = chapters[c].getBoundingClientRect();
-        var position = getPosition(wTop,wHeight,rect);
-        if(position.inViewport){
-            tracker.track(chapters[c].querySelector('.swiper-slide').getAttribute('data-card-id'));
-            break;
-        }
+function scanCardsMobile(type, el){
+    var cards;
+    if(type === 'chapters'){
+        cards = el.querySelectorAll('.swiper-slide-active .swiper-slide-active, .swiper-slide-active .swiper-slide-prev, .swiper-slide-active .swiper-slide-next, .swiper-slide-next .swiper-slide-active, .swiper-slide-next .swiper-slide-prev, .swiper-slide-next .swiper-slide-next, .swiper-slide-prev .swiper-slide-active, .swiper-slide-prev .swiper-slide-prev, .swiper-slide-prev .swiper-slide-next')
+    } else if( type === 'section'){
+        cards = el.querySelectorAll('.swiper-slide-active, .swiper-slide-next, .swiper-slide-prev'); 
     }
+
+    for(var c = 0; c < cards.length; c ++){
+        handleMobileCard(cards[c]);
+    }   
+
+
 }
 
-
-
-function scanCards(el){
-    
-    var slides = el.querySelectorAll('.gv-slide'),
-        wtop,
-        wheight;
-
-    //measure if on desktop to know what to load
-    if(!isMobile){
-        wTop = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
-        wHeight = window.innerHeight;
-    }
-
-    
-
-    for(var s = 0; s < slides.length; s ++){
-
-        var slide = slides[s];
-        
-        if(isMobile){
-            handleMobileCard(slide);
-        } else {
-            handleDesktopCard(slide, wTop, wHeight);
-        }
-    }
-}
 
 function handleMobileCard(div){
     //manage the cards on mobile
     if( div.classList.contains('swiper-slide-active') || div.classList.contains('swiper-slide-prev') || div.classList.contains('swiper-slide-next')){
         enableCard(div, true, false);
+
+        tracker.track(div.getAttribute('data-card-id'));
         
-        if(div.classList.contains('swiper-slide-active') && !div.classList.contains('slide-position-0')){
-            tracker.track(div.getAttribute('data-card-id'));
-        }
 
     } else {
         enableCard(div, false, false);
@@ -269,9 +230,7 @@ function handleMobileCard(div){
 function enableCard(div, isEnabled, autoPlay){
 
     //lookup card id
-    var cardId = div.getAttribute('data-card-id');
-
-   
+    var cardId = div.getAttribute('data-card-id');  
    
     //load/activate the card media
     if(isEnabled){
@@ -291,23 +250,56 @@ function enableCard(div, isEnabled, autoPlay){
     
 }
 
+function resizeMobile(){
+
+    //deals with weird ios behavior when browser nav + share bar hide and reveal
+    if(!isMobileFullScreen){
+        var currentHeight = window.innerHeight;
+        
+        if(windowHeight < currentHeight){
+            document.querySelector('.mobile-cards').style.height = currentHeight + 'px';
+            var slides = document.querySelectorAll('.swiper-slide');
+            for(var s = 0; s< slides.length; s++){
+                slides[s].style.height = currentHeight + 'px';
+            }
+        }
+    }
+}
+
+/******************************/
+//
+//START OF DESKTOP FUNCTIONALITY
+//
+/******************************/
+
 function initDesktop(el){
-    scanCards(el);
+    scanCardsDesktop(el);
 
     window.addEventListener(
         'scroll', 
         detect.debounce(function(){
-            scanCards(el);
+            scanCardsDesktop(el);
         }, 250)
     );
 
     window.addEventListener(
         'resize', 
         detect.debounce(function(){
-            scanCards(el);
+            scanCardsDesktop(el);
         }, 250)
     );
 
+}
+
+function scanCardsDesktop(el){
+    
+    var slides = el.querySelectorAll('.gv-slide'),
+        wTop = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0),
+        wHeight = window.innerHeight;
+
+    for(var s = 0; s < slides.length; s ++){
+        handleDesktopCard(slides[s], wTop, wHeight);
+    }
 }
 
 function handleDesktopCard(div, wTop, wHeight){
@@ -341,8 +333,6 @@ function handleDesktopCard(div, wTop, wHeight){
         
         
         if( position.inMiddle ){
-            //console.log(div, rect, midPoint, wTop + wHeight * .33, wTop + wHeight * .66);
-
             autoPlay = true;
         } else {
             autoPlay = false;
@@ -356,6 +346,7 @@ function handleDesktopCard(div, wTop, wHeight){
     }
 }
 
+//helper functions
 function getPosition(wTop, wHeight, rect){
     var midPoint = rect.top + rect.height/2 + wTop;
 

@@ -93,3 +93,35 @@
 }
 
 
+//mobile hack
+.gv-start-button {
+	background: #005689;
+	padding: 5px 10px;
+	border-radius: 20px;
+	display: inline-block;
+	color: #fff;
+	
+}
+
+.mobile-opener {
+	padding: 10px;
+}
+
+.mobile-cards {
+	position: relative;
+}
+
+.mobile-cards-overlay {
+	position: absolute;
+	background: #000;
+	opacity: .75;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.mobile-cards-active {
+	display: none;
+}

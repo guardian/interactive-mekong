@@ -1,24 +1,50 @@
-{{#stories}}
+<div class='mobile-opener'>
 
-    <div class="swiper-container swiper-container-h">
-        <div class="swiper-wrapper">
-            {{#cards}}
 
-                {{>card}}
-            
-            {{/cards}}
+    <div id="header-wrapper">
+
+        <div class="header-inner">
+            <h1>Tales <span id="title-break-1">of the</span> <span id="title-break-2">river bank</span></h1>
+            <p>The fate of 70m people rests on what happens to the Mekong river. Ahead of the Paris climate change summit, John Vidal finds countries calling for clean energy but creating ecological and human havoc with giant dams, deforestation and fast-growing cities</p>
         </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination-container">
-            <div class="swiper-pagination-controls">
-                <p>Chapter 1: Dams</p>
-                <button class="swiper-button-next"></button>
-            </div>
-            <div class="swiper-pagination"> </div>
-        </div>
-        <!-- Add Arrows -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+
+        <div class='gv-start-button'>Begin your journey</div>
     </div>
 
-{{/stories}}
+</div>
+
+<div class='mobile-cards'>
+
+    <div class="swiper-container swiper-container-v">
+            <div class="swiper-wrapper">
+
+                {{#stories}}
+                    <div class="swiper-slide">
+                        <div class="swiper-container swiper-container-h">
+                            <div class="swiper-wrapper">
+                                {{#cards}}
+
+                                    {{>card}}
+                                
+                                {{/cards}}
+                            </div>
+                            <!-- Add Pagination -->
+                            <div class="swiper-pagination-container">
+                                <div class="swiper-pagination-controls">
+                                    <p>Chapter 1: Dams</p>
+                                    <button class="swiper-button-next"></button>
+                                </div>
+                                <div class="swiper-pagination"> </div>
+                            </div>
+                            <!-- Add Arrows -->
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </div>
+                {{/stories}}
+
+            </div>
+        </div>
+
+    <div class='mobile-cards-overlay'></div>
+</div>
