@@ -11,7 +11,7 @@
 body {
     margin: 0;
     padding: 0;
-    background:#867f74;
+    background:#665E51;
     transition:background 1s;
 }
 
@@ -130,9 +130,11 @@ body {
         }
         .swiper-slide-pending{
             .card{
-                margin-top:0;
-                
+                margin-top:0;  
             }
+        }
+        .swiper-slide{
+            background:transparent;
         }
         .slides-chapter{
             margin-bottom:180px;
@@ -147,20 +149,22 @@ body {
                 content: '';
                 position: absolute;
                 height:100%;
-                background:rgba(0,0,0,0.05);
+                background:rgba(0,0,0,0.1);
                 width:2000px;
                 right:100%;
                 top:0;
+                z-index:100;
             }
             &:after{
                 display:block;
                 content: '';
                 position: absolute;
                 height:100%;
-                background:rgba(0,0,0,0.05);
+                background:rgba(0,0,0,0.1);
                 width:2000px;
                 left:100%;
-                top:0
+                top:0;
+                z-index:100;
             }
         }
     }

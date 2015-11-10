@@ -103,7 +103,8 @@ function boot(el) {
                 if(e.chapter){
                     json.stories.push({
                         chapter: e.chapter,
-                        cards: []
+                        cards: [],
+                        background: e.background
                     })
                 }
        
@@ -319,10 +320,10 @@ function handleDesktopCard(div, wTop, wHeight){
 
     if(div.classList.contains('slide-title')){
         if(rect.top < 0){
-            var colors = ["#333","#867F75","#7D7569","#484f53"]
-            var currentChapter = div.getAttribute('data-card-id').split('_')[1];
+            var chapterColor = div.parentElement.getAttribute('data-chapter-color');
+            console.log(chapterColor)
             //console.log(currentChapter);
-            document.querySelector('body').style.background = colors[currentChapter-1];
+            document.querySelector('body').style.background = chapterColor;
         }
     }    
 

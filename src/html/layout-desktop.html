@@ -6,13 +6,13 @@
 			<img src="/imgs/river-mask.png" />
 		</div>
 		<div class="header-inner">
-			<h1>Tales <span id="title-break-1">of the</span> <span id="title-break-2">river bank</span></h1>
+			<h1>Tales <span id="title-break-1">of the</span> river <span id="title-break-2">bank</span></h1>
 			<h2>The fate of 70m people rests on what happens to the Mekong river. Ahead of the Paris climate change summit, John Vidal finds countries calling for clean energy but creating ecological and human havoc with giant dams, deforestation and fast-growing cities</h2>
 		</div>
 	</div>
 
 	{{#stories}}
-		<div class="slides-chapter">
+		<div class="slides-chapter slides-chapter-{{@index}}" data-chapter-color="{{background}}">
 			{{#each cards}}
 				{{>card}}
 		    {{/each}}

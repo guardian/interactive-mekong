@@ -1,11 +1,11 @@
 #blocks-wrapper{
     @media(min-width: breakpoints(tablet)){
         #inner-wrapper{
-            background:rgba(255,255,255,0.1);
+            // background:rgba(255,255,255,0.1);
             padding-top:1px;
             padding-right:20px;
             padding-bottom:40px;
-            padding-left:100px;
+            padding-left:20px;
             margin:-1px auto 0;
             max-width:740px;
         }
@@ -14,7 +14,7 @@
         .size-s     {width:300px;}
         .size-m     {width:460px;}
         .size-l     {width:620px;}
-        .size-xl    {width:700px; margin-left:-80px;}
+        .size-xl    {width:700px; }
 
         .margin-1-col    {margin-left:160px;}
         .margin-2-col    {margin-left:160px;}
@@ -70,6 +70,6 @@
             max-width:1300px;
             padding-left:180px;
         }
-        .size-xl    {width:1260px; margin-left:-160px;}
+        // .size-xl    {width:1260px; margin-left:-160px;}
     }  
 }
