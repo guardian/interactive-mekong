@@ -1,3 +1,80 @@
+#header-wrapper{
+    .header-inner{
+        font-family: $f-serif-headline;
+        color:#FDEEE1;
+        h1{
+            font-size:42px;
+            line-height:42px;
+            font-weight:bold;
+            margin-bottom:0;
+            span{
+                display:inline;
+            }
+            
+        }
+        p{
+            font-weight:100;
+            font-size:16px;
+            line-height:24px;
+            margin:12px 0;
+        }
+    }
+    &:after{
+        clear:both;
+        display:block;
+        content:'';
+    }
+}
+
+.gv-start-button {
+    color: #fff;
+    float:right;
+    font-family:$f-sans-serif-text;
+    margin-top:20px;
+
+    span{
+        width: 34px;
+        height: 34px;
+        background: #fff;
+        border: none;
+        border-radius: 80px;
+        outline: none;
+        display:inline-block;
+        margin-top:-6px;
+        vertical-align: top;
+        background-image: url(/imgs/arrow-icon.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        transform:rotate(90deg);
+    }
+}
+
+.mobile-opener {
+    padding: 20px;
+    background-image:url(/imgs/mekong_mobile.jpg);
+    background-size:cover;
+}
+
+.mobile-cards {
+    position: relative;
+}
+
+.mobile-cards-overlay {
+    position: absolute;
+    background: #000;
+    opacity: .75;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.mobile-cards-active {
+    display: none;
+}
+
+
 @media(min-width: breakpoints(tablet)){
     #header-wrapper{
         background:#665C50;
@@ -23,15 +100,12 @@
             left:0;
             right:0;
         	z-index:2;
-        	font-family: $f-serif-headline;
-        	color:#FDEEE1;
         	padding:280px 20px 0 20px;
         	overflow:hidden;
         	h1{
         		font-size:90px;
         		max-width:480px;
         		line-height:90px;
-        		font-weight:bold;
         		float:left;
         		margin-bottom:0;
         		span{
@@ -45,7 +119,6 @@
         		}
         	}
         	h2{
-        		font-weight:100;
         		font-size:22px;
         		line-height:30px;
         		max-width:540px;
