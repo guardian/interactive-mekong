@@ -57,6 +57,7 @@ function boot(el) {
                 if(e.chapter){
                     json.stories.push({
                         chapter: e.chapter,
+                        nav_title: e.nav_title,
                         cards: [],
                         background: e.background
                     })
