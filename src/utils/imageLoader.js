@@ -10,7 +10,7 @@ function init(){
 			imageSize = imageSizes[s];
 			break;
 		} else if( s == imageSizes.length - 1){
-			imageSize = imageSize[s];
+			imageSize = imageSizes[s];
 		}
 	}
 
@@ -18,11 +18,13 @@ function init(){
 
 function loadImage(el, cardData, isMobile){
 
-	if(!imageSize){
-		init();
-	}
+	
 
 	if(isMobile){
+
+		if(!imageSize){
+			init();
+		}
 		//load image for mobile
 		var url = cardData.mobile_url;
 		url = url.slice( 0, url.lastIndexOf(".")) + '_' + imageSize + url.slice( url.lastIndexOf(".") , url.length);
