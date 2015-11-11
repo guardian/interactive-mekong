@@ -1,0 +1,23 @@
+.card.card-transition{
+	// background:#F8CE4B;
+
+	.paragraph-container{
+		position: absolute;
+		left:20px;
+		top:45%;
+		right:20px;
+		transform:translateY(-50%);
+	}
+
+	p{
+		font-size:28px;
+		line-height:32px;
+
+		b {
+		    font-weight: 900;
+		    font-family: Guardian Egyptian Web,Georgia,serif;
+		}
+		
+	}
+
+}
