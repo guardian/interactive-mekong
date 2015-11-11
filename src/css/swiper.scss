@@ -99,7 +99,8 @@
 }
 /* Arrows */
 .swiper-button-prev,
-.swiper-button-next {
+.swiper-button-next,
+.swiper-button-down {
   position: absolute;
   top: 50%;
   width: 27px;
@@ -115,7 +116,7 @@
 }
 .swiper-button-prev.swiper-button-disabled,
 .swiper-button-next.swiper-button-disabled {
-  opacity: 0.35;
+  opacity: 0;
   cursor: auto;
   pointer-events: none;
 }

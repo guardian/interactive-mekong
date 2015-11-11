@@ -139,7 +139,7 @@ function initMobile(el){
         paginationClickable: true,
         spaceBetween: 1,
         direction: 'vertical',
-        //nextButton: el.getElementsByClassName('swiper-button-next')[0],
+        nextButton: el.querySelectorAll('.swiper-pagination-controls .swiper-button-down'),
         //prevButton: el.getElementsByClassName('swiper-button-prev')[0],
         keyboardControl: true,
         mousewheelControl: true,
@@ -175,6 +175,12 @@ function initMobile(el){
         })
         .on('onSlideChangeEnd', function (e) {
             scanCardsMobile('section', e.container[0]);
+        }).on('onProgress', function (e, prog) {
+            if(prog === 1){
+                e.container[0].querySelector('.swiper-button-down').classList.remove('swiper-down-disabled');
+            } else {
+                e.container[0].querySelector('.swiper-button-down').classList.add('swiper-down-disabled');
+            }
         });
     }
 

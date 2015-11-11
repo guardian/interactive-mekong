@@ -94,7 +94,22 @@ body {
                 background-position: center;
                 background-repeat:no-repeat;
             }
+            &.swiper-button-down{
+                display:block;
+                background-image: url(/imgs/arrow-icon.svg);
+                background-position: center;
+                background-repeat:no-repeat;
+                right: 10px;
+                left: auto;
+                transform: rotate(90deg);
+                &.swiper-down-disabled {
+                    display: none;
+                }
+            }
+            
         }
+
+        
     }
     .swiper-container[data-card-category="video"],.swiper-container[data-card-category="photo"],.swiper-container[data-card-category="audio"]{
         .swiper-pagination-container{
