@@ -12,7 +12,8 @@ function init(Handlebars){
         'paragraphCard': require('./../html/cards/card-paragraph.html'),
         'videoCard': require('./../html/cards/card-video.html'),
         'titleCard': require('./../html/cards/card-title.html'),
-        'transitionCard': require('./../html/cards/card-transition.html')
+        'transitionCard': require('./../html/cards/card-transition.html'),
+        'iframeCard': require('./../html/cards/card-iframe.html')
     });
 
 
