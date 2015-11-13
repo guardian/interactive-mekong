@@ -174,7 +174,7 @@ function initMobile(el){
         paginationClickable: true,
         spaceBetween: 1,
         direction: 'vertical',
-        nextButton: el.querySelectorAll('.swiper-pagination-controls .swiper-button-down'),
+        nextButton: el.querySelectorAll('.swiper-button-down'),
         //prevButton: el.getElementsByClassName('swiper-button-prev')[0],
         keyboardControl: true,
         mousewheelControl: true,
@@ -210,7 +210,9 @@ function initMobile(el){
         })
         .on('onSlideChangeEnd', function (e) {
             scanCardsMobile('section', e.container[0]);
-        }).on('onProgress', function (e, prog) {
+        })
+        .on('onProgress', function (e, prog) {
+   
             if(prog === 1){
                 e.container[0].querySelector('.swiper-button-down').classList.remove('swiper-down-disabled');
             } else {
