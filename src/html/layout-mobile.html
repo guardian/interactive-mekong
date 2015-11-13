@@ -18,45 +18,38 @@
     <div class="swiper-container swiper-container-v">
             <div class="swiper-wrapper">
 
+                {{#stacks}}
+
+                                                  
+
+                                    <div class="swiper-slide">
+                                        <div class="swiper-container swiper-container-h">
+                                            <div class="swiper-wrapper">
+
+                                                {{#cards}}
+
+                                                    {{>cardMobile}}
+
+                                                {{/cards}}
+
+                                            </div>
+
+                                            <!-- Add Pagination -->
+                                            <div class="swiper-pagination-container">
+                                                <div class="swiper-pagination-controls">
+                                                    <p>Chapter {{chapterData.chapter}}: {{chapterData.nav_title}}</p>
+                                                    <button class="swiper-button-next"></button>
+                                                    <button class="swiper-button-down swiper-down-disabled"></button>
+                                                </div>
+                                                <div class="swiper-pagination"></div>
+                                            </div>
 
 
-                {{#stories}}
-                    <div class="swiper-slide">
-                        {{#cards}}
+                                        </div>
+                                    </div>
 
-                            {{#if @first}}
-                                {{>cardMobile}}
-                            {{/if}}   
 
-                        {{/cards}}
-
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="swiper-container swiper-container-h">
-                            <div class="swiper-wrapper">
-                                {{#cards}}
-
-                                    {{#if @first}}
-
-                                    {{else}}
-                                        {{>cardMobile}}
-
-                                    {{/if}}                                
-                                {{/cards}}
-                            </div>
-                            <!-- Add Pagination -->
-                            <div class="swiper-pagination-container">
-                                <div class="swiper-pagination-controls">
-                                    <p>Chapter {{chapter}}: {{nav_title}}</p>
-                                    <button class="swiper-button-next"></button>
-                                    <button class="swiper-button-down swiper-down-disabled"></button>
-                                </div>
-                                <div class="swiper-pagination"></div>
-                            </div>
-                        </div>
-                    </div>
-                {{/stories}}
+                {{/stacks}}
 
             </div>
         </div>

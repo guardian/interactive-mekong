@@ -41,8 +41,9 @@ function boot(el) {
             //determine if display is mobile or desktop
             //organize the cards
             json.isMobile = isMobile;
+            json.stacks = [];
             var cardLookup = {};
-            json.stories = [];
+            
             
             for(var key in json.sheets){
                 if(key !== "overview"){
@@ -53,20 +54,53 @@ function boot(el) {
                 }
             }
 
+
+            var currentStack;
+            var currentChapter;
+
             json.sheets["overview"].forEach(function(e){
-                if(e.chapter){
-                    json.stories.push({
+
+                //if new chapter data is detected
+                if(e.chapter !== ''){
+                    currentChapter = {
                         chapter: e.chapter,
                         nav_title: e.nav_title,
-                        cards: [],
                         background: e.background
-                    })
+                    }
                 }
-       
+
+               
+                if(isMobile){
+                     ////////nesting for mobile
+                    if(e.mobile_stack === 'new_stack'){
+
+                        currentStack = {
+                            chapterData: currentChapter,
+                            cards: []
+                        }
+                        json.stacks.push(currentStack);
+
+                    }
+
+                } else {
+                    /////// nesting for desktop
+                    if(e.chapter !== ''){
+
+                        currentStack = {
+                            chapterData: currentChapter,
+                            cards: []
+                        }
+                        json.stacks.push(currentStack);
+                    }
+
+                }
+
+                
                 //store the card data
-                json.stories[ json.stories.length - 1 ].cards.push( cardLookup[ getCardData(e)] )
+                currentStack.cards.push( cardLookup[ getCardData(e)] )
             })
 
+ 
             //init the asset manager
             assetManager.init(isMobile, cardLookup);
 
@@ -87,7 +121,7 @@ function boot(el) {
                         })
                     }
                 }
-                console.log(json);
+                
                 render(json,el);
             }else{
                 render(json, el);
@@ -201,9 +235,10 @@ function initMobile(el){
 function scanCardsMobile(type, el){
     var cards;
     if(type === 'chapters'){
-        cards = el.querySelectorAll('.swiper-slide-active .swiper-slide-active, .swiper-slide-active .swiper-slide-prev, .swiper-slide-active .swiper-slide-next, .swiper-slide-next .swiper-slide-active, .swiper-slide-next .swiper-slide-prev, .swiper-slide-next .swiper-slide-next, .swiper-slide-prev .swiper-slide-active, .swiper-slide-prev .swiper-slide-prev, .swiper-slide-prev .swiper-slide-next')
-    } else if( type === 'section'){
-        cards = el.querySelectorAll('.swiper-slide-active, .swiper-slide-next, .swiper-slide-prev'); 
+
+        cards = el.querySelectorAll('.swiper-slide-active .swiper-slide-active, .swiper-slide-active .swiper-slide-next, .swiper-slide-next .swiper-slide-active' );
+    } else {
+        cards = el.querySelectorAll('.swiper-slide-active, .swiper-slide-next' );
     }
 
     for(var c = 0; c < cards.length; c ++){

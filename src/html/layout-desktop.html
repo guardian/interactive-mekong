@@ -11,12 +11,12 @@
 		</div>
 	</div>
 
-	{{#stories}}
-		<div class="slides-chapter slides-chapter-{{@index}}" data-chapter-color="{{background}}">
-			{{#each cards}}
+	{{#stacks}}
+		<div class="slides-chapter slides-chapter-{{chapterData.chapter}}" data-chapter-color="{{chapterData.background}}">
+			{{#cards}}
 				{{>cardDesktop}}
-		    {{/each}}
+		    {{/cards}}
 		</div>
-	{{/stories}}
+	{{/stacks}}
 	</div>
 </div>

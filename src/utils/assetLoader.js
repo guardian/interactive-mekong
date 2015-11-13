@@ -18,8 +18,6 @@ function init(){
 
 function loadImage(el, cardData, isMobile){
 
-	
-
 	if(isMobile){
 
 		if(!imageSize){

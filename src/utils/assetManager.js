@@ -56,8 +56,15 @@ function initAsset(cardId, el){
 			}
 
 			//initialize media element
-			if(cardData.card === 'video' || cardData.card === 'audio' || cardData.card === 'title'){
+			if(cardData.card === 'video' || cardData.card === 'audio'){
 				assetList[cardId].playerComponent = new MediaPlayer(el, cardData, isMobile);
+			} else if(cardData.card === 'title'){
+				if(isMobile){
+
+					//assetLoader.loadImage(el, cardData, isMobile);
+				} else {
+					assetList[cardId].playerComponent = new MediaPlayer(el, cardData, isMobile);
+				}
 			} else if(cardData.card === 'photo'){
 				assetLoader.loadImage(el, cardData, isMobile);
 			} else if(cardData.card === 'iframe'){
@@ -68,7 +75,9 @@ function initAsset(cardId, el){
 	}
 
 	//load the source of of the media player
-	if( assetList[cardId].card === 'audio' || assetList[cardId].card === 'video' || assetList[cardId].card === 'title'){
+	if( assetList[cardId].card === 'audio' || assetList[cardId].card === 'video' ){
+		assetList[cardId].playerComponent.isReady(true);
+	} else if( assetList[cardId].card === 'title' && !isMobile){
 		assetList[cardId].playerComponent.isReady(true);
 	}
 
@@ -90,7 +99,9 @@ function disableAsset(cardId){
 }
 
 function autoPlay(cardId, isPlaying){
-	if(assetList[cardId].card === 'video' || assetList[cardId].card === 'title'){
+	if(assetList[cardId].card === 'video'){
+		assetList[cardId].playerComponent.autoPlay(isPlaying);
+	} else if( assetList[cardId].card === 'title' && !isMobile){
 		assetList[cardId].playerComponent.autoPlay(isPlaying);
 	}
 
