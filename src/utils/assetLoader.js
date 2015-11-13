@@ -26,7 +26,13 @@ function loadImage(el, cardData, isMobile){
 		//load image for mobile
 		var url = cardData.mobile_url;
 		url = url.slice( 0, url.lastIndexOf(".")) + '_' + imageSize + url.slice( url.lastIndexOf(".") , url.length);
-		el.querySelector('.photo-bg-container').style.backgroundImage = 'url(' + url + ')';
+        var div;
+        if( cardData.card ==='title'){
+            div = el;
+        } else {
+            div = el.querySelector('.photo-bg-container');
+        }
+		div.style.backgroundImage = 'url(' + url + ')';
 	} else {
 		//load image for desktop
 		var url = cardData.photo_url;

@@ -60,8 +60,7 @@ function initAsset(cardId, el){
 				assetList[cardId].playerComponent = new MediaPlayer(el, cardData, isMobile);
 			} else if(cardData.card === 'title'){
 				if(isMobile){
-
-					//assetLoader.loadImage(el, cardData, isMobile);
+					assetLoader.loadImage(el, cardData, isMobile);
 				} else {
 					assetList[cardId].playerComponent = new MediaPlayer(el, cardData, isMobile);
 				}
