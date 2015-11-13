@@ -58,6 +58,9 @@ function initAsset(cardId, el){
 			//initialize media element
 			if(cardData.card === 'video' || cardData.card === 'audio'){
 				assetList[cardId].playerComponent = new MediaPlayer(el, cardData, isMobile);
+				if(isMobile){
+					assetLoader.loadImage(el, cardData, isMobile);
+				}
 			} else if(cardData.card === 'title'){
 				if(isMobile){
 					assetLoader.loadImage(el, cardData, isMobile);

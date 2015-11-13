@@ -29,7 +29,10 @@ function loadImage(el, cardData, isMobile){
         var div;
         if( cardData.card ==='title'){
             div = el;
-        } else {
+        } else if( cardData.card ==='video'){
+            console.log(el)
+            div = el.querySelector('.placeholder-background');
+        }else {
             div = el.querySelector('.photo-bg-container');
         }
 		div.style.backgroundImage = 'url(' + url + ')';

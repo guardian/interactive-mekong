@@ -207,9 +207,10 @@ function initMobile(el){
         })
         .on('onSlideChangeStart', function (e) {
             assetManager.stopPlaying();
+            scanCardsMobile('section', e.container[0]);
         })
         .on('onSlideChangeEnd', function (e) {
-            scanCardsMobile('section', e.container[0]);
+            
         })
         .on('onProgress', function (e, prog) {
    
