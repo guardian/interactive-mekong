@@ -11,7 +11,8 @@ function init(Handlebars){
         'videoCard': require('./../html/cards/card-video.html'),
         'titleCard': require('./../html/cards/card-title.html'),
         'transitionCard': require('./../html/cards/card-transition.html'),
-        'iframeCard': require('./../html/cards/card-iframe.html')
+        'iframeCard': require('./../html/cards/card-iframe.html'),
+        'shareButtons': require('./../html/cards/share.html')
     });
 
 
