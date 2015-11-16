@@ -17,23 +17,41 @@ var isMobileFullScreen = false;
 var cardData;
 var newChapter;
 
+var headerContent = {
+    headline: 'Tales <span id="title-break-1">of the</span> river <span id="title-break-2">bank</span>',
+    standfirst: 'The fate of 70m people rests on what happens to the Mekong river. Ahead of the Paris climate change summit, John Vidal finds countries calling for clean energy but creating ecological and human havoc with giant dams, deforestation and fast-growing cities',
+    isMobile: true
+}
+
 
 
 
 function boot(el) {
     //reset if desktop
     if(window.innerWidth > 740){
-        isMobile = false;
+        isMobile = headerContent.isMobile = false;
     }
 
     //setup the handlebars templates
     templates.init(Handlebars);
 
-    //decide where to load the data from
+
+    /////////////////////////////
+    //render the shell template with the header
+    /////////////////////////////
+    var content = Handlebars.compile( 
+        require('./html/base.html'), 
+        { compat: true }
+    );
+    el.innerHTML = content(headerContent);
+
+    /////////////////////////////
+    //load the spreadsheet data and decide how to layout
+    /////////////////////////////
+
     var key = '1vqPIwCHblYbrRHrvH_xMaQMx_TkEODbW6p6iqFmiNus'; //spreadsheet data
 	var isLive = ( window.location.origin.search('localhost') > -1 || window.location.origin.search('gutools.co.uk') > -1 || window.location.origin.search('interactive.guim.co.uk') > -1) ? false : true;
     var folder = (!isLive)? 'docsdata-test' : 'docsdata';
-
 
     getJSON('https://interactive.guim.co.uk/' + folder + '/' + key + '.json', 
         function(json){
@@ -138,20 +156,36 @@ function getCardData(cardData){
 function render(json, el){
     cardData = json;
 
+
+
     //render the template
-	var content = Handlebars.compile( 
-        require('./html/base.html'), 
-        { compat: true }
-    );
-	el.innerHTML = content(json);
+	var content;
+	var div = el.querySelector('.gv-card-container');
 
     if(isMobile){
         //init the swiper UX for mobile
+        content = Handlebars.compile( 
+            require('./html/layout-mobile.html'), 
+            { compat: true }
+        );
+
+        div.innerHTML = content(json);
+
         initMobile(el);
     } else {
         //init the loader / display for desktop
+
+        content = Handlebars.compile( 
+            require('./html/layout-desktop.html'), 
+            { compat: true }
+        );
+
+        div.innerHTML = content(json);
+
         initDesktop(el);
     }
+
+    
 }
 
 /******************************/

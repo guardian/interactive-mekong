@@ -1,6 +1,39 @@
 {{#if isMobile}}
-	{{>layoutMobile}}
+	
+			<div class='mobile-opener'>
+
+			    <div id="header-wrapper">
+
+			        <div class="header-inner">
+			            <h1>{{{headline}}}</h1>
+			            <p>{{{standfirst}}}</p>
+			        </div>
+
+			        <div class='gv-start-button'>Begin <span></span></div>
+			    </div>
+
+			</div>
+
+			<div class='gv-card-container mobile-cards'></div>
+
 {{else}}
-	{{>layoutDesktop}}
+
+			<div id="blocks-wrapper">
+				<div id="inner-wrapper">
+
+					<div id="header-wrapper">
+						<div class="header-image-container">
+							<img src="/imgs/mekong.png" />
+						</div>
+						<div class="header-inner">
+							<h1>{{{headline}}}</h1>
+							<h2>{{{standifrst}}}</h2>
+						</div>
+					</div>
+
+					<div class='gv-card-container desktop-cards'></div>
+				</div>
+			</div>
+
 {{/if}}
 

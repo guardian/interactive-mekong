@@ -2,8 +2,6 @@
 function init(Handlebars){
 
     Handlebars.registerPartial({
-        'layoutMobile': require('./../html/layout-mobile.html'),
-        'layoutDesktop': require('./../html/layout-desktop.html'),
         'cardMobile': require('./../html/cards/card-base-mobile.html'),
         'cardDesktop': require('./../html/cards/card-base-desktop.html'),
         'photoCard': require('./../html/cards/card-photo.html'),

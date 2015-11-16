@@ -1,58 +1,38 @@
-<div class='mobile-opener'>
+<div class="swiper-container swiper-container-v">
+        <div class="swiper-wrapper">
+
+            {{#stacks}}                     
+
+                <div class="swiper-slide">
+                    <div class="swiper-container swiper-container-h">
+                        <div class="swiper-wrapper">
+
+                            {{#cards}}
+
+                                {{>cardMobile}}
+
+                            {{/cards}}
+
+                        </div>
+
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination-container">
+                            <div class="swiper-pagination-controls">
+                                <p>Chapter {{chapterData.chapter}}: {{chapterData.nav_title}}</p>
+                                <button class="swiper-button-next"></button>
+                                <button class="swiper-button-down swiper-down-disabled"></button>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
 
 
-    <div id="header-wrapper">
+                    </div>
+                </div>
 
-        <div class="header-inner">
-            <h1>Tales <span id="title-break-1">of the</span> <span id="title-break-2">river bank</span></h1>
-            <p>The fate of 70m people rests on what happens to the Mekong river. Ahead of the Paris climate change summit, John Vidal finds countries calling for clean energy but creating ecological and human havoc with giant dams, deforestation and fast-growing cities</p>
+
+            {{/stacks}}
+
         </div>
-
-        <div class='gv-start-button'>Begin <span></span></div>
     </div>
 
-</div>
-
-<div class='mobile-cards'>
-
-    <div class="swiper-container swiper-container-v">
-            <div class="swiper-wrapper">
-
-                {{#stacks}}
-
-                                                  
-
-                                    <div class="swiper-slide">
-                                        <div class="swiper-container swiper-container-h">
-                                            <div class="swiper-wrapper">
-
-                                                {{#cards}}
-
-                                                    {{>cardMobile}}
-
-                                                {{/cards}}
-
-                                            </div>
-
-                                            <!-- Add Pagination -->
-                                            <div class="swiper-pagination-container">
-                                                <div class="swiper-pagination-controls">
-                                                    <p>Chapter {{chapterData.chapter}}: {{chapterData.nav_title}}</p>
-                                                    <button class="swiper-button-next"></button>
-                                                    <button class="swiper-button-down swiper-down-disabled"></button>
-                                                </div>
-                                                <div class="swiper-pagination"></div>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-
-
-                {{/stacks}}
-
-            </div>
-        </div>
-
-    <div class='mobile-cards-overlay'></div>
-</div>
+<div class='mobile-cards-overlay'></div>
