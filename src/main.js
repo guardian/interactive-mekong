@@ -18,7 +18,9 @@ var cardData;
 var newChapter;
 
 var shareMedia = ['facebook', 'twitter'];
-
+var shareUrl = 'http://www.theguardian.com';
+var shareMessage = 'The fate of 70m people rests on what happens to the Mekong river.';
+var shareImage = "http://media.guim.co.uk/b93f5ac5cb86e8bb1a46ab672ca89ea46ff16fe1/0_0_3543_2362/2000.jpg";
 var headerContent = {
     headline: 'Tales <span id="title-break-1">of the</span> river <span id="title-break-2">bank</span>',
     standfirst: 'The fate of 70m people rests on what happens to the Mekong river. Ahead of the Paris climate change summit, John Vidal finds countries calling for clean energy but creating ecological and human havoc with giant dams, deforestation and fast-growing cities',
@@ -77,7 +79,6 @@ function boot(el) {
                     })
                 }
             }
-
 
             var currentStack;
             var currentChapter;
@@ -190,6 +191,9 @@ function render(json, el){
 
         initDesktop(el);
     }
+
+    //init share
+    initShare(el);
 
     
 }
@@ -435,6 +439,41 @@ function getPosition(wTop, wHeight, rect){
         inMiddle: midPoint > wTop + wHeight * .3 && midPoint < wTop + wHeight * .7
     }
 }
+
+function initShare(el){
+    var shareButtons = el.querySelectorAll('.gv-share');
+    for(var s = 0; s < shareButtons.length; s ++){
+        shareButtons[s].addEventListener('click', share);
+    }
+}
+
+function share(e){
+    var btn = e.srcElement;
+    var shareWindow;
+    var twitterBaseUrl = "http://twitter.com/share?text=";
+    var facebookBaseUrl = "https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&link=";
+
+    if( btn.classList.contains('share-twitter') ){
+
+        shareWindow = twitterBaseUrl + 
+                        encodeURIComponent(shareMessage) + 
+                        "&url=" + 
+                        encodeURIComponent(shareUrl);
+
+    } else if( btn.classList.contains('share-facebook') ){
+
+        shareWindow = facebookBaseUrl + 
+                        encodeURIComponent(shareUrl) + 
+                        "&picture=" + 
+                        encodeURIComponent(shareImage) + 
+                        "&redirect_uri=http://www.theguardian.com";
+    }
+
+    window.open(shareWindow, "Share", "width=640,height=320"); 
+
+}
+
+
 
 
 
