@@ -237,33 +237,38 @@ function initMobile(el){
     for(var i = 0; i < hSwipers.length; i++) {
         var el = hSwipers[i];
 
-        //initialize swiper
-        new Swiper(el, {
-            pagination: el.getElementsByClassName('swiper-pagination')[0],
-            paginationClickable: true,
-            spaceBetween: 0,
-            nextButton: el.getElementsByClassName('swiper-button-next')[0],
-            prevButton: el.getElementsByClassName('swiper-button-prev')[0],
-            keyboardControl: true,
-            mousewheelControl: false,
-            mousewheelReleaseOnEdges: true,
-            freeModeMomentumBounce: false
-        })
-        .on('onSlideChangeStart', function (e) {
-            assetManager.stopPlaying();
-            scanCardsMobile('section', e.container[0]);
-        })
-        .on('onSlideChangeEnd', function (e) {
-            
-        })
-        .on('onProgress', function (e, prog) {
-   
-            if(prog === 1){
-                e.container[0].querySelector('.swiper-button-down').classList.remove('swiper-down-disabled');
-            } else {
-                e.container[0].querySelector('.swiper-button-down').classList.add('swiper-down-disabled');
-            }
-        });
+        if(hSwipers[i].querySelectorAll('.gv-slide').length > 1){
+            //initialize swiper
+            new Swiper(el, {
+                pagination: el.getElementsByClassName('swiper-pagination')[0],
+                paginationClickable: true,
+                spaceBetween: 0,
+                nextButton: el.getElementsByClassName('swiper-button-next')[0],
+                prevButton: el.getElementsByClassName('swiper-button-prev')[0],
+                keyboardControl: true,
+                mousewheelControl: false,
+                mousewheelReleaseOnEdges: true,
+                freeModeMomentumBounce: false
+            })
+            .on('onSlideChangeStart', function (e) {
+                assetManager.stopPlaying();
+                scanCardsMobile('section', e.container[0]);
+            })
+            .on('onSlideChangeEnd', function (e) {
+                
+            })
+            .on('onProgress', function (e, prog) {
+       
+                if(prog === 1){
+                    e.container[0].querySelector('.swiper-button-down').classList.remove('swiper-down-disabled');
+                } else {
+                    e.container[0].querySelector('.swiper-button-down').classList.add('swiper-down-disabled');
+                }
+            });
+        } else if( i == hSwipers.length -1){
+            hSwipers[i].querySelector('.swiper-button-down').classList.add('swiper-down-disabled');
+            hSwipers[i].querySelector('.swiper-button-next').classList.add('swiper-button-disabled');
+        }
     }
 
     scanCardsMobile('chapters', vSwiper);

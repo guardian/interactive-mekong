@@ -18,7 +18,10 @@
                         <!-- Add Pagination -->
                         <div class="swiper-pagination-container">
                             <div class="swiper-pagination-controls">
-                                <p>Chapter {{chapterData.chapter}}: {{chapterData.nav_title}}</p>
+                                
+                                {{#if_list_contains_one cards}}
+                                    <p>Chapter {{chapterData.chapter}}: {{chapterData.nav_title}}</p>
+                                {{/if_list_contains_one}}
                                 <button class="swiper-button-next"></button>
                                 <button class="swiper-button-down swiper-down-disabled"></button>
                             </div>
