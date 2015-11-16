@@ -27,6 +27,7 @@ var headerContent = {
     isMobile: true,
     media: shareMedia
 }
+var verticalSwiper;
 
 
 
@@ -210,11 +211,11 @@ function initMobile(el){
     document.querySelector('.mobile-cards').style.height = windowHeight + 'px';
 
     var hSwipers = el.querySelectorAll('.swiper-container-h');
-    var vSwiper = el.querySelector('.swiper-container-v');
+    var vSwiper = window.gvvertical = el.querySelector('.swiper-container-v');
 
 
     //load the container swiper
-    new Swiper(vSwiper, {
+    verticalSwiper = new Swiper(vSwiper, {
         paginationClickable: true,
         spaceBetween: 1,
         direction: 'vertical',
@@ -231,6 +232,7 @@ function initMobile(el){
     .on('onSlideChangeEnd', function (e) {
         scanCardsMobile('chapters', e.container[0]);
     });
+
 
 
 
@@ -275,12 +277,11 @@ function initMobile(el){
 
     //initialize the scroll to button on mobile
     document.querySelector('.gv-start-button').addEventListener('click', function(e){
-       document.querySelector('.mobile-cards-overlay').classList.add('mobile-cards-active');
-       scroll.scrollTo( document.querySelector('.mobile-cards') );
-       isMobileFullScreen = true;
+       positionMobile();
     })
 
     window.addEventListener( 'resize', detect.debounce(resizeMobile, 250) );
+    window.addEventListener('scroll', detect.debounce(positionMobile, 200) );
 
 }
 
@@ -341,17 +342,29 @@ function enableCard(div, isEnabled, autoPlay){
 function resizeMobile(){
 
     //deals with weird ios behavior when browser nav + share bar hide and reveal
-    if(!isMobileFullScreen){
+
         var currentHeight = window.innerHeight;
-        
-        if(windowHeight < currentHeight){
+        if( currentHeight != windowHeight){
+            windowHeight = currentHeight;
             document.querySelector('.mobile-cards').style.height = currentHeight + 'px';
-            var slides = document.querySelectorAll('.swiper-slide');
-            for(var s = 0; s< slides.length; s++){
-                slides[s].style.height = currentHeight + 'px';
-            }
+            verticalSwiper.update();
         }
+}
+
+function scrollMobile(){
+    var rect = document.querySelector('.mobile-cards').getBoundingClientRect();
+    var midPoint = rect.top + rect.height/2 + wTop;
+    var position = getPosition(wTop,wHeight,rect);
+    if(position.inTopHalf){
+        
+        positionMobile();
     }
+}
+
+function positionMobile(){
+    document.querySelector('.mobile-cards-overlay').classList.add('mobile-cards-active');
+    scroll.scrollTo( document.querySelector('.mobile-cards') );
+    isMobileFullScreen = true;
 }
 
 /******************************/
@@ -367,14 +380,14 @@ function initDesktop(el){
         'scroll', 
         detect.debounce(function(){
             scanCardsDesktop(el);
-        }, 250)
+        }, 100)
     );
 
     window.addEventListener(
         'resize', 
         detect.debounce(function(){
             scanCardsDesktop(el);
-        }, 250)
+        }, 100)
     );
 
 }
@@ -441,7 +454,8 @@ function getPosition(wTop, wHeight, rect){
     return {
         inViewport: (midPoint > wTop - wHeight && midPoint < wTop + wHeight) ? true : false,
         nearViewport: ( Math.abs(rect.top) < wHeight * 2.5 ) ? true : false,
-        inMiddle: midPoint > wTop + wHeight * .3 && midPoint < wTop + wHeight * .7
+        inMiddle: midPoint > wTop + wHeight * .3 && midPoint < wTop + wHeight * .7,
+        inTopHalf: ( Math.abs(rect.top) < wHeight / .5 ) ? true : false
     }
 }
 
