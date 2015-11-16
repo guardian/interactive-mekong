@@ -7,6 +7,9 @@
 		<img src="/imgs/content/chapter-locator-1.png" />
 	</div>
 	<div class="title-heading">
+		{{#if isMobile}}
+			{{>shareButtons}}
+		{{/if}}
 		<p><strong>Chapter {{number}}</strong> out of 8</p>
 		<h2>{{name}}</h2>
 		<h3>{{standfirst}}</h3>

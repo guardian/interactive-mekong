@@ -17,11 +17,16 @@ var isMobileFullScreen = false;
 var cardData;
 var newChapter;
 
+var shareMedia = ['facebook', 'twitter'];
+
 var headerContent = {
     headline: 'Tales <span id="title-break-1">of the</span> river <span id="title-break-2">bank</span>',
     standfirst: 'The fate of 70m people rests on what happens to the Mekong river. Ahead of the Paris climate change summit, John Vidal finds countries calling for clean energy but creating ecological and human havoc with giant dams, deforestation and fast-growing cities',
-    isMobile: true
+    isMobile: true,
+    media: shareMedia
 }
+
+
 
 
 
@@ -59,6 +64,7 @@ function boot(el) {
             //determine if display is mobile or desktop
             //organize the cards
             json.isMobile = isMobile;
+            json.media = shareMedia;
             json.stacks = [];
             var cardLookup = {};
             
