@@ -36,6 +36,13 @@ function init(Handlebars){
             return opts.fn(this);
                 
         },
+        'if_list_contains_one': function (a, opts){
+            if(a.length == 1){
+                return opts.inverse(this);
+            }
+            return opts.fn(this);
+            
+        },
         'if_contains': function(a, b, opts){
             if(a.search(b) == -1 ){
                 return opts.inverse(this);

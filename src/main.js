@@ -18,13 +18,16 @@ var cardData;
 var newChapter;
 
 var shareMedia = ['facebook', 'twitter'];
-
+var shareUrl = 'http://www.theguardian.com';
+var shareMessage = 'The fate of 70m people rests on what happens to the Mekong river.';
+var shareImage = "http://media.guim.co.uk/b93f5ac5cb86e8bb1a46ab672ca89ea46ff16fe1/0_0_3543_2362/2000.jpg";
 var headerContent = {
     headline: 'Tales <span id="title-break-1">of the</span> river <span id="title-break-2">bank</span>',
     standfirst: 'The fate of 70m people rests on what happens to the Mekong river. Ahead of the Paris climate change summit, John Vidal finds countries calling for clean energy but creating ecological and human havoc with giant dams, deforestation and fast-growing cities',
     isMobile: true,
     media: shareMedia
 }
+var verticalSwiper;
 
 
 
@@ -77,7 +80,6 @@ function boot(el) {
                     })
                 }
             }
-
 
             var currentStack;
             var currentChapter;
@@ -191,6 +193,9 @@ function render(json, el){
         initDesktop(el);
     }
 
+    //init share
+    initShare(el);
+
     
 }
 
@@ -206,11 +211,11 @@ function initMobile(el){
     document.querySelector('.mobile-cards').style.height = windowHeight + 'px';
 
     var hSwipers = el.querySelectorAll('.swiper-container-h');
-    var vSwiper = el.querySelector('.swiper-container-v');
+    var vSwiper = window.gvvertical = el.querySelector('.swiper-container-v');
 
 
     //load the container swiper
-    new Swiper(vSwiper, {
+    verticalSwiper = new Swiper(vSwiper, {
         paginationClickable: true,
         spaceBetween: 1,
         direction: 'vertical',
@@ -230,48 +235,53 @@ function initMobile(el){
 
 
 
+
     for(var i = 0; i < hSwipers.length; i++) {
         var el = hSwipers[i];
 
-        //initialize swiper
-        new Swiper(el, {
-            pagination: el.getElementsByClassName('swiper-pagination')[0],
-            paginationClickable: true,
-            spaceBetween: 0,
-            nextButton: el.getElementsByClassName('swiper-button-next')[0],
-            prevButton: el.getElementsByClassName('swiper-button-prev')[0],
-            keyboardControl: true,
-            mousewheelControl: false,
-            mousewheelReleaseOnEdges: true,
-            freeModeMomentumBounce: false
-        })
-        .on('onSlideChangeStart', function (e) {
-            assetManager.stopPlaying();
-            scanCardsMobile('section', e.container[0]);
-        })
-        .on('onSlideChangeEnd', function (e) {
-            
-        })
-        .on('onProgress', function (e, prog) {
-   
-            if(prog === 1){
-                e.container[0].querySelector('.swiper-button-down').classList.remove('swiper-down-disabled');
-            } else {
-                e.container[0].querySelector('.swiper-button-down').classList.add('swiper-down-disabled');
-            }
-        });
+        if(hSwipers[i].querySelectorAll('.gv-slide').length > 1){
+            //initialize swiper
+            new Swiper(el, {
+                pagination: el.getElementsByClassName('swiper-pagination')[0],
+                paginationClickable: true,
+                spaceBetween: 0,
+                nextButton: el.getElementsByClassName('swiper-button-next')[0],
+                prevButton: el.getElementsByClassName('swiper-button-prev')[0],
+                keyboardControl: true,
+                mousewheelControl: false,
+                mousewheelReleaseOnEdges: true,
+                freeModeMomentumBounce: false
+            })
+            .on('onSlideChangeStart', function (e) {
+                assetManager.stopPlaying();
+                scanCardsMobile('section', e.container[0]);
+            })
+            .on('onSlideChangeEnd', function (e) {
+                
+            })
+            .on('onProgress', function (e, prog) {
+       
+                if(prog === 1){
+                    e.container[0].querySelector('.swiper-button-down').classList.remove('swiper-down-disabled');
+                } else {
+                    e.container[0].querySelector('.swiper-button-down').classList.add('swiper-down-disabled');
+                }
+            });
+        } else if( i == hSwipers.length -1){
+            hSwipers[i].querySelector('.swiper-button-down').classList.add('swiper-down-disabled');
+            hSwipers[i].querySelector('.swiper-button-next').classList.add('swiper-button-disabled');
+        }
     }
 
     scanCardsMobile('chapters', vSwiper);
 
     //initialize the scroll to button on mobile
     document.querySelector('.gv-start-button').addEventListener('click', function(e){
-       document.querySelector('.mobile-cards-overlay').classList.add('mobile-cards-active');
-       scroll.scrollTo( document.querySelector('.mobile-cards') );
-       isMobileFullScreen = true;
+       positionMobile();
     })
 
     window.addEventListener( 'resize', detect.debounce(resizeMobile, 250) );
+    window.addEventListener('scroll', detect.debounce(positionMobile, 200) );
 
 }
 
@@ -332,17 +342,29 @@ function enableCard(div, isEnabled, autoPlay){
 function resizeMobile(){
 
     //deals with weird ios behavior when browser nav + share bar hide and reveal
-    if(!isMobileFullScreen){
+
         var currentHeight = window.innerHeight;
-        
-        if(windowHeight < currentHeight){
+        if( currentHeight != windowHeight){
+            windowHeight = currentHeight;
             document.querySelector('.mobile-cards').style.height = currentHeight + 'px';
-            var slides = document.querySelectorAll('.swiper-slide');
-            for(var s = 0; s< slides.length; s++){
-                slides[s].style.height = currentHeight + 'px';
-            }
+            verticalSwiper.update();
         }
+}
+
+function scrollMobile(){
+    var rect = document.querySelector('.mobile-cards').getBoundingClientRect();
+    var midPoint = rect.top + rect.height/2 + wTop;
+    var position = getPosition(wTop,wHeight,rect);
+    if(position.inTopHalf){
+        
+        positionMobile();
     }
+}
+
+function positionMobile(){
+    document.querySelector('.mobile-cards-overlay').classList.add('mobile-cards-active');
+    scroll.scrollTo( document.querySelector('.mobile-cards') );
+    isMobileFullScreen = true;
 }
 
 /******************************/
@@ -358,14 +380,14 @@ function initDesktop(el){
         'scroll', 
         detect.debounce(function(){
             scanCardsDesktop(el);
-        }, 250)
+        }, 100)
     );
 
     window.addEventListener(
         'resize', 
         detect.debounce(function(){
             scanCardsDesktop(el);
-        }, 250)
+        }, 100)
     );
 
 }
@@ -432,9 +454,45 @@ function getPosition(wTop, wHeight, rect){
     return {
         inViewport: (midPoint > wTop - wHeight && midPoint < wTop + wHeight) ? true : false,
         nearViewport: ( Math.abs(rect.top) < wHeight * 2.5 ) ? true : false,
-        inMiddle: midPoint > wTop + wHeight * .3 && midPoint < wTop + wHeight * .7
+        inMiddle: midPoint > wTop + wHeight * .3 && midPoint < wTop + wHeight * .7,
+        inTopHalf: ( Math.abs(rect.top) < wHeight / .5 ) ? true : false
     }
 }
+
+function initShare(el){
+    var shareButtons = el.querySelectorAll('.gv-share');
+    for(var s = 0; s < shareButtons.length; s ++){
+        shareButtons[s].addEventListener('click', share);
+    }
+}
+
+function share(e){
+    var btn = e.srcElement;
+    var shareWindow;
+    var twitterBaseUrl = "http://twitter.com/share?text=";
+    var facebookBaseUrl = "https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&link=";
+
+    if( btn.classList.contains('share-twitter') ){
+
+        shareWindow = twitterBaseUrl + 
+                        encodeURIComponent(shareMessage) + 
+                        "&url=" + 
+                        encodeURIComponent(shareUrl);
+
+    } else if( btn.classList.contains('share-facebook') ){
+
+        shareWindow = facebookBaseUrl + 
+                        encodeURIComponent(shareUrl) + 
+                        "&picture=" + 
+                        encodeURIComponent(shareImage) + 
+                        "&redirect_uri=http://www.theguardian.com";
+    }
+
+    window.open(shareWindow, "Share", "width=640,height=320"); 
+
+}
+
+
 
 
 
