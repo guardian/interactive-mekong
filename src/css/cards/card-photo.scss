@@ -58,3 +58,8 @@
 		}
 	}
 }
+@media(min-width: breakpoints(tablet)){
+	.slide-photo + .slide-photo{
+		margin-top:-40px;
+	}
+}
