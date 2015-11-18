@@ -62,7 +62,7 @@
 			left:auto;
 			top:auto;
 			right:auto;
-			margin:36px 0 60px;
+			margin:0;
 		}
 		h3{
 			font-size:24px;
@@ -70,8 +70,9 @@
 			margin-bottom:46px;
 		}
 		p{
-			font-size:18px;
-			line-height:27px;
+			font-size:16px;
+			line-height:24px;
+			margin-top:2em;
 			&:before{
 				display:none;
 			}
@@ -133,11 +134,9 @@
 	.slide-text+.slide-text{
 		.card.card-paragraph{
 			box-shadow:none;
-			margin-top:-40px;
 			.paragraph-container{
-				margin-top:0;
 				p{
-					margin:0;
+					margin-top:0;
 					&:before{
 						display:none;
 					}
@@ -152,7 +151,11 @@
 			}
 		}
 	}
-	.slide-video.playing + .slide-text{
-		.card{margin-top: 0};
+}
+
+@media(min-width: breakpoints(desktop)){
+	#blocks-wrapper .slide-text.size-m{
+		width:auto;
+		max-width:620px;
 	}
 }

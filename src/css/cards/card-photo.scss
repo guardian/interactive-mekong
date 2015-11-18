@@ -1,5 +1,6 @@
 .card.card-photo{
 	overflow:hidden;
+
 	
 	.photo-bg-container{
 		background-size:cover;
@@ -37,6 +38,7 @@
 	@media(min-width: breakpoints(tablet)){
 		height:auto;
 		position: relative;
+		margin-top:1em;
 
 		.photo-bg-container{
 			background:none;
@@ -60,6 +62,6 @@
 }
 @media(min-width: breakpoints(tablet)){
 	.slide-photo + .slide-photo{
-		margin-top:-40px;
+		margin-top:-80px;
 	}
 }
