@@ -1,5 +1,4 @@
 .card.card-quote{
-	background:#484F53;
 	.quote-container{
 		top:45%;
 		left:20px;
@@ -66,8 +65,11 @@
 
 	@media(min-width: breakpoints(tablet)){
 		height:auto;
-		padding:1px 20px;
 		position: relative;
+		margin-top:1em;
+		border-top: 1px solid #fff;
+		background-color:rgba(255,255,255,0.05);
+		padding:0 20px;
 
 		.quote-container{
 			position: relative;
@@ -75,7 +77,8 @@
 			left:auto;
 			top:auto;
 			right:auto;
-			margin:36px 0 60px;
+			margin:24px 0 60px;
+			
 		}
 		quote{
 			font-size:36px;
@@ -85,7 +88,14 @@
 			height:30px;
 		}
 		.quote-credit{
-			margin-top:49px;
+			margin-top:30px;
+			&:before{
+				display:none;
+			}
+			p{
+				line-height:22px;
+				max-width:380px;
+			}
 		}
 
 		&.size-l, &.size-xl{

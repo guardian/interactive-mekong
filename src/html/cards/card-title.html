@@ -1,5 +1,9 @@
 <div class="drone-stroke">
 	<video {{#if_eq isMobile false}}autoplay loop muted{{/if_eq}} style="margin-top:-{{offset}}px"></video>
+	<div class="drone-title">
+		<p><strong>Chapter {{number}}</strong> out of 8</p>
+		<h2>{{name}}</h2>
+	</div>
 </div>
 
 <div class="title-heading-container">
@@ -9,9 +13,10 @@
 	<div class="title-heading">
 		{{#if isMobile}}
 			{{>shareButtons}}
+		
+			<p><strong>Chapter {{number}}</strong> out of 8</p>
+			<h2>{{name}}</h2>
 		{{/if}}
-		<p><strong>Chapter {{number}}</strong> out of 8</p>
-		<h2>{{name}}</h2>
 		<h3>{{standfirst}}</h3>
 
 	</div>

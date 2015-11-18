@@ -139,15 +139,20 @@ function boot(el) {
                     if(sheet !== "overview"){
                         json.sheets[sheet].forEach(function(e){
                             if(e.card + "_" + e.id === value){
-                                json.stories = [{
-                                    "chapter": 1,
+                                json.stacks = [{
+                                    "chapterData": {
+                                        "background": "#333",
+                                        "chapter": "1",
+                                        "nav_title": "The first dam"
+                                    },
                                     "cards": [e]
                                 }] 
                             }
                         })
                     }
                 }
-                
+                console.log('hdoei')
+                console.log(json);
                 render(json,el);
             }else{
                 render(json, el);
@@ -163,7 +168,7 @@ function getCardData(cardData){
 
 function render(json, el){
     cardData = json;
-
+    console.log
 
 
     //render the template
