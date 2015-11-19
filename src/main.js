@@ -437,7 +437,6 @@ function handleDesktopCard(div, wTop, wHeight){
             tracker.track(div.getAttribute('data-card-id'));
         }
         
-        
         if( position.inMiddle ){
             autoPlay = true;
         } else {
