@@ -5,15 +5,16 @@
 		<h2>{{name}}</h2>
 	</div>
 </div>
-
+{{#if isMobile}}
+		{{>shareButtons}}
+{{/if}}
 <div class="title-heading-container">
 	<div class="title-locator">
 		<img src="/imgs/content/chapter-locator-1.png" />
 	</div>
+	
 	<div class="title-heading">
 		{{#if isMobile}}
-			{{>shareButtons}}
-		
 			<p><strong>Chapter {{number}}</strong> of 6</p>
 			<h2>{{name}}</h2>
 		{{/if}}
