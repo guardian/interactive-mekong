@@ -1,5 +1,4 @@
- <div class="gv-slide swiper-slide slide-{{card}}" data-card-id="{{card}}_{{id}}" style='background-color: {{chapterData.background}};'>
-
+ <div class="gv-slide swiper-slide slide-{{card}} {{#if_list_contains_one cards}}slide-single{{/if_list_contains_one}}" data-card-id="{{card}}_{{id}}" style='background-color: {{chapterData.background}};'>
  	{{#if_eq card "photo"}}
 		{{> photoCard }}
 	{{else if_eq card "quote"}}

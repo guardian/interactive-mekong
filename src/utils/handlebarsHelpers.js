@@ -38,9 +38,9 @@ function init(Handlebars){
         },
         'if_list_contains_one': function (a, opts){
             if(a.length == 1){
-                return opts.inverse(this);
+                return opts.fn(this);
             }
-            return opts.fn(this);
+            return opts.inverse(this);
             
         },
         'if_contains': function(a, b, opts){

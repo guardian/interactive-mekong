@@ -168,7 +168,7 @@ function getCardData(cardData){
 
 function render(json, el){
     cardData = json;
-    console.log
+    console.log(json)
 
 
     //render the template
@@ -293,8 +293,8 @@ function initMobile(el){
 function scanCardsMobile(type, el){
     var cards;
     if(type === 'chapters'){
-
-        cards = el.querySelectorAll('.swiper-slide-active .swiper-slide-active, .swiper-slide-active .swiper-slide-next, .swiper-slide-next .swiper-slide-active' );
+console.log('scanning', el.querySelectorAll('.swiper-slide-active .slide-single'))
+        cards = el.querySelectorAll('.swiper-slide-active .slide-single, .swiper-slide-next .slide-single, .swiper-slide-active .swiper-slide-active, .swiper-slide-active .swiper-slide-next, .swiper-slide-next .swiper-slide-active' );
     } else {
         cards = el.querySelectorAll('.swiper-slide-active, .swiper-slide-next' );
     }
@@ -309,7 +309,7 @@ function scanCardsMobile(type, el){
 
 function handleMobileCard(div){
     //manage the cards on mobile
-    if( div.classList.contains('swiper-slide-active') || div.classList.contains('swiper-slide-prev') || div.classList.contains('swiper-slide-next')){
+    if( div.classList.contains('swiper-slide-active') || div.classList.contains('slide-single') || div.classList.contains('swiper-slide-next')){
         enableCard(div, true, false);
 
         tracker.track(div.getAttribute('data-card-id'));

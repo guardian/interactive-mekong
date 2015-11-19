@@ -17,6 +17,7 @@ function init(){
 }
 
 function loadImage(el, cardData, isMobile){
+    console.log(el, cardData, isMobile)
 
 	if(isMobile){
 
