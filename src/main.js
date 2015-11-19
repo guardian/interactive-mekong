@@ -293,7 +293,6 @@ function initMobile(el){
 function scanCardsMobile(type, el){
     var cards;
     if(type === 'chapters'){
-console.log('scanning', el.querySelectorAll('.swiper-slide-active .slide-single'))
         cards = el.querySelectorAll('.swiper-slide-active .slide-single, .swiper-slide-next .slide-single, .swiper-slide-active .swiper-slide-active, .swiper-slide-active .swiper-slide-next, .swiper-slide-next .swiper-slide-active' );
     } else {
         cards = el.querySelectorAll('.swiper-slide-active, .swiper-slide-next' );

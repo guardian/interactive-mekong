@@ -17,7 +17,6 @@ function init(){
 }
 
 function loadImage(el, cardData, isMobile){
-    console.log(el, cardData, isMobile)
 
 	if(isMobile){
 
@@ -31,7 +30,6 @@ function loadImage(el, cardData, isMobile){
         if( cardData.card ==='title'){
             div = el;
         } else if( cardData.card ==='video'){
-            console.log(el)
             div = el.querySelector('.placeholder-background');
         }else {
             div = el.querySelector('.photo-bg-container');

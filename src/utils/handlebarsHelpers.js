@@ -43,6 +43,14 @@ function init(Handlebars){
             return opts.inverse(this);
             
         },
+        'if_list_more_than_one': function (a, opts){
+            if(a.length >1){
+                return opts.fn(this);
+            }
+            return opts.inverse(this);
+            
+        },
+
         'if_contains': function(a, b, opts){
             if(a.search(b) == -1 ){
                 return opts.inverse(this);
