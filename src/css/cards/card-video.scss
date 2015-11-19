@@ -33,13 +33,18 @@
 		left:20px;
 		right:20px;
 		z-index:1;
-		overflow: hidden;
+		// overflow: hidden;
 		position: absolute;
 		.placeholder-mobile .video-time{
 			float:left;
 			font-family:$f-sans-serif-text;
 			font-size:14px;
 			margin:28px 0 0 10px;
+		}
+		&:after{
+			display: block;
+			content:'';
+			clear:both;
 		}
 		
 		.placeholder-mobile .video-caption{
@@ -66,9 +71,9 @@
 		height:80px;
 		background-color:#fff;
 		border-radius:80px;
-		border:none;
+		border:1px solid #fff;
 		outline:none;
-		background-image: url(/imgs/play-arrow.svg);
+		background-image: url(/imgs/play-btn-mobile.svg);
 		background-repeat:no-repeat;
 		background-position:28px center;
 		float:left;
@@ -77,11 +82,28 @@
 	.placeholder-desktop{
 		display:none;
 	}
+
 	@media(max-width: breakpoints(tablet)){
 		&.video-playing {
 			.photo-placeholder-container{
 				display:none;
 			}
+		}
+		.button-background{
+			width: 140px;
+		    background: rgba(255,255,255,0.2);
+		    height: 140px;
+		    border-radius: 180px;
+		    position: absolute;
+		    left: -30px;
+		    top: -30px;
+		    z-index:0;
+		    animation: 2s videoplay cubic-bezier(0, 0.38, 0.49, 1) infinite;
+		}
+		@keyframes videoplay {
+		    0% {transform: scale(1);}
+		    50% {transform: scale(1.2);}
+		    100% {transform: scale(1);}
 		}
 	}
 
@@ -153,19 +175,31 @@
 			background-repeat: no-repeat;
 			background-position:center;
 			cursor:pointer;
+			&:hover{
+				border-color:#ffbb00;
+			}
 		}
+		// button:hover + .video-time,button:hover + button + .video-time,button:hover + button + button + .video-time{
+		// 	color:#ffbb00;
+		// }
 
 		&.video-playing{
 			.play-btn{
 				display:inline-block;
 				background-image: url(/imgs/pause-btn.svg);
 				float:none;
+				&:hover{
+					background-image: url(/imgs/pause-hover-btn.svg);
+				}
 			}
 		}
 		&.video-paused{
 			.pause-btn{
 				display:inline-block;
 				background-image: url(/imgs/play-btn.svg);
+				&:hover{
+					background-image: url(/imgs/play-hover-btn.svg);
+				}
 			}
 
 			.photo-placeholder-container{
@@ -177,6 +211,9 @@
 			.unmute-btn{
 				display:inline-block;
 				background-image: url(/imgs/unmute-btn.svg);
+				&:hover{
+					background-image: url(/imgs/unmute-hover-btn.svg);
+				}
 			}
 			&.video-paused{
 				.pause-btn{
