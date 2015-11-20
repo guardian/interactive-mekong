@@ -53,9 +53,12 @@ body {
     .swiper-pagination-container{
         position: absolute;
         bottom:0;
+        left: 0;
         width:100%;
-        z-index:4;
+        z-index:100;
     }
+
+
     .swiper-pagination{
         text-align:left;
         width:100%;
@@ -77,21 +80,26 @@ body {
         }
     }
 
+
+
+
     .swiper-pagination-controls{
         padding:0 20px 12px;
-        overflow: hidden;
+
         p{
-            font-size:12px;
+            font-size:14px;
             font-family:$f-sans-serif-text;
             color:#fff;
-            margin:0;
-            float:left;
+ 
             margin-top:8px;
+            float: right;
+            margin-top: 8px;
+            margin-right: 30px;
         }
         button{
             width:34px;
             height:34px;
-            background:#fff;
+            background:#ffbb00;
             border:none;
             border-radius:80px;
             float:right;

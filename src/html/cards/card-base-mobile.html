@@ -1,4 +1,5 @@
  <div class="gv-slide swiper-slide slide-{{card}} {{#if_list_contains_one cards}}slide-single{{/if_list_contains_one}}" data-card-id="{{card}}_{{id}}" style='background-color: {{chapterData.background}};'>
+
  	{{#if_eq card "photo"}}
 		{{> photoCard }}
 	{{else if_eq card "quote"}}
@@ -16,6 +17,23 @@
 	{{else if_eq card "iframe"}}
 		{{> iframeCard }}
 	{{/if_eq}}
+	
+
+	{{#if transition}}
+	    <div class="swiper-pagination-container">
+	        <div class="swiper-pagination-controls">
+	        	<p>This way</p>
+	            {{#if_eq transition 'right'}}
+	            	<button class="swiper-button-next"></button>
+	            {{/if_eq}}
+	            {{#if_eq transition 'down'}}
+	            	<button class="swiper-button-down"></button>
+	            {{/if_eq}}
+	            
+	        </div>
+
+	    </div>
+	{{/if}}
 </div>
 
 

@@ -121,9 +121,15 @@ function boot(el) {
 
                 }
 
+
+                var card = cardLookup[ e.card ];
+   
+                if(e.transition){
+                    card.transition = e.transition;
+                }
                 
                 //store the card data
-                currentStack.cards.push( cardLookup[ getCardData(e)] )
+                currentStack.cards.push( card )
             })
 
  
@@ -162,9 +168,7 @@ function boot(el) {
     );
 }
 
-function getCardData(cardData){
-    return (isAlt && cardData.alternate_card) ? cardData.alternate_card : cardData.card;
-}
+
 
 function render(json, el){
     cardData = json;
@@ -236,6 +240,11 @@ function initMobile(el){
     })
     .on('onSlideChangeEnd', function (e) {
         scanCardsMobile('chapters', e.container[0]);
+    })
+    .on('onTouchMove', function (swiper, e) {
+        if(swiper.isBeginning && swiper.swipeDirection ==='prev'){
+            resetMobile();
+        }
     });
 
 
@@ -244,14 +253,14 @@ function initMobile(el){
     for(var i = 0; i < hSwipers.length; i++) {
         var el = hSwipers[i];
 
-        if(hSwipers[i].querySelectorAll('.gv-slide').length > 1){
+        // if(hSwipers[i].querySelectorAll('.gv-slide').length > 1){
             //initialize swiper
             new Swiper(el, {
-                pagination: el.getElementsByClassName('swiper-pagination')[0],
+               pagination: el.getElementsByClassName('swiper-chapter-pagination')[0],
                 paginationClickable: true,
                 spaceBetween: 0,
-                nextButton: el.getElementsByClassName('swiper-button-next')[0],
-                prevButton: el.getElementsByClassName('swiper-button-prev')[0],
+                // nextButton: el.getElementsByClassName('swiper-button-next')[0],
+                // prevButton: el.getElementsByClassName('swiper-button-prev')[0],
                 keyboardControl: true,
                 mousewheelControl: false,
                 mousewheelReleaseOnEdges: true,
@@ -261,21 +270,8 @@ function initMobile(el){
                 assetManager.stopPlaying();
                 scanCardsMobile('section', e.container[0]);
             })
-            .on('onSlideChangeEnd', function (e) {
-                
-            })
-            .on('onProgress', function (e, prog) {
-       
-                if(prog === 1){
-                    e.container[0].querySelector('.swiper-button-down').classList.remove('swiper-down-disabled');
-                } else {
-                    e.container[0].querySelector('.swiper-button-down').classList.add('swiper-down-disabled');
-                }
-            });
-        } else if( i == hSwipers.length -1){
-            hSwipers[i].querySelector('.swiper-button-down').classList.add('swiper-down-disabled');
-            hSwipers[i].querySelector('.swiper-button-next').classList.add('swiper-button-disabled');
-        }
+            
+        
     }
 
     scanCardsMobile('chapters', vSwiper);
@@ -360,14 +356,22 @@ function scrollMobile(){
     var midPoint = rect.top + rect.height/2 + wTop;
     var position = getPosition(wTop,wHeight,rect);
     if(position.inTopHalf){
-        
+
         positionMobile();
     }
 }
 
+function resetMobile(){
+    document.querySelector('.mobile-cards').style.position = 'relative';
+
+    scroll.scrollTo( document.querySelector('.mobile-opener') , false);
+    document.querySelector('.mobile-cards-overlay').classList.remove('mobile-cards-active');
+    isMobileFullScreen = false;
+}
+
 function positionMobile(){
     document.querySelector('.mobile-cards-overlay').classList.add('mobile-cards-active');
-    scroll.scrollTo( document.querySelector('.mobile-cards') );
+    scroll.scrollTo( document.querySelector('.mobile-cards'), true );
     isMobileFullScreen = true;
 }
 
