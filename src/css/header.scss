@@ -77,57 +77,71 @@
 
 @media(min-width: breakpoints(tablet)){
     #header-wrapper{
-        background:#665C50;
+        background:#333;
         width:auto;
         margin:0 -20px;
-        min-height:740px;
         position: relative;
+        background-image: url(/imgs/river-header.png);
+        background-repeat:no-repeat;
+        background-size:100%;
 
         .header-image-container{
-        	background: #FDEEE1;
         	line-height: 0;
         	position: relative;
         	z-index: 1;
             margin-left:80px;
+
         	img{
         		width:115%;
                 margin-left:0;
         	}
         }
         .header-inner{
-        	position: absolute;
-            top:0;
-            left:0;
-            right:0;
         	z-index:2;
-        	padding:280px 20px 0 20px;
+        	padding:140px 20px 100px 20px;
         	overflow:hidden;
         	h1{
-        		font-size:90px;
+        		font-size:78px;
         		max-width:480px;
-        		line-height:90px;
-        		float:left;
+        		line-height:78px;
         		margin-bottom:0;
         		span{
-        			display:block;
-        		}
-        		#title-break-1{
-        			margin-left:67px;
-        		}
-        		#title-break-2{
-        			margin-left:96px;
+        			// display:block;
         		}
         	}
         	h2{
         		font-size:22px;
         		line-height:30px;
-        		max-width:540px;
-                font-weight:400;
-        		position: absolute;
-        		bottom:10px;
-        		left:340px;
-        		margin:0;
+        		max-width:630px;
+                font-weight:100;
+        		margin:20px 0 0;
         	}
+            h3{
+                font-size:22px;
+                margin:0;
+                line-height:30px;
+                a{
+                    color:#ffbb00;
+                    text-decoration: none;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+            }
+            .shareButtons{
+                margin-top:40px;
+                margin-bottom:0;
+                border-top:1px solid #6C6A62;
+                display:inline-block;
+                padding-top:12px;
+                button.gv-share{
+                    border: 1px solid #6C6A62;
+                    height: 40px;
+                    width:40px;
+                    background-color:transparent;
+                    background-size:32px;
+                }
+            }
         }
         h1{
         }
@@ -139,9 +153,6 @@
 		margin-left:-180px;
         .header-inner{
             padding-left:180px;
-            h2{
-                left:500px;
-            }
         }
 	}
 }
