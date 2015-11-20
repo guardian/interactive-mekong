@@ -5,19 +5,19 @@ function getOffset(el) {
 }
 
 module.exports = {
-	scrollTo: function (el) {
+	scrollTo: function (el, isFixed) {
 	    var start = window.pageYOffset;
 	    var end = getOffset(el);
 	    var distance = end - start;
 	    var elapsed = 0;
-
+	    
 	    window.requestAnimationFrame(function scrollHandler() {
 	        var t = elapsed / total;
 	        window.scrollTo(0, Math.floor(start + distance * t * (2 - t)));
 	        if (elapsed < total) {
 	            elapsed += interval;
 	            window.requestAnimationFrame(scrollHandler);
-	        } else if( elapsed == total){
+	        } else if( elapsed == total && isFixed){
 	        	el.style.position = 'fixed'
 	        }
 	    });
