@@ -100,11 +100,12 @@
 	}
 	.drone-stroke{
 		width:100%;
-		height:620px;
+		height:auto;
 		overflow: hidden;
 		display:block;
 		position: relative;
 		background:rgba(255,255,255,0.2);
+		line-height:0;
 		video{
 			width:100%;
 			height:auto;
@@ -115,6 +116,7 @@
 		position: absolute;
 		bottom:12px;
 		padding-left:20px;
+		line-height:1em;
 		p{
 			font-family: $f-sans-serif-text;
 			margin:0;
@@ -135,7 +137,19 @@
 	}
 }
 
-@media(min-width:breakpoints(wide)){
+@media(max-width:breakpoints(desktop)){
+	.drone-stroke video{
+		margin-top:0 !important;
+	}
+}
+
+@media(min-width:breakpoints(desktop)){
+	.drone-stroke{
+		height: 620px;
+	}
+}
+
+@media(min-width:breakpoints(leftCol)){
 	.swiper-slide.slide-title{
 		margin-left:-180px;
 
@@ -162,5 +176,4 @@
 			padding:0;
 		}
 	}
-
 }
