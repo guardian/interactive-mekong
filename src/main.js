@@ -58,7 +58,8 @@ function boot(el) {
     /////////////////////////////
 
     var key = '1vqPIwCHblYbrRHrvH_xMaQMx_TkEODbW6p6iqFmiNus'; //spreadsheet data
-	var isLive = ( window.location.origin.search('localhost') > -1 || window.location.origin.search('gutools.co.uk') > -1 || window.location.origin.search('interactive.guim.co.uk') > -1) ? false : true;
+	//var isLive = ( window.location.origin.search('localhost') > -1 || window.location.origin.search('gutools.co.uk') > -1 || window.location.origin.search('interactive.guim.co.uk') > -1) ? false : true;
+    var isLive = false;
     var folder = (!isLive)? 'docsdata-test' : 'docsdata';
 
     getJSON('https://interactive.guim.co.uk/' + folder + '/' + key + '.json', 
@@ -85,7 +86,6 @@ function boot(el) {
             var currentChapter;
 
             json.sheets["overview"].forEach(function(e){
-
                 //if new chapter data is detected
                 if(e.chapter !== ''){
                     currentChapter = {
@@ -120,14 +120,13 @@ function boot(el) {
                     }
 
                 }
-
+                console.log('card', e, currentStack)
 
                 var card = cardLookup[ e.card ];
    
                 if(e.transition){
                     card.transition = e.transition;
                 }
-                
                 //store the card data
                 currentStack.cards.push( card )
             })
@@ -162,6 +161,7 @@ function boot(el) {
                 render(json,el);
             }else{
                 render(json, el);
+                
             }
             
         }
@@ -352,27 +352,33 @@ function resizeMobile(){
 }
 
 function scrollMobile(){
-    var rect = document.querySelector('.mobile-cards').getBoundingClientRect();
-    var midPoint = rect.top + rect.height/2 + wTop;
-    var position = getPosition(wTop,wHeight,rect);
-    if(position.inTopHalf){
+    if(!isMobileFullScreen){
+            var rect = document.querySelector('.mobile-cards').getBoundingClientRect();
+            var midPoint = rect.top + rect.height/2 + wTop;
+            var position = getPosition(wTop,wHeight,rect);
+            if(position.inTopHalf){
 
-        positionMobile();
+                positionMobile();
+            }
     }
+
 }
 
 function resetMobile(){
     document.querySelector('.mobile-cards').style.position = 'relative';
 
-    scroll.scrollTo( document.querySelector('.mobile-opener') , false);
+    //scroll.scrollTo( document.querySelector('.mobile-opener') );
+    window.scrollTo(0,0)
+    document.querySelector('.mobile-cards').style.position = 'relative';
     document.querySelector('.mobile-cards-overlay').classList.remove('mobile-cards-active');
     isMobileFullScreen = false;
 }
 
 function positionMobile(){
+    isMobileFullScreen = true;
     document.querySelector('.mobile-cards-overlay').classList.add('mobile-cards-active');
     scroll.scrollTo( document.querySelector('.mobile-cards'), true );
-    isMobileFullScreen = true;
+    
 }
 
 /******************************/
@@ -422,7 +428,6 @@ function handleDesktopCard(div, wTop, wHeight){
         if(rect.top < 0){
             var chapterColor = div.parentElement.getAttribute('data-chapter-color');
             console.log(chapterColor)
-            //console.log(currentChapter);
             document.querySelector('body').style.background = chapterColor;
         }
     }    
