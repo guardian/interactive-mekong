@@ -351,7 +351,7 @@ function resizeMobile(){
         if( currentHeight != windowHeight){
             windowHeight = currentHeight;
             document.querySelector('.mobile-cards').style.height = currentHeight + 'px';
-            verticalSwiper.update();
+            verticalSwiper.update(true);
         }
 }
 

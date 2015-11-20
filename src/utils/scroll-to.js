@@ -17,6 +17,8 @@ module.exports = {
 	        if (elapsed < total) {
 	            elapsed += interval;
 	            window.requestAnimationFrame(scrollHandler);
+	        } else if( elapsed == total){
+	        	el.style.position = 'fixed'
 	        }
 	    });
 
