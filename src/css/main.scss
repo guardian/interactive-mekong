@@ -12,7 +12,11 @@ body {
     margin: 0;
     padding: 0;
     background:#333;
-    transition:background 4s linear;
+    
+}
+
+body.gv-loaded {
+    transition:background 1s ease;
 }
 
 // Remove <figure> margin

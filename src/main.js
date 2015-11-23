@@ -388,6 +388,7 @@ function positionMobile(){
 /******************************/
 
 function initDesktop(el){
+    document.querySelector('body').classList.add('gv-loaded')
     scanCardsDesktop(el);
 
     window.addEventListener(
@@ -425,7 +426,7 @@ function handleDesktopCard(div, wTop, wHeight){
     var position = getPosition(wTop,wHeight,rect);
 
     if(div.classList.contains('slide-title')){
-        if(rect.top < 0){
+        if(rect.top < 100){
             var chapterColor = div.parentElement.getAttribute('data-chapter-color');
             console.log(chapterColor)
             document.querySelector('body').style.background = chapterColor;

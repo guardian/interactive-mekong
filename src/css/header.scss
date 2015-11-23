@@ -50,6 +50,36 @@
     }
 }
 
+.gv-header-journey-text {
+    display: inline-block;
+    border-top: 1px solid #fdeee1;
+    padding: 5px 0;
+    font-size: 14px;
+    font-family:$f-sans-serif-text;
+    color: #fff;
+
+}
+.gv-header-down, .gv-header-right {
+    margin-left: 5px;
+    width: 20px;
+        height: 20px;
+        background: #ffbb00;
+        border: none;
+        border-radius: 80px;
+        outline: none;
+        display:inline-block;
+        background-image: url(/imgs/arrow-icon.svg);
+        background-position: center;
+        background-size: 16px;
+        background-repeat: no-repeat;
+        margin-bottom: -5px;
+
+}
+
+.gv-header-down {
+    transform:rotate(90deg);
+}
+
 .mobile-opener {
     padding: 20px;
     background-image:url(/imgs/mekong_mobile.jpg);
