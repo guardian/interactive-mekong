@@ -1,33 +1,25 @@
-<div class="swiper-container swiper-container-v">
-        <div class="swiper-wrapper">
+{{#each stacks}}                     
 
-            {{#each stacks}}                     
+    <div class="swiper-slide">
+        <div class="swiper-container swiper-container-h">
+            <div class="swiper-wrapper">
 
-                <div class="swiper-slide">
-                    <div class="swiper-container swiper-container-h">
-                        <div class="swiper-wrapper">
+                {{#cards}}
 
-                            {{#cards}}
+                    {{>cardMobile}}
 
-                                {{>cardMobile}}
+                {{/cards}}
 
-                            {{/cards}}
+            </div>
 
-                        </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination-container">
+                <div class="swiper-pagination swiper-chapter-pagination"></div>
+            </div>
 
-                        <!-- Add Pagination -->
-                        <div class="swiper-pagination-container">
-                            <div class="swiper-pagination swiper-chapter-pagination"></div>
-                        </div>
-
-
-                    </div>
-                </div>
-
-
-            {{/each}}
 
         </div>
     </div>
 
-<div class='mobile-cards-overlay'></div>
+
+{{/each}}

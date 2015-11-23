@@ -39,6 +39,7 @@ function boot(el) {
     if(window.innerWidth > 740){
         isMobile = headerContent.isMobile = false;
     }
+    headerContent.windowHeight = windowHeight = window.innerHeight;
 
     //setup the handlebars templates
     templates.init(Handlebars);
@@ -58,7 +59,7 @@ function boot(el) {
     /////////////////////////////
 
     var key = '1vqPIwCHblYbrRHrvH_xMaQMx_TkEODbW6p6iqFmiNus'; //spreadsheet data
-	//var isLive = ( window.location.origin.search('localhost') > -1 || window.location.origin.search('gutools.co.uk') > -1 || window.location.origin.search('interactive.guim.co.uk') > -1) ? false : true;
+    //var isLive = ( window.location.origin.search('localhost') > -1 || window.location.origin.search('gutools.co.uk') > -1 || window.location.origin.search('interactive.guim.co.uk') > -1) ? false : true;
     var isLive = false;
     var folder = (!isLive)? 'docsdata-test' : 'docsdata';
 
@@ -120,7 +121,6 @@ function boot(el) {
                     }
 
                 }
-                console.log('card', e, currentStack)
 
                 var card = cardLookup[ e.card ];
    
@@ -160,8 +160,7 @@ function boot(el) {
                 console.log(json);
                 render(json,el);
             }else{
-                render(json, el);
-                
+                render(json, el);                
             }
             
         }
@@ -176,22 +175,24 @@ function render(json, el){
 
 
     //render the template
-	var content;
-	var div = el.querySelector('.gv-card-container');
+    var content;
+    var div;
 
     if(isMobile){
+        div = el.querySelector('.swiper-container-v .swiper-wrapper');
+
         //init the swiper UX for mobile
         content = Handlebars.compile( 
             require('./html/layout-mobile.html'), 
             { compat: true }
         );
 
-        div.innerHTML = content(json);
+        div.innerHTML += content(json);
 
         initMobile(el);
     } else {
         //init the loader / display for desktop
-
+        div = el.querySelector('.gv-card-container');
         content = Handlebars.compile( 
             require('./html/layout-desktop.html'), 
             { compat: true }
@@ -216,7 +217,6 @@ function render(json, el){
 
 function initMobile(el){
 
-    windowHeight = window.innerHeight;
     document.querySelector('.mobile-cards').style.height = windowHeight + 'px';
 
     var hSwipers = el.querySelectorAll('.swiper-container-h');
@@ -242,9 +242,7 @@ function initMobile(el){
         scanCardsMobile('chapters', e.container[0]);
     })
     .on('onTouchMove', function (swiper, e) {
-        if(swiper.isBeginning && swiper.swipeDirection ==='prev'){
-            resetMobile();
-        }
+
     });
 
 
@@ -282,7 +280,6 @@ function initMobile(el){
     })
 
     window.addEventListener( 'resize', detect.debounce(resizeMobile, 250) );
-    window.addEventListener('scroll', detect.debounce(positionMobile, 200) );
 
 }
 
@@ -351,35 +348,7 @@ function resizeMobile(){
         }
 }
 
-function scrollMobile(){
-    if(!isMobileFullScreen){
-            var rect = document.querySelector('.mobile-cards').getBoundingClientRect();
-            var midPoint = rect.top + rect.height/2 + wTop;
-            var position = getPosition(wTop,wHeight,rect);
-            if(position.inTopHalf){
 
-                positionMobile();
-            }
-    }
-
-}
-
-function resetMobile(){
-    document.querySelector('.mobile-cards').style.position = 'relative';
-
-    //scroll.scrollTo( document.querySelector('.mobile-opener') );
-    window.scrollTo(0,0)
-    document.querySelector('.mobile-cards').style.position = 'relative';
-    document.querySelector('.mobile-cards-overlay').classList.remove('mobile-cards-active');
-    isMobileFullScreen = false;
-}
-
-function positionMobile(){
-    isMobileFullScreen = true;
-    document.querySelector('.mobile-cards-overlay').classList.add('mobile-cards-active');
-    scroll.scrollTo( document.querySelector('.mobile-cards'), true );
-    
-}
 
 /******************************/
 //
