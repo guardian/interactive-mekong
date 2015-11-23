@@ -3,7 +3,7 @@
 }
 
 .title-heading-container{
-	padding:0 20px;
+	padding:0 10px;
 	font-family:$f-serif-headline;
 	width:100%;
 	position: relative;
@@ -18,7 +18,8 @@
 	p{
 		font-family: $f-sans-serif-text;
 		margin:0;
-		font-size:14px;
+		font-size: 16px;
+		line-height: 24px;
 		color:rgba(255,255,255,0.6);
 		strong{
 			color:#fff;
@@ -27,13 +28,13 @@
 
 	
 	h2{
-		font-size:42px;
-		line-height:42px;
+		font-size:32px;
+		line-height:36px;
 		margin:0;
 	}
 	h3{
-		font-size:16px;
-		line-height:21px;
+		font-size: 16px;
+		line-height: 24px;
 		font-weight:400;
 		font-family:$f-serif-headline;
 		margin:24px 0 0;
@@ -63,7 +64,7 @@
 	}
 	.shareButtons{
 		position: absolute;
-		left:20px;
+		left:10px;
 		top:10px;
 	}
 }
