@@ -5,8 +5,9 @@
 	p {
 	    font-size: 16px;
 	    line-height: 24px;
-
+	    max-width:620px;
 	    padding: 0 20px;
+	    margin:0;
 	}
 
 	.iframe-container {
@@ -31,8 +32,6 @@
 
 		p {
 			padding: 0 0px;
-		    font-size: 18px;
-		    line-height: 27px;
 		}
 
 		.iframe-container:after {

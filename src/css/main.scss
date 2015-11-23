@@ -16,7 +16,7 @@ body {
 }
 
 body.gv-loaded {
-    transition:background 1s ease;
+    transition:background 1s linear;
 }
 
 // Remove <figure> margin

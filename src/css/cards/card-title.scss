@@ -137,13 +137,13 @@
 	}
 }
 
-@media(max-width:breakpoints(desktop)){
+@media(max-width:breakpoints(wide)){
 	.drone-stroke video{
 		margin-top:0 !important;
 	}
 }
 
-@media(min-width:breakpoints(desktop)){
+@media(min-width:breakpoints(leftCol)){
 	.drone-stroke{
 		height: 620px;
 	}
