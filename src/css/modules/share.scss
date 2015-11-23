@@ -4,7 +4,7 @@
  }
 @media(max-width:980px){
  	button.gv-share{
- 		background-color:rgba(255,255,255,0.25) !important;
+ 		// background-color:rgba(255,255,255,0.25) !important;
  	} 	
 }
 button.gv-share{
@@ -19,7 +19,7 @@ button.gv-share{
     background-repeat: no-repeat;
     background-size:28px;
     margin: 0 2px;
-	background-color:rgba(255,255,255,0.25);
+	// background-color:rgba(255,255,255,0.25);
     transition: 200ms background-color;
 }
 
