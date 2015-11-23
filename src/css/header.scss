@@ -166,9 +166,11 @@
             .shareButtons{
                 margin-top:40px;
                 margin-bottom:0;
-                border-top:1px solid #6C6A62;
+                border-top: 1px solid rgba(255,255,255,0.15);
                 display:inline-block;
                 padding-top:12px;
+                position: relative;
+                left:0;
                 button.gv-share{
                 }
             }
