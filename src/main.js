@@ -221,7 +221,7 @@ function initMobile(el){
 
     var hSwipers = el.querySelectorAll('.swiper-container-h');
     var vSwiper = window.gvvertical = el.querySelector('.swiper-container-v');
-
+    var header = document.querySelector('#header');
 
     //load the container swiper
     verticalSwiper = new Swiper(vSwiper, {
@@ -240,6 +240,15 @@ function initMobile(el){
     })
     .on('onSlideChangeEnd', function (e) {
         scanCardsMobile('chapters', e.container[0]);
+        console.log(e)
+        if(header){
+            if(e.progress > 0 && e.progress < 1){
+                header.classList.add('gv-hidden');
+            } else {
+                header.classList.remove('gv-hidden');
+            }
+        }
+        
     })
     .on('onTouchMove', function (swiper, e) {
 
