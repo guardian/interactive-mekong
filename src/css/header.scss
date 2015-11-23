@@ -22,7 +22,7 @@
             font-family: $f-serif-headline;
         }
         p{
-            font-weight:100;
+            font-weight:400;
             font-size:16px;
             line-height:21px;
             margin:12px 0;
@@ -39,7 +39,7 @@
     top:0;
     left:20px;
     button.gv-share{
-        border: 1px solid #6C6A62;
+        border: 1px solid rgba(255,255,255,0.15);
         height: 40px;
         width:40px;
         background-color:transparent;
@@ -76,7 +76,7 @@
     padding: 5px 0;
     font-size: 12px;
     font-family:$f-sans-serif-text;
-    color: rgba(255,255,255,0.6);
+    color: rgba(253,238,225,0.6);
 
 }
 .gv-header-down, .gv-header-right {
