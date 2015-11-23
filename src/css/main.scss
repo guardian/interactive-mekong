@@ -48,6 +48,7 @@ body.gv-loaded {
     @import 'cards/card-transition';
     @import 'cards/card-iframe';
     @import 'modules/share';
+    width: 100%;
 
     margin: 0;
     margin-top: 0 !important;
@@ -62,7 +63,7 @@ body.gv-loaded {
     }
 
     .mobile-cards {
-        top: 0;
+        height: 1000px;
         width: 100%;
         z-index: 1;
     }

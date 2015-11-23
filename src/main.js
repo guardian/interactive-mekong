@@ -13,6 +13,7 @@ var templates = require('./utils/handlebarsHelpers.js');
 var windowHeight;
 var isAlt = false;
 var isMobile = true;
+var isAndroidApp = ( detect.isAndroid() && window.location.origin === "file://" ) ? true : false;
 var isMobileFullScreen = false;
 var cardData;
 var newChapter;
@@ -39,7 +40,24 @@ function boot(el) {
     if(window.innerWidth > 740){
         isMobile = headerContent.isMobile = false;
     }
-    headerContent.windowHeight = windowHeight = window.innerHeight;
+
+    if(isAndroidApp){
+        el.style.height = '2000px';
+        setTimeout(function(){
+
+            start(el);
+            el.style.position = 'relative';
+        },60)
+    } else {
+        start(el);
+        
+    }
+    
+}
+
+function start(el){
+
+    
 
     //setup the handlebars templates
     templates.init(Handlebars);
@@ -48,11 +66,19 @@ function boot(el) {
     /////////////////////////////
     //render the shell template with the header
     /////////////////////////////
+
     var content = Handlebars.compile( 
         require('./html/base.html'), 
         { compat: true }
     );
     el.innerHTML = content(headerContent);
+
+    windowHeight = getInnerHeight();
+
+    el.style.height = '2000px';
+
+    console.log(window.innerHeight, document.documentElement.clientHeight)
+
 
     /////////////////////////////
     //load the spreadsheet data and decide how to layout
@@ -217,7 +243,7 @@ function render(json, el){
 
 function initMobile(el){
 
-    document.querySelector('.mobile-cards').style.height = windowHeight + 'px';
+    document.querySelector('.mobile-cards').style.height = el.style.height = getInnerHeight() + 'px';
 
     var hSwipers = el.querySelectorAll('.swiper-container-h');
     var vSwiper = window.gvvertical = el.querySelector('.swiper-container-v');
@@ -237,10 +263,11 @@ function initMobile(el){
     })
     .on('onSlideChangeStart', function (e) {
         assetManager.stopPlaying();
+        
     })
     .on('onSlideChangeEnd', function (e) {
         scanCardsMobile('chapters', e.container[0]);
-        console.log(e)
+
         if(header){
             if(e.progress > 0 && e.progress < 1){
                 header.classList.add('gv-hidden');
@@ -248,11 +275,18 @@ function initMobile(el){
                 header.classList.remove('gv-hidden');
             }
         }
-        
     })
-    .on('onTouchMove', function (swiper, e) {
-
+    .on('onTouchStart', function (swiper, e) {
+        if(isAndroidApp && window.GuardianJSInterface.registerRelatedCardsTouch){
+            window.GuardianJSInterface.registerRelatedCardsTouch(true);
+        }
+    })
+    .on('onTouchEnd', function (swiper, e) {
+        if(isAndroidApp && window.GuardianJSInterface.registerRelatedCardsTouch){
+            window.GuardianJSInterface.registerRelatedCardsTouch(false);
+        }
     });
+
 
 
 
@@ -277,6 +311,16 @@ function initMobile(el){
                 assetManager.stopPlaying();
                 scanCardsMobile('section', e.container[0]);
             })
+            .on('onTouchStart', function (swiper, e) {
+                if(isAndroidApp && window.GuardianJSInterface.registerRelatedCardsTouch){
+                    window.GuardianJSInterface.registerRelatedCardsTouch(true);
+                }
+            })
+            .on('onTouchEnd', function (swiper, e) {
+                if(isAndroidApp && window.GuardianJSInterface.registerRelatedCardsTouch){
+                    window.GuardianJSInterface.registerRelatedCardsTouch(false);
+                }
+            });
             
         
     }
@@ -349,7 +393,7 @@ function resizeMobile(){
 
     //deals with weird ios behavior when browser nav + share bar hide and reveal
 
-        var currentHeight = window.innerHeight;
+        var currentHeight = getInnerHeight();;
         if( currentHeight != windowHeight){
             windowHeight = currentHeight;
             document.querySelector('.mobile-cards').style.height = currentHeight + 'px';
@@ -389,7 +433,7 @@ function scanCardsDesktop(el){
     
     var slides = el.querySelectorAll('.gv-slide'),
         wTop = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0),
-        wHeight = window.innerHeight;
+        wHeight = getInnerHeight();
 
     for(var s = 0; s < slides.length; s ++){
         handleDesktopCard(slides[s], wTop, wHeight);
@@ -481,6 +525,15 @@ function share(e){
 
     window.open(shareWindow, "Share", "width=640,height=320"); 
 
+}
+
+function getInnerHeight(){
+    var h = window.innerHeight;
+
+    if(isAndroidApp){
+        h = h - 77;
+    }
+    return h;
 }
 
 
