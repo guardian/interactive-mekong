@@ -52,6 +52,25 @@
     left: 0;
 }
 
+@media(min-width: 375px){
+	.title-heading{
+		p{
+			font-size: 18px;
+			line-height: 28px;
+		}
+
+		
+		h2{
+			font-size:44px;
+			line-height:48px;
+		}
+		h3{
+			font-size: 18px;
+			line-height: 24px;
+		}
+	}
+}
+
 @media(max-width:breakpoints(tablet)){
 	.slide-title:before{
 		display:block;

@@ -48,6 +48,11 @@
 			font-family:$f-sans-serif-text;
 			font-size:14px;
 			margin:28px 0 0 10px;
+
+			@media(min-width: 375px){
+				font-size: 18px;
+				line-height: 24px;
+			}
 		}
 		&:after{
 			display: block;

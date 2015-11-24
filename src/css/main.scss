@@ -57,6 +57,19 @@ body.gv-loaded {
     #header.gv-hidden {
         display: none;
     }
+
+    #header-wrapper .shareButtons {
+        display: none;
+    }
+
+    @media(min-width: 375px){
+        #header-wrapper .shareButtons {
+            display: block;
+        }
+    }
+
+
+
 }
 
 // Remove <figure> margin
