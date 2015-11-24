@@ -19,7 +19,8 @@ var cardData;
 var newChapter;
 
 var shareMedia = ['facebook', 'twitter'];
-var shareUrl = (window.guardian.config.page.shortUrl) ? window.guardian.config.page.shortUrl: 'http://www.theguardian.com' + window.guardian.config.page.pageId;
+// var shareUrl = (window.guardian.config.page.shortUrl) ? window.guardian.config.page.shortUrl: 'http://www.theguardian.com' + window.guardian.config.page.pageId;
+var shareUrl = "hei"
 var shareMessage = 'The fate of 70m people rests on what happens to the Mekong river.';
 var shareImage = "http://media.guim.co.uk/b93f5ac5cb86e8bb1a46ab672ca89ea46ff16fe1/0_0_3543_2362/2000.jpg";
 var headerContent = {

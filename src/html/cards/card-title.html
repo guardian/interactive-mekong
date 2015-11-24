@@ -9,8 +9,11 @@
 		{{>shareButtons}}
 {{/if}}
 <div class="title-heading-container">
-	<div class="title-locator">
-		<img src="/imgs/content/chapter-locator-1.png" />
+	<div class="title-locator locator-{{locator}}">
+		<div class="locator-map">
+			{{>locatormap}}
+		</div>
+		<p>{{locator}}</p>
 	</div>
 	
 	<div class="title-heading">

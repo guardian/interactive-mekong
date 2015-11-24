@@ -84,11 +84,31 @@
         .title-locator{
         	position: relative;
         	float:right;
-        	width:120px;
         	display:block;
         	margin:0 0 10px 10px;
-        	img{
-        		width:100%;
+
+        	.locator-map{
+        		width:140px;
+        		height:140px;
+        		overflow:hidden;
+        		border-radius:140px;
+        		border: 1px solid rgba(255,255,255,0.1);
+        	}
+
+        	&.locator-Laos svg #Fill-46{
+        		fill: #FFBB00;
+        	}
+        	&.locator-Vietnam svg #Fill-134{
+        		fill: #FFBB00;
+        	}
+        	&.locator-Cambodia svg #Fill-45{
+        		fill: #FFBB00;
+        	}
+        	p{
+        		font-size:14px;
+        		text-align:center;
+        		font-family: $f-sans-serif-text;
+        		color:rgba(255,255,255,0.4);
         	}
         }
 		.title-heading{
