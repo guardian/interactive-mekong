@@ -12,7 +12,8 @@ function init(Handlebars){
         'titleCard': require('./../html/cards/card-title.html'),
         'transitionCard': require('./../html/cards/card-transition.html'),
         'iframeCard': require('./../html/cards/card-iframe.html'),
-        'shareButtons': require('./../html/cards/share.html')
+        'shareButtons': require('./../html/cards/share.html'),
+        'locatormap': require('./../imgs/locator.svg')
     });
 
 
