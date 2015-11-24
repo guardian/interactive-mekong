@@ -67,17 +67,21 @@ function start(el){
     //render the shell template with the header
     /////////////////////////////
 
+    windowHeight = getInnerHeight();
+    if(!isAndroidApp){
+        headerContent.windowHeight = windowHeight;
+    }
+
     var content = Handlebars.compile( 
         require('./html/base.html'), 
         { compat: true }
     );
     el.innerHTML = content(headerContent);
 
-    windowHeight = getInnerHeight();
-
-    el.style.height = '2000px';
-
-    console.log(window.innerHeight, document.documentElement.clientHeight)
+    
+    if(isAndroidApp){
+       el.style.height = '2000px'; 
+    }
 
 
     /////////////////////////////
