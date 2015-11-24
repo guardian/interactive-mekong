@@ -7,6 +7,7 @@ function mediaDisplay(el,player,data, isMobile){
 	function init(){
 		var width = player.getBoundingClientRect().width;
         var height = (width * 0.5625) + 'px';
+
         player.setAttribute('height', height);
 		player.addEventListener("play", function () {
 			if(data.card === 'video'){
@@ -26,6 +27,11 @@ function mediaDisplay(el,player,data, isMobile){
 			player.addEventListener("timeupdate", utils.debounce(function(){ updateProgress(); }, 250), false);
 		}
 		
+		player.addEventListener("click", function(){
+			if(!player.paused){
+				player.pause();
+			}
+		})
 		// el.addEventListener("mouseover", function(){
 		// 	el.classList.add("gv-state-hovering");
 		// }, false);
