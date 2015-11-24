@@ -39,8 +39,7 @@ function mediaDisplay(el,player,data, isMobile){
 
 	function updateProgress(){
 		if(player.duration && player.currentTime){
-			el.querySelector('.video-time').innerHTML = getTime( player.currentTime, player.duration );
-
+			el.querySelector('.video-time').innerHTML = getTime( player.currentTime, player.duration);
 		}
 	}
 

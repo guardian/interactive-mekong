@@ -43,6 +43,7 @@
 		z-index:1;
 		// overflow: hidden;
 		position: absolute;
+
 		.placeholder-mobile .video-time{
 			float:left;
 			font-family:$f-sans-serif-text;
@@ -167,6 +168,12 @@
 			}
 		}
 
+		&.video-muted .placeholder-desktop:hover{
+			.unmute-video, .video-time{
+				color:#ffbb00;
+			}	
+		}
+
 		.placeholder-desktop{
 			display: inline-block;
 		}
@@ -184,6 +191,23 @@
 			cursor:pointer;
 			&:hover{
 				border-color:#ffbb00;
+			}
+		}
+
+		.video-time-container{
+			position: absolute;
+			top:36px;
+			left:50%;
+			margin-left:54px;
+			p{
+				width:auto;
+				display:block;
+				margin:0;
+				line-height:1.2em;
+			}
+
+			.unmute-video{
+				display:none;
 			}
 		}
 		// button:hover + .video-time,button:hover + button + .video-time,button:hover + button + button + .video-time{
@@ -232,6 +256,15 @@
 				.play-btn{
 					display:none;
 				}
+			}
+			.video-time{
+				opacity:0.6;
+			}
+			.unmute-video{
+				display:block;
+			}
+			.video-time-container{
+				top:24px;
 			}
 			
 		}
