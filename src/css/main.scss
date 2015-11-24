@@ -42,10 +42,12 @@ body.gv-loaded {
     }
 }
 
-#header {
-    z-index: 100;
-    position: fixed;
-    width: 100%;
+@media(max-width: breakpoints(tablet)){
+    #header {
+        z-index: 100;
+        position: fixed;
+        width: 100%;
+    }
 }
 
 .is-immersive-interactive {
