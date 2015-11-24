@@ -44,6 +44,14 @@ function mediaDisplay(el,player,data, isMobile){
 
 			var posterImage = getVideoPosterImage(data.desktop_video_url);
 			player.setAttribute('poster', posterImage);
+
+			//setting up for apple ipad
+			if(utils.isIOS() && data.card === 'video'){
+				player.controls = true;
+				el.querySelector('.photo-placeholder-container').style.display = 'none';
+			}
+
+
 		}
 
 	}
