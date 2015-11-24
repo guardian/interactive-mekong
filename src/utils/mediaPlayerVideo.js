@@ -39,7 +39,12 @@ function mediaDisplay(el,player,data, isMobile){
 		// el.addEventListener("mouseout", function(){
 		// 	el.classList.remove("gv-state-hovering");
 		// }, false);
+	
+		if(!isMobile){
 
+			var posterImage = getVideoPosterImage(data.desktop_video_url);
+			player.setAttribute('poster', posterImage);
+		}
 
 	}
 
