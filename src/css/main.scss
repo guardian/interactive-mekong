@@ -17,6 +17,14 @@ body {
 
 body.gv-loaded {
     transition:background 1s linear;
+
+    .gv-start-button {
+        display: block;
+    }
+
+    .gv-header-journey-text {
+        display: inline-block;
+    }
 }
 
 #header {
@@ -81,6 +89,28 @@ body.gv-loaded {
         left: 0;
         width:100%;
         z-index:100;
+    }
+
+    .gv-direction-down, .gv-direction-right {
+        margin-right: 5px;
+        width: 16px;
+        line-height:24px;
+        height: 16px;
+        background: #ffbb00;
+        border: none;
+        border-radius: 80px;
+        outline: none;
+        display:inline-block;
+        background-image: url(/imgs/arrow-icon.svg);
+        background-position: center;
+        background-size: 12px;
+        background-repeat: no-repeat;
+        margin-bottom: -3px;
+
+    }
+
+    .gv-direction-down {
+        transform:rotate(90deg);
     }
 
 

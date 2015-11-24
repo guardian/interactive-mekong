@@ -53,6 +53,7 @@
     float:right;
     font-family:$f-sans-serif-text;
     margin-top:20px;
+    display: none;
 
     span{
         width: 34px;
@@ -72,15 +73,15 @@
 }
 
 .gv-header-journey-text {
-    display: inline-block;
+    display: none;
     padding: 5px 0;
     font-size: 12px;
     font-family:$f-sans-serif-text;
     color: rgba(253,238,225,0.6);
 
 }
-.gv-header-down, .gv-header-right {
-    margin-left: 5px;
+.gv-direction-down, .gv-direction-right {
+    margin-right: 5px;
     width: 16px;
     line-height:24px;
     height: 16px;
@@ -97,9 +98,11 @@
 
 }
 
-.gv-header-down {
+.gv-direction-down {
     transform:rotate(90deg);
 }
+
+
 
 .card-opener {
     padding: 10px;
