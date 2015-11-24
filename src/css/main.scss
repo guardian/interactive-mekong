@@ -122,13 +122,13 @@ body.gv-loaded {
         
         .swiper-pagination-bullet{
             display: inline-block;
-            background:rgba(255,255,255,0.5);
+            background:rgba(255,255,255,0.2);
       
             margin:0;
             margin-right:5px;
             opacity:1;
             &.swiper-pagination-bullet-active{
-                background:#fff;
+                background:rgba(255,255,255,0.8);
             }
         }
     }
