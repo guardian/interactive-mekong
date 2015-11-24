@@ -256,7 +256,7 @@ function initMobile(el){
     //load the container swiper
     verticalSwiper = new Swiper(vSwiper, {
         paginationClickable: true,
-        spaceBetween: 1,
+        spaceBetween: 0,
         direction: 'vertical',
         nextButton: el.querySelectorAll('.swiper-button-down'),
         //prevButton: el.getElementsByClassName('swiper-button-prev')[0],
