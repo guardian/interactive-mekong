@@ -242,9 +242,9 @@
 		&.video-muted{
 			.unmute-btn{
 				display:inline-block;
-				background-image: url(/imgs/unmute-btn.svg);
+				background-image: url(/imgs/mute-btn.svg);
 				&:hover{
-					background-image: url(/imgs/unmute-hover-btn.svg);
+					background-image: url(/imgs/mute-hover-btn.svg);
 				}
 			}
 			&.video-paused{
