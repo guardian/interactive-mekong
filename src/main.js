@@ -157,6 +157,10 @@ function start(el){
                 if(e.transition){
                     card.transition = e.transition;
                 }
+
+                if(e.transition_copy){
+                    card.transition_copy = e.transition_copy;
+                }
                 //store the card data
                 currentStack.cards.push( card )
             })

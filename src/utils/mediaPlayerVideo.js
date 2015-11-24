@@ -7,6 +7,7 @@ function mediaDisplay(el,player,data, isMobile){
 	function init(){
 		var width = player.getBoundingClientRect().width;
         var height = (width * 0.5625) + 'px';
+
         player.setAttribute('height', height);
 		player.addEventListener("play", function () {
 			if(data.card === 'video'){
@@ -26,6 +27,11 @@ function mediaDisplay(el,player,data, isMobile){
 			player.addEventListener("timeupdate", utils.debounce(function(){ updateProgress(); }, 250), false);
 		}
 		
+		player.addEventListener("click", function(){
+			if(!player.paused){
+				player.pause();
+			}
+		})
 		// el.addEventListener("mouseover", function(){
 		// 	el.classList.add("gv-state-hovering");
 		// }, false);
@@ -33,7 +39,20 @@ function mediaDisplay(el,player,data, isMobile){
 		// el.addEventListener("mouseout", function(){
 		// 	el.classList.remove("gv-state-hovering");
 		// }, false);
+	
+		if(!isMobile){
 
+			var posterImage = getVideoPosterImage(data.desktop_video_url);
+			player.setAttribute('poster', posterImage);
+
+			//setting up for apple ipad
+			if(utils.isIOS() && data.card === 'video'){
+				player.controls = true;
+				el.querySelector('.photo-placeholder-container').style.display = 'none';
+			}
+
+
+		}
 
 	}
 
