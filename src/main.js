@@ -19,8 +19,7 @@ var cardData;
 var newChapter;
 
 var shareMedia = ['facebook', 'twitter'];
-// var shareUrl = (window.guardian.config.page.shortUrl) ? window.guardian.config.page.shortUrl: 'http://www.theguardian.com' + window.guardian.config.page.pageId;
-var shareUrl = "hei"
+var shareUrl = "http://www.theguardian.com";
 var shareMessage = 'The fate of 70m people rests on what happens to the Mekong river.';
 var shareImage = "http://media.guim.co.uk/b93f5ac5cb86e8bb1a46ab672ca89ea46ff16fe1/0_0_3543_2362/2000.jpg";
 var headerContent = {
@@ -233,7 +232,7 @@ function render(json, el){
 
         initDesktop(el);
     }
-
+    document.querySelector('body').classList.add('gv-loaded');
     //init share
     initShare(el);
 
@@ -299,7 +298,7 @@ function initMobile(el){
     for(var i = 0; i < hSwipers.length; i++) {
         var el = hSwipers[i];
 
-        // if(hSwipers[i].querySelectorAll('.gv-slide').length > 1){
+        if(hSwipers[i].querySelectorAll('.gv-slide').length > 1){
             //initialize swiper
             new Swiper(el, {
                pagination: el.getElementsByClassName('swiper-chapter-pagination')[0],
@@ -326,7 +325,7 @@ function initMobile(el){
                     window.GuardianJSInterface.registerRelatedCardsTouch(false);
                 }
             });
-            
+        }
         
     }
 
@@ -415,7 +414,7 @@ function resizeMobile(){
 /******************************/
 
 function initDesktop(el){
-    document.querySelector('body').classList.add('gv-loaded')
+    
     scanCardsDesktop(el);
 
     window.addEventListener(
