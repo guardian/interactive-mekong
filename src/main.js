@@ -495,7 +495,7 @@ function getPosition(wTop, wHeight, rect){
 
     return {
         inViewport: (midPoint > wTop - wHeight && midPoint < wTop + wHeight) ? true : false,
-        nearViewport: ( Math.abs(rect.top) < wHeight * 2.5 ) ? true : false,
+        nearViewport: ( Math.abs(rect.top) < wHeight * 2 ) ? true : false,
         inMiddle: midPoint > wTop + wHeight * .3 && midPoint < wTop + wHeight * .7,
         inTopHalf: ( Math.abs(rect.top) < wHeight / .5 ) ? true : false
     }

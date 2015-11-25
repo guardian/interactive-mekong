@@ -31,7 +31,7 @@ body {
 }
 
 body.gv-loaded {
-    transition:background 1s linear;
+    transition:background 1s ease-in;
 
     .gv-start-button {
         display: block;
