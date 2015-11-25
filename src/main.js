@@ -23,7 +23,7 @@ var shareUrl = "http://gu.com/p/4dk3p";
 var shareMessage = 'The fate of 70m people rests on what happens to the Mekong river. pic.twitter.com/ffsx0k5gNn';
 var shareImage = "http://media.guim.co.uk/d3372f1a20be9c5fea7b8419d7b7b8a4a531cb47/49_0_1801_1080/1801.jpg";
 var headerContent = {
-    headline: "The river",
+    headline: "Mekong: a river rising",
     standfirst: 'The fate of 70m people rests on what happens to the Mekong river. Ahead of the Paris climate change summit, John Vidal finds countries calling for clean energy but creating ecological and human havoc with giant dams, deforestation and fast-growing cities',
     isMobile: true,
     media: shareMedia
