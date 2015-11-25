@@ -24,7 +24,7 @@ var shareMessage = 'Mekong: a river rising. The fate of 70m people rests on what
 var shareImage = "http://media.guim.co.uk/d3372f1a20be9c5fea7b8419d7b7b8a4a531cb47/49_0_1801_1080/1801.jpg";
 var headerContent = {
     headline: "<span>Mekong:</span> a river rising",
-    standfirst: 'The fate of 70 million people rests on what happens to the Mekong river. Ahead of the Paris climate change summit, John Vidal finds countries calling for clean energy but creating ecological and human havoc with giant dams, deforestation and fast-growing cities',
+    standfirst: 'The fate of 70 million people rests on what happens to the Mekong river. With world leaders meeting in Paris next week for crucial UN climate talks, John Vidal journeys down south-east Asia’s vast waterway - a place that encapsulates some of the dilemmas they must solve. He meets people struggling to deal with the impacts of climate change as well as the ecological havoc created by giant dams, deforestation, coastal erosion and fast-growing cities',
     mobile_standfirst: 'The fate of 70 million people rests on what happens to the Mekong river. Ahead of the Paris climate change summit, John Vidal finds countries calling for clean energy but creating ecological and human havoc',
     isMobile: true,
     media: shareMedia
