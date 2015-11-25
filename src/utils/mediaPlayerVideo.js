@@ -126,7 +126,7 @@ function mediaDisplay(el,player,data, isMobile){
 	    var oggPath = path + 'mp4/1080/' + matches[1] + '/' + matches[2];
 
 	    path += matches[1] + '/' + matches[2];
-	    var poster = path + '_768k_H264_poster.jpg';
+	    var poster = path + '_2M_H264_poster.jpg';
 
 	    return {
 	        path: path,

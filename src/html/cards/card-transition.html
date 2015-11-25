@@ -1,11 +1,13 @@
+{{#if_eq share 'on'}}
+		{{>shareButtons}}
+	{{/if_eq}}
+
 <div class="card card-transition" style="background-color:{{background}}; color:{{textcolor}}">
 	<div class="paragraph-container">
 		
 		<p>{{{copy}}}</p>
 
-		{{#if_eq share 'on'}}
-			{{>shareButtons}}
-		{{/if_eq}}
+		
 	</div>
 
 </div>
