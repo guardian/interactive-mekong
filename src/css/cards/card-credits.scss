@@ -17,7 +17,6 @@
 		margin-bottom:12px;
 		color:#eee;
 		strong{
-			display:block;
 			color:#fff;
 		}
 	}
@@ -58,7 +57,7 @@
 }
 .slide-text[data-card-id="text_final"]{
 	.paragraph-container{
-		bottom:40px;
+		bottom:20px;
 	}
 	p{
 		margin:0;
@@ -75,22 +74,27 @@
 			width:300px;
 			float:left;
 			margin:0;
+			li strong{
+				display:block;
+			}
 		}
 		#kiitg{
 			width:300px;
-			margin-left:20px;
+			margin-left:0;
 			top:auto;
 			bottom:10px;
-			left:auto;
+			left:300px;
 			right:0;
 		}
 
 		#kiitg-logo{
 			width:80px;
 			height:112px;
+
+			margin:0;
 		}
 		#kiitg p{
-			margin-left:104px;
+			margin-left:94px;
 			padding-left:0;
 			bottom:0;
 			position: absolute;
