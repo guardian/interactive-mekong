@@ -269,27 +269,21 @@ body.gv-loaded {
         }
         #inner-wrapper{
             position: relative;
-            &:before{
+            &:before,&:after{
                 display:block;
                 content: '';
                 position: absolute;
                 height:100%;
-                background:rgba(0,0,0,0.1);
+                background:rgba(0,0,0,0.05);
                 width:2000px;
-                right:100%;
                 top:0;
                 z-index:100;
             }
+            &:before{ 
+                right:100%;
+            }
             &:after{
-                display:block;
-                content: '';
-                position: absolute;
-                height:100%;
-                background:rgba(0,0,0,0.1);
-                width:2000px;
                 left:100%;
-                top:0;
-                z-index:100;
             }
         }
     }
