@@ -75,7 +75,6 @@ function mediaPlayer(el, data, isMobile){
 
 	function autoPlay(isPlaying){
 		isMuted = assetManager.getMuteStatus();
-		console.log(isPlaying, isAutoPlaying)
 		if(isAutoPlaying != isPlaying){
 
 			if(isPlaying){
