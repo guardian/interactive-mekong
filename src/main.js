@@ -100,6 +100,7 @@ function start(el){
             //determine if display is mobile or desktop
             //organize the cards
             json.isMobile = isMobile;
+            json.minWidth = window.innerWidth;
             json.media = shareMedia;
             json.stacks = [];
             var cardLookup = {};
