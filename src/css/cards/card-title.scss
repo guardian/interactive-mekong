@@ -52,6 +52,12 @@
     left: 0;
 }
 
+.slides-chapter-final{
+	.title-heading-container, .drone-title{
+		display:none;
+	}
+}
+
 @media(min-width: 375px){
 	.title-heading{
 		p{

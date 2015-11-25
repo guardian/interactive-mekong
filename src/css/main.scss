@@ -17,12 +17,6 @@
 
 
 
-
-
-
-
-
-
 body {
     margin: 0;
     padding: 0;
@@ -85,6 +79,7 @@ body.gv-loaded {
     @import 'cards/card-audio';
     @import 'cards/card-transition';
     @import 'cards/card-iframe';
+    @import 'cards/card-credits';
     @import 'modules/share';
     width: 100%;
 

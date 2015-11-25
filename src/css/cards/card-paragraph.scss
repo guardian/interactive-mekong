@@ -29,7 +29,13 @@
 			font-size:18px;
 			line-height:24px;
 		}
-		
+		a{
+			color:#fff;
+			text-decoration: underline;
+			&:hover{
+				color:#ddd;
+			}
+		}
 	}
 
 	@media (min-width:480px) and (max-width:breakpoints(tablet)){
