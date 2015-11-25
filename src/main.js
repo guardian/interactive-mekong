@@ -308,7 +308,7 @@ function initMobile(el){
                pagination: el.getElementsByClassName('swiper-chapter-pagination')[0],
                 paginationClickable: true,
                 spaceBetween: 0,
-                // nextButton: el.getElementsByClassName('swiper-button-next')[0],
+                 nextButton: el.getElementsByClassName('swiper-button-next')[0],
                 // prevButton: el.getElementsByClassName('swiper-button-prev')[0],
                 keyboardControl: true,
                 mousewheelControl: false,
