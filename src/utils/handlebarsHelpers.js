@@ -30,6 +30,12 @@ function init(Handlebars){
             }
             return opts.inverse(this);
         },
+        'if_false': function(a, opts) {
+            if(a === false){
+                return opts.fn(this);
+            }
+            return opts.inverse(this);
+        },
         'if_not_eq': function(a, b, opts) {
             if(a === b){
                 return opts.inverse(this);

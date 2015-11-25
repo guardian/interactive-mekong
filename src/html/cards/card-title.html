@@ -1,24 +1,31 @@
-<div class="drone-stroke">
-	<video {{#if_eq isMobile false}}loop muted{{/if_eq}} style="margin-top:-{{offset}}px"></video>
-	<div class="drone-title">
-		<p><strong>Chapter {{number}}</strong> of 6</p>
-		<h2>{{name}}</h2>
-	</div>
-</div>
+
 {{#if isMobile}}
 		{{>shareButtons}}
+{{else}}
+	<div class="drone-stroke">
+		<video {{#if_eq isMobile false}}loop muted{{/if_eq}} style="margin-top:-{{offset}}px"></video>
+		<div class="drone-title">
+			<p><strong>Chapter {{number}}</strong> of 6</p>
+			<h2>{{name}}</h2>
+		</div>
+	</div>
 {{/if}}
 <div class="title-heading-container">
+
+	{{#if_false isMobile}}
 	<div class="title-locator locator-{{locator}}">
 		<div class="locator-map">
 			{{>locatormap}}
 		</div>
 		<p>{{locator}}</p>
 	</div>
+	{{/if_false}}
 	
 	<div class="title-heading">
 		{{#if isMobile}}
-			<p><strong>Chapter {{number}}</strong> of 6</p>
+			{{#if number}}
+				<p><strong>Chapter {{number}}</strong> of 6</p>
+			{{/if}}
 			<h2>{{name}}</h2>
 		{{/if}}
 
