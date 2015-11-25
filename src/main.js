@@ -458,7 +458,6 @@ function handleDesktopCard(div, wTop, wHeight){
     if(div.classList.contains('slide-title')){
         if(rect.top < 100){
             var chapterColor = div.parentElement.getAttribute('data-chapter-color');
-            console.log(chapterColor)
             document.querySelector('body').style.background = chapterColor;
         }
     }    

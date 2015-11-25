@@ -18,7 +18,7 @@
 
 	.photo-caption{
 		height:auto;
-		 background: linear-gradient(to top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.7) 125%);
+		 // background: linear-gradient(to top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.7) 125%);
 		display: block;
 		height:100%;
 		padding: 14px 10px 18px;
@@ -32,7 +32,8 @@
 			line-height:18px;
 			font-family:$f-sans-serif-text;
 			color:#fff;
-			text-shadow:0 1px 0 rgba(0,0,0,0.2);
+			font-weight:bold;
+			text-shadow:0 1px 20px rgba(0,0,0,0.4);
 		}
 	}
 
