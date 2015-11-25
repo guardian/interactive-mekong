@@ -1,0 +1,116 @@
+#credit-container{
+	#credit-title{
+		display:none;
+	}
+	p:before{
+		border:none;
+	}
+	ul{
+		padding:0;
+	}
+	ul li{
+		list-style:none;
+		padding:0;
+		font-size:16px;
+		font-family: $f-serif-headline;
+		line-height:18px;
+		margin-bottom:12px;
+		color:#eee;
+		strong{
+			display:block;
+			color:#fff;
+		}
+	}
+	#kiitg{
+		position:absolute;
+		bottom:0;
+		opacity:0.6;
+		&:after{
+			display: block;
+			content: '';
+			clear: both;
+		}
+	}
+	#kiitg-logo{
+		width:60px;
+		height:84px;
+		background-image:url(/imgs/kiitg-logo.png);
+		background-size:100%;
+		float:left;
+		margin:0 7px;
+	}
+	#kiitg p{
+		&:before{
+			display:none;
+		}
+		font-size:12px;
+		padding-left:84px;
+		line-height:16px;
+		font-family:$f-sans-serif-text;
+		padding-top:5px;
+		opacity:0.8;
+	}
+}
+.slide-text[data-card-id="text_final"]{
+	.paragraph-container{
+		bottom:40px;
+	}
+	p{
+		margin:0;
+		&:before{
+			display:none;
+		}
+	}
+}
+@media(min-width:breakpoints(tablet)){
+	#credit-container{
+		// border-top: 1px solid #fff;
+		padding-top:24px;
+		ul{
+			width:300px;
+			float:left;
+			margin:0;
+		}
+		#kiitg{
+			width:300px;
+			margin-left:20px;
+			top:auto;
+			bottom:10px;
+			left:auto;
+			right:0;
+		}
+		#kiitg-logo{
+			width:80px;
+			height:112px;
+		}
+		#kiitg p{
+			padding-left:104px;
+			bottom:0;
+			position: absolute;
+		}
+		&:after{
+			content:'';
+			clear:both;
+			display:block;
+		}
+	}
+
+	.slides-chapter.slides-chapter-final{
+		margin-bottom:40px;
+		.slide-text{
+			.paragraph-container{
+				bottom:auto;
+				p:before{
+					display:none !important;
+				}
+			}
+		}
+	}
+}
+
+@media(min-width:breakpoints(desktop)){
+	#credit-container ul li{
+		font-size:18px;
+		line-height:24px;
+	}
+}
