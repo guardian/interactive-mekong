@@ -23,7 +23,7 @@ var shareUrl = "http://www.theguardian.com";
 var shareMessage = 'The fate of 70m people rests on what happens to the Mekong river. pic.twitter.com/ffsx0k5gNn';
 var shareImage = "http://media.guim.co.uk/d3372f1a20be9c5fea7b8419d7b7b8a4a531cb47/49_0_1801_1080/1801.jpg";
 var headerContent = {
-    headline: 'Tales <span id="title-break-1">of the</span> river <span id="title-break-2">bank</span>',
+    headline: "The river: How dams exploded Mekong's fragile",
     standfirst: 'The fate of 70m people rests on what happens to the Mekong river. Ahead of the Paris climate change summit, John Vidal finds countries calling for clean energy but creating ecological and human havoc with giant dams, deforestation and fast-growing cities',
     isMobile: true,
     media: shareMedia
