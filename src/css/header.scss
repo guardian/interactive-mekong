@@ -1,7 +1,6 @@
 #header-wrapper{
     margin-top:90px;
     .header-inner{
-       
         color:#FDEEE1;
         h1{
             font-family: $f-serif-headline;
@@ -159,26 +158,31 @@
 }
 
 @media(min-width: breakpoints(tablet)){
+    .header-image-container{
+        background-image: url(/imgs/river-header.png);
+        width:100%;
+        height:0;
+        padding-bottom:24%;
+        background-size:100%;
+        background-repeat:no-repeat;
+        position:absolute;
+        max-width:1680px;
+        background-position:center;
+
+        img{
+            width:115%;
+            margin-left:0;
+        }
+    }
     #header-wrapper{
-        background:#333;
         width:auto;
         margin:0 -20px;
         position: relative;
-        background-image: url(/imgs/river-header.png);
+        
         background-repeat:no-repeat;
         background-size:140%;
 
-        .header-image-container{
-        	line-height: 0;
-        	position: relative;
-        	z-index: 1;
-            margin-left:80px;
 
-        	img{
-        		width:115%;
-                margin-left:0;
-        	}
-        }
         .header-inner{
         	z-index:2;
         	padding:100px 20px 80px 20px;

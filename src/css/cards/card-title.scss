@@ -148,15 +148,33 @@
 	.drone-stroke{
 		width:100%;
 		height:auto;
-		overflow: hidden;
 		display:block;
 		position: relative;
 		background:rgba(255,255,255,0.2);
 		line-height:0;
+		&:before,&:after{
+			width:100%;
+			height:100%;
+			background:rgba(0,0,0,0.1);
+			position: absolute;
+			display:block;
+			content:'';
+			top:0;
+		}
+		&:after{
+			left:100%;
+		}
+		&:before{
+			right:100%;
+		}
 		video{
 			width:100%;
 			height:auto;
 			margin-top:-40px;
+		}
+		.drone-video-container{
+			overflow: hidden;
+			height:100%;
 		}
 	}
 	.drone-title{

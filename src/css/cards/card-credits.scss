@@ -30,6 +30,11 @@
 			content: '';
 			clear: both;
 		}
+		a{
+				display:block;
+				width:100%;
+				height:100%;
+			}
 	}
 	#kiitg-logo{
 		width:60px;
@@ -44,7 +49,7 @@
 			display:none;
 		}
 		font-size:12px;
-		padding-left:84px;
+		margin-left:84px;
 		line-height:16px;
 		font-family:$f-sans-serif-text;
 		padding-top:5px;
@@ -79,12 +84,14 @@
 			left:auto;
 			right:0;
 		}
+
 		#kiitg-logo{
 			width:80px;
 			height:112px;
 		}
 		#kiitg p{
-			padding-left:104px;
+			margin-left:104px;
+			padding-left:0;
 			bottom:0;
 			position: absolute;
 		}

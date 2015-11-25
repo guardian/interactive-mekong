@@ -1,12 +1,13 @@
-
 {{#if isMobile}}
 		{{>shareButtons}}
 {{else}}
 	<div class="drone-stroke">
-		<video {{#if_eq isMobile false}}loop muted{{/if_eq}} style="margin-top:-{{offset}}px"></video>
-		<div class="drone-title">
-			<p><strong>Chapter {{number}}</strong> of 6</p>
-			<h2>{{name}}</h2>
+		<div class="drone-video-container">
+			<video {{#if_eq isMobile false}}loop muted{{/if_eq}} style="margin-top:-{{offset}}px"></video>
+			<div class="drone-title">
+				<p><strong>Chapter {{number}}</strong> of 6</p>
+				<h2>{{name}}</h2>
+			</div>
 		</div>
 	</div>
 {{/if}}
