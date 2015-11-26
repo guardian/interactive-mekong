@@ -3,6 +3,7 @@ function mediaDisplay(el,player,data, isMobile){
 	var utils = require('./detect');
 	var assetManager = require('./assetManager');
 	var videoBitRate;
+	var protocol = window.location.protocol === 'file:' ? 'https://' : '//';
 
 	function init(){
 		var width = player.getBoundingClientRect().width;
@@ -122,7 +123,7 @@ function mediaDisplay(el,player,data, isMobile){
 	    }
 
 
-	    var path = 'http://cdn.theguardian.tv/interactive/';
+	    var path = protocol + 'cdn.theguardian.tv/interactive/';
 	    var oggPath = path + 'mp4/1080/' + matches[1] + '/' + matches[2];
 
 	    path += matches[1] + '/' + matches[2];

@@ -14,7 +14,7 @@ function track(cardId){
 			s.eVar37= track_event;
 			s.events='event37';
 			s.tl(true,'o', track_event);
-			console.log('event fired', track_event);
+			//console.log('event fired', track_event);
 		}
 
 	}

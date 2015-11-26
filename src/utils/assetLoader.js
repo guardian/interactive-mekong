@@ -2,6 +2,8 @@ var windowWidth,
 	imageSize,
 	imageSizes = [380, 450, 600];
 
+var protocol = window.location.protocol === 'file:' ? 'https://' : '//';
+
 function init(){
 	windowWidth = window.innerWidth;
 
@@ -24,7 +26,7 @@ function loadImage(el, cardData, isMobile){
 			init();
 		}
 		//load image for mobile
-		var url = cardData.mobile_url;
+		var url = cardData.mobile_url.replace('http://', protocol);
 		url = url.slice( 0, url.lastIndexOf(".")) + '_' + imageSize + url.slice( url.lastIndexOf(".") , url.length);
         var div;
         if( cardData.card ==='title'){
@@ -37,7 +39,7 @@ function loadImage(el, cardData, isMobile){
 		div.style.backgroundImage = 'url(' + url + ')';
 	} else {
 		//load image for desktop
-		var url = cardData.photo_url;
+		var url = cardData.photo_url.replace('http://', protocol);
 		url = url.slice( 0, url.lastIndexOf(".")) + '_' + cardData.size + url.slice( url.lastIndexOf(".") , url.length);
 		el.querySelector('.photo-bg').src = url;
 	}

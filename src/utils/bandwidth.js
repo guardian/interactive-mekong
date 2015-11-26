@@ -1,6 +1,9 @@
 define([], function() {
-	var smallFile = 'http://cdn.theguardian.tv/interactive/speedtest/testfilesmall.dat';
-	var largeFile =  'http://cdn.theguardian.tv/interactive/speedtest/testfile.dat';
+
+	var protocol = window.location.protocol === 'file:' ? 'https://' : '//';
+
+	var smallFile = protocol + 'cdn.theguardian.tv/interactive/speedtest/testfilesmall.dat';
+	var largeFile =  protocol + 'cdn.theguardian.tv/interactive/speedtest/testfile.dat';
 	
 	var bandwidth = 1000; //default value in case bandwidth detection fails. Must be non zero
 	
@@ -47,9 +50,9 @@ define([], function() {
 	 */
 	function getSpeed(callback) {
 		var startTime = new Date().getTime();
-		var checkFileSmall = 'http://cdn.theguardian.tv/interactive/speedtest/testfilesmall.dat';
+		var checkFileSmall = protocol + 'cdn.theguardian.tv/interactive/speedtest/testfilesmall.dat';
 		var fileSizeSmall = 1024*8;
-		var checkFileLarge = 'http://cdn.theguardian.tv/interactive/speedtest/testfile.dat';
+		var checkFileLarge = protocol + 'cdn.theguardian.tv/interactive/speedtest/testfile.dat';
 		var fileSizeLarge = 102400*8;
 		var timeout = 5000; // just give up after 5 seconds
 		var err = null;
