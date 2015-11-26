@@ -57,6 +57,11 @@ body.gv-loaded {
     #header-wrapper .shareButtons {
         display: none;
     }
+    @media(max-width:breakpoints(tablet)){
+        #credit-container{
+            padding-top:40px;
+        }
+    }
 
     @media(min-width: 375px){
         #header-wrapper .shareButtons {
