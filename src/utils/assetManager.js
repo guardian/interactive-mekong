@@ -11,7 +11,7 @@ var currentlyPlaying;
 var isMobile = true;
 var assetList = {};
 var cardLookup;
-var isMuted = (isMobile)? false: true;
+var isMuted = true;
 
 function init(mobile, data){
 	isMobile = mobile;

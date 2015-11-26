@@ -20,7 +20,7 @@ var newChapter;
 
 var shareMedia = ['facebook', 'twitter'];
 var shareUrl = "http://gu.com/p/4dk3p";
-var shareMessage = 'Mekong: a river rising. The fate of 70m people rests on what happens to the Mekong river. pic.twitter.com/ffsx0k5gNn';
+var shareMessage = 'The Mekong river: stories from the heart of the climate crisis – interactive pic.twitter.com/ffsx0k5gNn';
 var shareImage = "http://media.guim.co.uk/d3372f1a20be9c5fea7b8419d7b7b8a4a531cb47/49_0_1801_1080/1801.jpg";
 var headerContent = {
     headline: "<span>Mekong:</span> a river rising",
