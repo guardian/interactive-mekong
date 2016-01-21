@@ -1,6 +1,6 @@
 define([], function() {
 
-	var protocol = window.location.protocol === 'file:' ? 'https://' : '//';
+	var protocol = 'http://' ; //window.location.protocol === 'http:' ? 'http://' : 'https://';
 
 	var smallFile = protocol + 'cdn.theguardian.tv/interactive/speedtest/testfilesmall.dat';
 	var largeFile =  protocol + 'cdn.theguardian.tv/interactive/speedtest/testfile.dat';

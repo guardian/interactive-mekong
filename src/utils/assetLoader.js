@@ -2,7 +2,7 @@ var windowWidth,
 	imageSize,
 	imageSizes = [380, 450, 600];
 
-var protocol = window.location.protocol === 'file:' ? 'https://' : '//';
+var protocol = window.location.protocol === 'http:' ? 'http://' : 'https://';
 
 function init(){
 	windowWidth = window.innerWidth;

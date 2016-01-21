@@ -3,7 +3,7 @@ function mediaDisplay(el,player,data, isMobile){
 	var utils = require('./detect');
 	var assetManager = require('./assetManager');
 	var videoBitRate;
-	var protocol = window.location.protocol === 'file:' ? 'https://' : '//';
+	var protocol = window.location.protocol == 'http:' ? '//' : 'https://';
 
 	function init(){
 		var width = player.getBoundingClientRect().width;
