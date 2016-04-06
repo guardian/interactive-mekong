@@ -96,7 +96,6 @@ function start(el){
 
     getJSON('https://interactive.guim.co.uk/' + folder + '/' + key + '.json', 
         function(json){
-            
             //determine if display is mobile or desktop
             //organize the cards
             json.isMobile = isMobile;
@@ -192,7 +191,6 @@ function start(el){
                         })
                     }
                 }
-                console.log('hdoei')
                 console.log(json);
                 render(json,el);
             }else{
@@ -204,11 +202,8 @@ function start(el){
 }
 
 
-
 function render(json, el){
     cardData = json;
-    console.log(json)
-
 
     //render the template
     var content;

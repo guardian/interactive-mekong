@@ -9,6 +9,12 @@ function mediaDisplay(el,player,data, isMobile){
 		var width = player.getBoundingClientRect().width;
         var height = (width * 0.5625) + 'px';
 
+        if(player.parentNode){
+        	if(player.parentNode.className !== 'drone-video-container'){
+        		player.parentNode.setAttribute('style','height: ' + Math.floor(height.replace('px','')) + 'px;');
+        	}
+        }
+        
         player.setAttribute('height', height);
 		player.addEventListener("play", function () {
 			if(data.card === 'video'){
@@ -95,6 +101,9 @@ function mediaDisplay(el,player,data, isMobile){
 				sourceEl.setAttribute('type', key);
 				sourceEl.setAttribute('src', videoURLs[key]);
 				player.appendChild(sourceEl);
+
+				player.removeAttribute('src');
+				player.load();
 			});
 		}
 		
@@ -102,9 +111,12 @@ function mediaDisplay(el,player,data, isMobile){
 
 	function unloadSource(){
 		var sources = player.getElementsByTagName('source');
+		
 		while(sources.length > 0){
 			sources[0].parentNode.removeChild(sources[0]);
 		}
+
+		player.src = false;
 		sourceLoaded = false;
 	}
 
