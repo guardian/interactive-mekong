@@ -333,9 +333,9 @@ function initMobile(el){
     scanCardsMobile('chapters', vSwiper);
 
     //initialize the scroll to button on mobile
-    document.querySelector('.gv-start-button').addEventListener('click', function(e){
-       positionMobile();
-    })
+    // document.querySelector('.gv-start-button').addEventListener('click', function(e){
+       // positionMobile();
+    // })
 
     window.addEventListener( 'resize', detect.debounce(resizeMobile, 250) );
 
