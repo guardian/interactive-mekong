@@ -1,12 +1,12 @@
 define([], function() {
 
-	var protocol = 'http://' ; //window.location.protocol === 'http:' ? 'http://' : 'https://';
+	var protocol = 'https://' ; //window.location.protocol === 'http:' ? 'http://' : 'https://';
 
 	var smallFile = protocol + 'cdn.theguardian.tv/interactive/speedtest/testfilesmall.dat';
 	var largeFile =  protocol + 'cdn.theguardian.tv/interactive/speedtest/testfile.dat';
-	
+
 	var bandwidth = 1000; //default value in case bandwidth detection fails. Must be non zero
-	
+
 	function loadScript(url, callback) {
 		var script = document.createElement('script');
 		script.charset = 'utf-8';
@@ -26,13 +26,13 @@ define([], function() {
 		};
 		document.body.appendChild(script);
 	};
-	
-	
+
+
 	function timeFile(url, callback) {
 		var startTime = new Date().getTime();
 		url += '?bust=' + startTime;
 		var err = null;
-		
+
 		loadScript(url, function () {
 			var endTime = new Date().getTime();
 			var loadTime = endTime - startTime;
@@ -42,7 +42,7 @@ define([], function() {
 			}
 		});
 	};
-	
+
 	/**
 	 * Get the current connection bandwidth
 	 * @param {object} callback Callback function.
@@ -108,7 +108,7 @@ define([], function() {
 			}
 		}, timeout);
 	};
-		
+
 	return {
 		getSpeed: getSpeed
 	};
